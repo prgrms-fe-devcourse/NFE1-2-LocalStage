@@ -12,13 +12,12 @@ const GlobalStyle = createGlobalStyle`
   button{
     cursor: pointer;
   }
-
   input{
     outline: none;
   }
-  
   input:focus::placeholder{
     color: transparent;
+    outline: none;
   }
 `;
 
