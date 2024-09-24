@@ -8,6 +8,18 @@ const GlobalStyle = createGlobalStyle`
   body {
     //* 폰트
   }
+
+  button{
+    cursor: pointer;
+  }
+
+  input{
+    outline: none;
+  }
+  
+  input:focus::placeholder{
+    color: transparent;
+  }
 `;
 
 export default GlobalStyle;
