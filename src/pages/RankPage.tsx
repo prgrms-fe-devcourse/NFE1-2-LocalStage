@@ -1,3 +1,8 @@
 export default function RankPage() {
-  return <div>RankPage</div>;
+  return (
+    <div>
+      <input placeholder="hello" />
+      <button>asdasd</button>
+    </div>
+  );
 }
