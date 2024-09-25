@@ -50,31 +50,20 @@ export const SearchIcon = styled.div`
   top: 50%;
   right: 15px;
   transform: translateY(-50%);
-
-  & > img {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-  }
 `;
 
 export const IconContainer = styled.div`
   display: flex;
   align-items: center;
+  gap: 20px;
 
   & > div {
     margin-left: 20px;
   }
 `;
 
-export const StyledIcon = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)<{ isRangking?: boolean; isSearch?: boolean }>`
+export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)<{ isRangked?: boolean; isSearch?: boolean }>`
   font-size: ${({ isSearch }) => (isSearch ? '15px' : '25px')};
-  color: ${({ theme, isRangking }) => (isRangking ? theme.colors.primary : theme.colors.black)};
+  color: ${({ theme, isRangked }) => (isRangked ? theme.colors.primary : theme.colors.black)};
   cursor: pointer;
 `;

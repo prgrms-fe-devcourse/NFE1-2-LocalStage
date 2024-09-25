@@ -15,12 +15,8 @@ export const Header = () => {
           </S.SearchIcon>
         </S.SearchBarContainer>
         <S.IconContainer>
-          <S.StyledIcon>
-            <S.StyledFontAwesomeIcon icon={faRankingStar} isRangking />
-          </S.StyledIcon>
-          <S.StyledIcon>
-            <S.StyledFontAwesomeIcon icon={faUser} />
-          </S.StyledIcon>
+          <S.StyledFontAwesomeIcon icon={faRankingStar} isRangked />
+          <S.StyledFontAwesomeIcon icon={faUser} />
         </S.IconContainer>
       </S.StyledHeader>
     </S.HeaderContainer>
