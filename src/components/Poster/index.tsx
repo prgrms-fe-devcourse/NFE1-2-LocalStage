@@ -6,7 +6,7 @@ interface PosterProps {
   height?: number;
 }
 
-export const Poster = ({ src, width = 100, height = 100 }: PosterProps) => {
+export const Poster = ({ src, width = 100, height = (4 / 3) * width }: PosterProps) => {
   return (
     <S.Poster width={width} height={height}>
       <img alt="poster" src={src}></img>

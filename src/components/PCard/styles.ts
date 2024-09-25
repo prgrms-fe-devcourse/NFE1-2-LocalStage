@@ -16,4 +16,7 @@ export const PCardText = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  & > p:last-child {
+    color: ${props => props.theme.colors.text_gray};
+  }
 `;
