@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 export const PCard = styled.div<{ width: string }>`
   width: ${props => props.width};
   overflow: hidden;
-  & > div:nth-child(1) {
+  & > div:first-child {
     overflow: hidden;
     border-radius: 1rem;
   }
