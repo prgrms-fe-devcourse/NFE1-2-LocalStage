@@ -1,11 +1,17 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
-export const HeaderStyle = styled.div`
+export const HeaderContainer = styled.header`
+  width: 100%;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
+`;
+
+export const StyledHeader = styled.div`
+  max-width: ${props => props.theme.layout.max_width};
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 0px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
+  margin: 0 auto;
 `;
 
 export const Logo = styled.div`
@@ -13,9 +19,9 @@ export const Logo = styled.div`
   align-items: center;
 
   & > img {
-    width: 180px;
-    cursor: pointer;
+    width: 200px;
   }
+  cursor: pointer;
 `;
 
 export const SearchBarContainer = styled.div`
@@ -26,9 +32,9 @@ export const SearchBarContainer = styled.div`
 export const SearchBar = styled.input`
   width: 100%;
   padding: 10px 40px 10px 20px;
-  border: 1px solid ${({ theme }) => theme.colors.grey};
   border-radius: 50px;
   outline: none;
+  border: 1px solid ${({ theme }) => theme.colors.grey};
 `;
 
 export const SearchIcon = styled.div`
@@ -40,20 +46,20 @@ export const SearchIcon = styled.div`
   & > img {
     width: 16px;
     height: 16px;
+    cursor: pointer;
   }
 `;
 
 export const IconContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 0px 10px;
 
   & > div {
     margin-left: 20px;
   }
   & > div > img {
-    cursor: pointer;
     width: 30px;
     height: 30px;
+    cursor: pointer;
   }
 `;
