@@ -1,5 +1,5 @@
+import { P16 } from '@/components/Text';
 import styled from 'styled-components';
-import * as T from '../Text';
 
 export const MenuItem = styled.div`
   display: flex;
@@ -7,7 +7,7 @@ export const MenuItem = styled.div`
   gap: 10px;
 `;
 
-export const Item = styled(T.P16)<{ active: boolean }>`
+export const Item = styled(P16)<{ active: boolean }>`
   cursor: pointer;
   padding: 10px 15px;
   color: ${props => (props.active ? props.theme.colors.primary : props.theme.colors.text_gray)};
