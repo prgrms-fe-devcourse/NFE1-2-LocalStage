@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { P15 } from '@/components/Text';
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -38,6 +39,8 @@ export const SearchBar = styled.input`
 
   &::placeholder {
     color: ${props => props.theme.colors.text_gray};
+    font-family: 'Noto Sans KR', sans-serif;
+    ${P15};
   }
 `;
 
