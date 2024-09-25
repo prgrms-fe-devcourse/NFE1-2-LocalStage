@@ -1,4 +1,6 @@
 import * as S from './styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 export const Header = () => {
   return (
@@ -10,7 +12,7 @@ export const Header = () => {
         <S.SearchBarContainer>
           <S.SearchBar placeholder="공연을 검색해보세요." />
           <S.SearchIcon>
-            <img src="src/assets/imgs/search.png" alt="Search" />
+            <FontAwesomeIcon icon={faSearch} />
           </S.SearchIcon>
         </S.SearchBarContainer>
         <S.IconContainer>
