@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { P15 } from '@/components/Text';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -64,9 +65,16 @@ export const IconContainer = styled.div`
   & > div {
     margin-left: 20px;
   }
-  & > div > img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-  }
+`;
+
+export const StyledIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)<{ isRangking?: boolean; isSearch?: boolean }>`
+  font-size: ${({ isSearch }) => (isSearch ? '15px' : '25px')};
+  color: ${({ theme, isRangking }) => (isRangking ? theme.colors.primary : theme.colors.black)};
+  cursor: pointer;
 `;
