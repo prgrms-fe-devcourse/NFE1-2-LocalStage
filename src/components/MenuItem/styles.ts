@@ -1,17 +1,10 @@
 import { P16 } from '@/components/Text';
 import styled from 'styled-components';
 
-export const MenuItem = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  gap: 10px;
-`;
-
 export const Item = styled(P16)<{ active: boolean }>`
   cursor: pointer;
-  padding: 10px 15px;
+  padding: 12px 24px;
   color: ${props => (props.active ? props.theme.colors.primary : props.theme.colors.text_gray)};
-  position: relative;
 
   &::after {
     content: '';
