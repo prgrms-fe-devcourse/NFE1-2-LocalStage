@@ -6,18 +6,18 @@ interface PCardProps {
   title: string;
   place: string;
   date: string;
-  width?: number;
+  width?: string;
 }
 
-export const PCard = ({ title, place, date, width = 225 }: PCardProps) => {
+export const PCard = ({ title, place, date, width = '225px' }: PCardProps) => {
   return (
     <S.PCard width={width}>
-      <Poster src="https://placehold.co/600x400?text=poster" width={100}></Poster>
-      <div>
+      <Poster src="https://placehold.co/600x400?text=poster"></Poster>
+      <S.PCardText>
         <H16>{title}</H16>
         <P15>{place}</P15>
         <P15>{date}</P15>
-      </div>
+      </S.PCardText>
     </S.PCard>
   );
 };
