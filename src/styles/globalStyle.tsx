@@ -42,7 +42,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
 
-  body {
+  body, header {
     font-family: "SpoqaHanSansNeo", sans-serif;
     font-weight: 400;
   }
