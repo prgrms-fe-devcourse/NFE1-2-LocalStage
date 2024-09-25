@@ -4,13 +4,14 @@ import MyPage from '@/pages/MyPage';
 import RankPage from '@/pages/RankPage';
 import SearchPage from '@/pages/SearchPage';
 import { createBrowserRouter, Outlet } from 'react-router-dom';
+import { Header } from '@/components/Header';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: (
       <>
-        <div>Header</div>
+        <Header />
         <Outlet />
         <div>Footer</div>
       </>
