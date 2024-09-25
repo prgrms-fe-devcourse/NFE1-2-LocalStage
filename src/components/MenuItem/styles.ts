@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 import * as T from '../Text';
 
-export const MenuWrapper = styled.div`
+export const MenuItem = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 10px;
 `;
 
 export const Item = styled(T.P16)<{ active: boolean }>`
-  background: none;
-  border: none;
   cursor: pointer;
   padding: 10px 15px;
   color: ${props => (props.active ? props.theme.colors.primary : props.theme.colors.text_gray)};
