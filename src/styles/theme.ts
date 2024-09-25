@@ -1,6 +1,9 @@
 import { DefaultTheme } from 'styled-components';
 
 const theme: DefaultTheme = {
+  layout: {
+    max_width: 1280,
+  },
   colors: {
     black: '#000000',
     grey: '#d8d8d8',
