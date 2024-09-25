@@ -6,6 +6,11 @@ import router from '@/router';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '@/styles/globalStyle';
 import theme from '@/styles/theme';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
+config.autoAddCss = false;
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
