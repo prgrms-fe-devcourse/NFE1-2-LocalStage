@@ -35,6 +35,10 @@ export const SearchBar = styled.input`
   border-radius: 50px;
   outline: none;
   border: 1px solid ${props => props.theme.colors.grey};
+
+  &::placeholder {
+    color: ${props => props.theme.colors.text_gray};
+  }
 `;
 
 export const SearchIcon = styled.div`
