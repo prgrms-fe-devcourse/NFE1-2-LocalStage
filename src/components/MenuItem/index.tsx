@@ -8,8 +8,8 @@ interface MenuItemProps {
 
 export const MenuItem = ({ item, active, onClick }: MenuItemProps) => {
   return (
-    <S.Item active={active} onClick={onClick}>
+    <S.MenuItem active={active} onClick={onClick}>
       {item}
-    </S.Item>
+    </S.MenuItem>
   );
 };

@@ -2,20 +2,11 @@ import styled from 'styled-components';
 
 export const MenuItemContainer = styled.div`
   display: flex;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
 `;
 
-export const VerticalBar = styled.div`
-  width: 1px;
-  height: 12px;
-  background-color: ${({ theme }) => theme.colors.grey};
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-`;
-
-export const MenuItem = styled.div`
+export const MenuItemWrapper = styled.div`
+  display: flex;
+  align-items: center;
   position: relative;
-  justify-content: flex-start;
 `;
