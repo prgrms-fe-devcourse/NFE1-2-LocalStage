@@ -8,12 +8,13 @@ interface PCardProps {
   place: string;
   date: string;
   width?: string;
+  rank?: number | null;
 }
 
-export const PCard = ({ src, title, place, date, width = '225px' }: PCardProps) => {
+export const PCard = ({ src, title, place, date, width = '225px', rank = null }: PCardProps) => {
   return (
     <S.PCard width={width}>
-      <Poster src={src}></Poster>
+      <Poster src={src} rank={rank}></Poster>
       <S.PCardText>
         <H16>{title}</H16>
         <P15>{place}</P15>

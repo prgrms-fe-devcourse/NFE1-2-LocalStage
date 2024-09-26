@@ -13,3 +13,11 @@ export const Poster = styled.div<{ width: number; height: number }>`
     object-fit: cover;
   }
 `;
+export const Rank = styled.div`
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.white};
+`;

@@ -14,9 +14,17 @@ interface PCardGridProps {
   rows?: number;
   columns?: number;
   gap?: number;
+  isRanked?: boolean;
 }
 
-export const PCardGrid = ({ performList, width = '600px', rows = 1, columns = 5, gap = 10 }: PCardGridProps) => {
+export const PCardGrid = ({
+  performList,
+  width = '600px',
+  rows = 1,
+  columns = 5,
+  gap = 10,
+  isRanked,
+}: PCardGridProps) => {
   return (
     <S.PCardGrid width={width} rows={rows} columns={columns} gap={gap}>
       {performList.map((perform, index) => (
@@ -27,6 +35,7 @@ export const PCardGrid = ({ performList, width = '600px', rows = 1, columns = 5,
           place={perform.place}
           date={perform.date}
           width="100%"
+          {...(isRanked && { rank: index + 1 })}
         ></PCard>
       ))}
     </S.PCardGrid>
