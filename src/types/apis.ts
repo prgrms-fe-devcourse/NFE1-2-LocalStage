@@ -425,7 +425,7 @@ interface Prfst {
 }
 
 //* 1. 공연목록조회서비스
-export type PerformanceListRequestType = Partial<
+export type PListRequestType = Partial<
   Pick<
     CommonRequestType,
     | 'service'
@@ -444,7 +444,7 @@ export type PerformanceListRequestType = Partial<
     | 'openrun'
   >
 >;
-export type PerformanceListResponseType = {
+export type PListResponseType = {
   dbs?: {
     db: Pick<
       Db,
@@ -454,8 +454,8 @@ export type PerformanceListResponseType = {
 };
 
 //* 2. 공연상세조회서비스
-export type PerformanceDetailRequestType = Partial<Pick<CommonRequestType, 'service' | 'mt20id'>>;
-export type PerformanceDetailResponseType = {
+export type PDetailRequestType = Partial<Pick<CommonRequestType, 'service' | 'mt20id'>>;
+export type PDetailResponseType = {
   dbs?: {
     db: Pick<
       Db,
@@ -535,10 +535,10 @@ export type BoxOfficeResponseType = {
 };
 
 //* 15. 공연별통계목록조회서비스
-export type PerformanceStatisticsRequestType = Partial<
+export type PStatisticsRequestType = Partial<
   Pick<CommonRequestType, 'service' | 'cpage' | 'rows' | 'stdate' | 'eddate' | 'shcate' | 'shprfnm'>
 >;
-export type PerformanceStatisticsResponseType = {
+export type PStatisticsResponseType = {
   prfst?: Pick<Prfst, 'prfnm' | 'cate' | 'mt20id' | 'fcltynm' | 'entrpsnm' | 'prfpdfrom' | 'prfpdto' | 'prfdtcnt'>[];
 };
 
