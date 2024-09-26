@@ -2,7 +2,7 @@ import { DefaultTheme } from 'styled-components';
 
 const theme: DefaultTheme = {
   layout: {
-    max_width: 1280,
+    max_width: '1280px',
   },
   colors: {
     black: '#000000',
