@@ -1,89 +1,85 @@
 // 공통 RequestType
 interface CommonRequestType {
   /**
-   * 서비스키 (필수)
-   */
-  service: string;
-  /**
    * 공연시작일
    */
-  stdate?: string;
+  stdate: string;
   /**
    * 공연종료일
    */
-  eddate?: string;
+  eddate: string;
   /**
    * 현재페이지 (필수)
    */
-  cpage?: string;
+  cpage: string;
   /**
    * 페이지당목록 수 (필수)
    */
-  rows?: string;
+  rows: string;
   /**
    * 공연명
    */
-  shprfnm?: string;
+  shprfnm: string;
   /**
    * 장르코드
    */
-  shcate?: string;
+  shcate: string;
   /**
    * 공연장코드
    */
-  prfplccd?: string;
+  prfplccd: string;
   /**
    * 지역(시도)코드
    */
-  signgucode?: string;
+  signgucode: string;
   /**
    * 지역(구군)코드
    */
-  signgucodesub?: string;
+  signgucodesub: string;
   /**
    * 아동공연여부
    */
-  kidstate?: string;
+  kidstate: string;
   /**
    * 공연상태코드
    */
-  prfstate?: string;
+  prfstate: string;
   /**
    * 통계기준
    */
-  ststype?: string;
+  ststype: string;
   /**
    * 기준일
    */
-  date?: string;
+  date: string;
   /**
    * 장르코드
    */
-  catecode?: string;
+  catecode: string;
   /**
    * 지역코드
    */
-  area?: string;
+  area: string;
   /**
    * 좌석수코드
    */
-  srchseatscale?: string;
+  srchseatscale: string;
   /**
    * 공연 시설 명
    */
-  shprfnmfct?: string;
+  shprfnmfct: string;
   /**
    * 오픈런 여부 Y/N
    */
-  openrun?: string;
+  openrun: string;
   /**
    * 공연 ID
    */
-  mt20id?: string;
+  mt20id: string;
   /**
    * 공연 시설 ID
    */
-  mt10id?: string;
+  mt10id: string;
 }
 // 공통 ResponseType
 interface Boxof {
@@ -425,25 +421,21 @@ interface Prfst {
 }
 
 //* 1. 공연목록조회서비스
-export type PListRequestType = Partial<
-  Pick<
-    CommonRequestType,
-    | 'service'
-    | 'stdate'
-    | 'eddate'
-    | 'cpage'
-    | 'rows'
-    | 'shcate'
-    | 'shprfnm'
-    | 'shprfnmfct'
-    | 'prfplccd'
-    | 'signgucode'
-    | 'signgucodesub'
-    | 'kidstate'
-    | 'prfstate'
-    | 'openrun'
-  >
->;
+export type PListRequestType = Required<Pick<CommonRequestType, 'stdate' | 'eddate' | 'cpage' | 'rows'>> &
+  Partial<
+    Pick<
+      CommonRequestType,
+      | 'shcate'
+      | 'shprfnm'
+      | 'shprfnmfct'
+      | 'prfplccd'
+      | 'signgucode'
+      | 'signgucodesub'
+      | 'kidstate'
+      | 'prfstate'
+      | 'openrun'
+    >
+  >;
 export type PListResponseType = {
   dbs?: {
     db: Pick<
@@ -454,7 +446,7 @@ export type PListResponseType = {
 };
 
 //* 2. 공연상세조회서비스
-export type PDetailRequestType = Partial<Pick<CommonRequestType, 'service' | 'mt20id'>>;
+export type PDetailRequestType = Pick<CommonRequestType, 'mt20id'>;
 export type PDetailResponseType = {
   dbs?: {
     db: Pick<
@@ -493,7 +485,7 @@ export type PDetailResponseType = {
 };
 
 //* 4. 공연시설상세조회서비스
-export type FacilityDetailRequestType = Partial<Pick<CommonRequestType, 'service' | 'mt10id'>>;
+export type FacilityDetailRequestType = Pick<CommonRequestType, 'mt10id'>;
 export type FacilityDetailResponseType = {
   dbs?: {
     db: Pick<
@@ -524,9 +516,8 @@ export type FacilityDetailResponseType = {
 };
 
 //* 6. 예매상황판조회서비스
-export type BoxOfficeRequestType = Partial<
-  Pick<CommonRequestType, 'service' | 'ststype' | 'date' | 'catecode' | 'area' | 'srchseatscale'>
->;
+export type BoxOfficeRequestType = Required<Pick<CommonRequestType, 'ststype' | 'date'>> &
+  Partial<Pick<CommonRequestType, 'catecode' | 'area' | 'srchseatscale'>>;
 export type BoxOfficeResponseType = {
   boxofs?: {
     basedate: string;
@@ -535,32 +526,20 @@ export type BoxOfficeResponseType = {
 };
 
 //* 15. 공연별통계목록조회서비스
-export type PStatisticsRequestType = Partial<
-  Pick<CommonRequestType, 'service' | 'cpage' | 'rows' | 'stdate' | 'eddate' | 'shcate' | 'shprfnm'>
->;
+export type PStatisticsRequestType = Required<Pick<CommonRequestType, 'cpage' | 'rows' | 'stdate' | 'eddate'>> &
+  Partial<Pick<CommonRequestType, 'shcate' | 'shprfnm'>>;
 export type PStatisticsResponseType = {
   prfst?: Pick<Prfst, 'prfnm' | 'cate' | 'mt20id' | 'fcltynm' | 'entrpsnm' | 'prfpdfrom' | 'prfpdto' | 'prfdtcnt'>[];
 };
 
 //* 18. 수상작목록조회서비스
-export type AwardRequestType = Partial<
-  Pick<
-    CommonRequestType,
-    | 'service'
-    | 'stdate'
-    | 'eddate'
-    | 'cpage'
-    | 'rows'
-    | 'shcate'
-    | 'shprfnm'
-    | 'shprfnmfct'
-    | 'prfplccd'
-    | 'signgucode'
-    | 'signgucodesub'
-    | 'kidstate'
-    | 'prfstate'
-  >
->;
+export type AwardRequestType = Required<Pick<CommonRequestType, 'stdate' | 'eddate' | 'cpage' | 'rows'>> &
+  Partial<
+    Pick<
+      CommonRequestType,
+      'shcate' | 'shprfnm' | 'shprfnmfct' | 'prfplccd' | 'signgucode' | 'signgucodesub' | 'kidstate' | 'prfstate'
+    >
+  >;
 export type AwardResponseType = {
   db?: Pick<
     Db,
