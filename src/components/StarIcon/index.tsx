@@ -7,5 +7,5 @@ interface StarIconProps {
 }
 
 export const StarIcon = ({ isChecked, onClick }: StarIconProps) => {
-  return <S.StarIcon onClick={onClick} icon={faStar} isChecked={isChecked} />;
+  return <S.StarIcon icon={faStar} isChecked={isChecked} onClick={onClick} />;
 };
