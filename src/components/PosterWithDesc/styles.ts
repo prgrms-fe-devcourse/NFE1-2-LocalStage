@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const PosterWithDesc = styled.div<{ width: string }>`
-  width: ${props => props.width};
+  width: ${({ width }) => width};
 `;
 export const PosterWithDescText = styled.div`
   text-align: center;
@@ -14,6 +14,6 @@ export const PosterWithDescText = styled.div`
   }
 
   & > p:last-child {
-    color: ${props => props.theme.colors.text_gray};
+    color: ${({ theme }) => theme.colors.text_gray};
   }
 `;
