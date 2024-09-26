@@ -425,22 +425,24 @@ interface Prfst {
 }
 
 //* 1. 공연목록조회서비스
-export type PerformanceListRequestType = Pick<
-  CommonRequestType,
-  | 'service'
-  | 'stdate'
-  | 'eddate'
-  | 'cpage'
-  | 'rows'
-  | 'shcate'
-  | 'shprfnm'
-  | 'shprfnmfct'
-  | 'prfplccd'
-  | 'signgucode'
-  | 'signgucodesub'
-  | 'kidstate'
-  | 'prfstate'
-  | 'openrun'
+export type PerformanceListRequestType = Partial<
+  Pick<
+    CommonRequestType,
+    | 'service'
+    | 'stdate'
+    | 'eddate'
+    | 'cpage'
+    | 'rows'
+    | 'shcate'
+    | 'shprfnm'
+    | 'shprfnmfct'
+    | 'prfplccd'
+    | 'signgucode'
+    | 'signgucodesub'
+    | 'kidstate'
+    | 'prfstate'
+    | 'openrun'
+  >
 >;
 export type PerformanceListResponseType = {
   dbs?: {
@@ -452,7 +454,7 @@ export type PerformanceListResponseType = {
 };
 
 //* 2. 공연상세조회서비스
-export type PerformanceDetailRequestType = Pick<CommonRequestType, 'service' | 'mt20id'>;
+export type PerformanceDetailRequestType = Partial<Pick<CommonRequestType, 'service' | 'mt20id'>>;
 export type PerformanceDetailResponseType = {
   dbs?: {
     db: Pick<
@@ -491,7 +493,7 @@ export type PerformanceDetailResponseType = {
 };
 
 //* 4. 공연시설상세조회서비스
-export type FacilityDetailRequestType = Pick<CommonRequestType, 'service' | 'mt10id'>;
+export type FacilityDetailRequestType = Partial<Pick<CommonRequestType, 'service' | 'mt10id'>>;
 export type FacilityDetailResponseType = {
   dbs?: {
     db: Pick<
@@ -522,9 +524,8 @@ export type FacilityDetailResponseType = {
 };
 
 //* 6. 예매상황판조회서비스
-export type BoxOfficeRequestType = Pick<
-  CommonRequestType,
-  'service' | 'ststype' | 'date' | 'catecode' | 'area' | 'srchseatscale'
+export type BoxOfficeRequestType = Partial<
+  Pick<CommonRequestType, 'service' | 'ststype' | 'date' | 'catecode' | 'area' | 'srchseatscale'>
 >;
 export type BoxOfficeResponseType = {
   boxofs?: {
@@ -534,30 +535,31 @@ export type BoxOfficeResponseType = {
 };
 
 //* 15. 공연별통계목록조회서비스
-export type PerformanceStatisticsRequestType = Pick<
-  CommonRequestType,
-  'service' | 'cpage' | 'rows' | 'stdate' | 'eddate' | 'shcate' | 'shprfnm'
+export type PerformanceStatisticsRequestType = Partial<
+  Pick<CommonRequestType, 'service' | 'cpage' | 'rows' | 'stdate' | 'eddate' | 'shcate' | 'shprfnm'>
 >;
 export type PerformanceStatisticsResponseType = {
   prfst?: Pick<Prfst, 'prfnm' | 'cate' | 'mt20id' | 'fcltynm' | 'entrpsnm' | 'prfpdfrom' | 'prfpdto' | 'prfdtcnt'>[];
 };
 
 //* 18. 수상작목록조회서비스
-export type AwardRequestType = Pick<
-  CommonRequestType,
-  | 'service'
-  | 'stdate'
-  | 'eddate'
-  | 'cpage'
-  | 'rows'
-  | 'shcate'
-  | 'shprfnm'
-  | 'shprfnmfct'
-  | 'prfplccd'
-  | 'signgucode'
-  | 'signgucodesub'
-  | 'kidstate'
-  | 'prfstate'
+export type AwardRequestType = Partial<
+  Pick<
+    CommonRequestType,
+    | 'service'
+    | 'stdate'
+    | 'eddate'
+    | 'cpage'
+    | 'rows'
+    | 'shcate'
+    | 'shprfnm'
+    | 'shprfnmfct'
+    | 'prfplccd'
+    | 'signgucode'
+    | 'signgucodesub'
+    | 'kidstate'
+    | 'prfstate'
+  >
 >;
 export type AwardResponseType = {
   db?: Pick<
