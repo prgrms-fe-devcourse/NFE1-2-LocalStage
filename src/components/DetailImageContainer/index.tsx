@@ -1,27 +1,15 @@
-import { Poster } from '@/components/Poster';
+import { DetailImage } from '@/components/DetailImage';
 import * as S from './styles';
 
-interface Poster {
-  id: number;
-  src: string;
-  width?: number;
-  height?: number;
-}
-
 interface DetailImageContainerProps {
-  posters: Poster[];
+  detailImgList: { src: string }[];
 }
 
-export const DetailImageContainer = ({ posters }: DetailImageContainerProps) => {
+export const DetailImageContainer = ({ detailImgList }: DetailImageContainerProps) => {
   return (
     <S.DetailImageContainer>
-      {posters.map(poster => (
-        <Poster
-          key={poster.id} //
-          src={poster.src}
-          width={poster.width}
-          height={poster.height}
-        />
+      {detailImgList.map((detailImg, index) => (
+        <DetailImage key={index} src={detailImg.src} />
       ))}
     </S.DetailImageContainer>
   );
