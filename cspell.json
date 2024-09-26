@@ -61,7 +61,9 @@
     "prfdtcnt",
     "fcltychartr",
     "adres",
-    "pblprfr"
+    "pblprfr",
+    "prfawad",
+    "prfplc"
   ],
   "ignoreWords": [],
   "import": []

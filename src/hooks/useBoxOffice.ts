@@ -10,7 +10,7 @@ import getApiUrl from '@/utils/getApiUrl';
  * @returns {{ data: BoxOfficeResponseType | undefined, isLoading: boolean }} - 예매 상황판 데이터와 로딩 상태를 반환합니다.
  */
 export default function useBoxOffice(params: BoxOfficeRequestType) {
-  const url = getApiUrl<BoxOfficeRequestType>('pblprfr', params);
+  const url = getApiUrl<BoxOfficeRequestType>('boxoffice', params);
   const { data, isLoading } = useFetch<BoxOfficeResponseType>(url);
   return { data, isLoading };
 }

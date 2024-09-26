@@ -10,7 +10,7 @@ import getApiUrl from '@/utils/getApiUrl';
  * @returns {{ data: PStatisticsResponseType | undefined, isLoading: boolean }} - 공연별 통계 데이터와 로딩 상태를 반환합니다.
  */
 export default function usePStatistics(params: PStatisticsRequestType) {
-  const url = getApiUrl<PStatisticsRequestType>('pblprfr', params);
+  const url = getApiUrl<PStatisticsRequestType>('prfstsPrfBy', params);
   const { data, isLoading } = useFetch<PStatisticsResponseType>(url);
   return { data, isLoading };
 }

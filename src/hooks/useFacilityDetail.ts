@@ -10,7 +10,7 @@ import getApiUrl from '@/utils/getApiUrl';
  * @returns {{ data: FacilityDetailResponseType | undefined, isLoading: boolean }} - 공연 시설 상세 데이터와 로딩 상태를 반환합니다.
  */
 export default function useFacilityDetail(params: FacilityDetailRequestType) {
-  const url = getApiUrl<FacilityDetailRequestType>('pblprfr', params);
+  const url = getApiUrl<FacilityDetailRequestType>('prfplc', params);
   const { data, isLoading } = useFetch<FacilityDetailResponseType>(url);
   return { data, isLoading };
 }
