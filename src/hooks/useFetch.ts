@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { xml2json } from 'xml-js';
 
-export default function useFetch(url: string) {
-  const [data, setData] = useState('');
+export default function useFetch<T>(url: string) {
+  const [data, setData] = useState<T>();
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
