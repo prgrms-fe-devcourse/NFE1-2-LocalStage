@@ -60,7 +60,8 @@
     "totnmrs",
     "prfdtcnt",
     "fcltychartr",
-    "adres"
+    "adres",
+    "pblprfr"
   ],
   "ignoreWords": [],
   "import": []
