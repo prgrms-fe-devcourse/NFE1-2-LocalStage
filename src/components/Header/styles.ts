@@ -62,8 +62,8 @@ export const IconContainer = styled.div`
   }
 `;
 
-export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)<{ isRangked?: boolean; isSearch?: boolean }>`
+export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)<{ isRanked?: boolean; isSearch?: boolean }>`
   font-size: ${({ isSearch }) => (isSearch ? '15px' : '25px')};
-  color: ${({ theme, isRangked }) => (isRangked ? theme.colors.primary : theme.colors.black)};
+  color: ${({ theme, isRanked }) => (isRanked ? theme.colors.primary : theme.colors.black)};
   cursor: pointer;
 `;
