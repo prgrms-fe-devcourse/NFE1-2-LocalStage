@@ -1,5 +1,5 @@
 {
-  "Typescript React Styled Components": {
+  "Typescript Styled Components": {
     "scope": "typescript",
     "prefix": "sc",
     "body": [
@@ -10,7 +10,7 @@
       "`;",
     ],
   },
-  "Typescript React Styled Components in Mac": {
+  "Typescript Styled Components in Mac": {
     "scope": "typescript",
     "prefix": "scmac",
     "body": [
@@ -20,5 +20,10 @@
       "  $2",
       "`;",
     ],
+  },
+  "Typescript React Hook": {
+    "scope": "typescript",
+    "prefix": "hook",
+    "body": ["export default function ${TM_FILENAME_BASE}() {", "  $1", "  return {}", "}"],
   },
 }
