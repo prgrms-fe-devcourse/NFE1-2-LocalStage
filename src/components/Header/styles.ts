@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const HeaderContainer = styled.header`
   width: 100%;
-  border-bottom: 1px solid ${props => props.theme.colors.grey};
+  border-bottom: 1px solid ${props => props.theme.colors.gray};
 `;
 
 export const StyledHeader = styled.div`
@@ -36,7 +36,7 @@ export const SearchBar = styled.input`
   padding: 10px 40px 10px 20px;
   border-radius: 50px;
   outline: none;
-  border: 1px solid ${props => props.theme.colors.grey};
+  border: 1px solid ${props => props.theme.colors.gray};
 
   &::placeholder {
     color: ${props => props.theme.colors.text_gray};
