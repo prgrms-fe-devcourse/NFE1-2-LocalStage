@@ -23,7 +23,7 @@ export const PCardGrid = ({
   rows = 1,
   columns = 5,
   gap = 10,
-  isRanked,
+  isRanked = false,
 }: PCardGridProps) => {
   return (
     <S.PCardGrid width={width} rows={rows} columns={columns} gap={gap}>
