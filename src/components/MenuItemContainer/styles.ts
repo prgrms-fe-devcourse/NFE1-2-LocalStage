@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const MenuItemContainer = styled.div`
   display: flex;
-  border-bottom: 1px solid ${props => props.theme.colors.grey};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
 `;
 
 export const VerticalBar = styled.div`
   width: 1px;
   height: 12px;
-  background-color: ${props => props.theme.colors.grey};
+  background-color: ${({ theme }) => theme.colors.grey};
   position: absolute;
   right: 0;
   top: 50%;

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Item = styled(P16)<{ active: boolean }>`
   cursor: pointer;
   padding: 12px 24px;
-  color: ${props => (props.active ? props.theme.colors.primary : props.theme.colors.text_gray)};
+  color: ${({ theme, active }) => (active ? theme.colors.primary : theme.colors.text_gray)};
 
   &::after {
     content: '';
@@ -13,8 +13,8 @@ export const Item = styled(P16)<{ active: boolean }>`
     bottom: -2px;
     width: 100%;
     height: 3px;
-    background-color: ${props => props.theme.colors.primary};
-    transform: scaleX(${props => (props.active ? 1 : 0)});
+    background-color: ${({ theme }) => theme.colors.primary};
+    transform: scaleX(${({ active }) => (active ? 1 : 0)});
     transition: transform 0.3s ease-in-out;
   }
 `;
