@@ -11,11 +11,11 @@ export const Header = () => {
         <S.SearchBarContainer>
           <S.SearchBar placeholder="공연을 검색해보세요." />
           <S.SearchIcon>
-            <S.StyledFontAwesomeIcon icon={faSearch} isSearch />
+            <S.StyledFontAwesomeIcon icon={faSearch} $isSearch />
           </S.SearchIcon>
         </S.SearchBarContainer>
         <S.IconContainer>
-          <S.StyledFontAwesomeIcon icon={faRankingStar} isRanked />
+          <S.StyledFontAwesomeIcon icon={faRankingStar} $isRanked />
           <S.StyledFontAwesomeIcon icon={faUser} />
         </S.IconContainer>
       </S.StyledHeader>
