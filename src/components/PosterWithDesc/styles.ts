@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 export const PosterWithDesc = styled.div<{ width: string }>`
   width: ${({ width }) => width};
 `;
-export const PosterWithDescText = styled.div`
+export const Desc = styled.div`
   text-align: center;
 
   & > * {
@@ -13,7 +13,7 @@ export const PosterWithDescText = styled.div`
     white-space: nowrap;
   }
 
-  & > p:last-child {
+  & > p {
     color: ${({ theme }) => theme.colors.text_gray};
   }
 `;

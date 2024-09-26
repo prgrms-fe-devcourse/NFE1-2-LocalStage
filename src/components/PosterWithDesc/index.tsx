@@ -13,10 +13,10 @@ export const PosterWithDesc = ({ src, title, date, width = '225px' }: PosterWith
   return (
     <S.PosterWithDesc width={width}>
       <Poster src={src}></Poster>
-      <S.PosterWithDescText>
+      <S.Desc>
         <H16>{title}</H16>
         <P15>{date}</P15>
-      </S.PosterWithDescText>
+      </S.Desc>
     </S.PosterWithDesc>
   );
 };
