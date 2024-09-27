@@ -1,5 +1,5 @@
 // 공통 RequestType
-interface CommonRequestType {
+export type CommonRequestType = {
   /**
    * 공연시작일
    */
@@ -80,9 +80,9 @@ interface CommonRequestType {
    * 공연 시설 ID
    */
   mt10id: string;
-}
-// 공통 ResponseType
-interface Boxof {
+};
+
+export type CommonResponseType = {
   /**
    * 지역
    */
@@ -123,9 +123,6 @@ interface Boxof {
    * 공연ID
    */
   mt20id: string;
-}
-
-interface Db {
   /**
    * 수상 실적
    */
@@ -154,18 +151,12 @@ interface Db {
    * 개관연도
    */
   opende: number;
-  /**
-   * 공연ID
-   */
-  mt20id: string;
+
   /**
    * 공연시설ID
    */
   mt10id: string;
-  /**
-   * 공연명
-   */
-  prfnm: string;
+
   /**
    * 공연시작일
    */
@@ -178,10 +169,7 @@ interface Db {
    * 공연시설명(공연장명)
    */
   fcltynm: string;
-  /**
-   * 포스터이미지경로
-   */
-  poster: string;
+
   /**
    * 장르명
    */
@@ -322,7 +310,6 @@ interface Db {
    * 주차 시설
    */
   parkinglot: string;
-  area: string;
   /**
    * 켓가격
    */
@@ -335,13 +322,7 @@ interface Db {
    * 주소
    */
   adres: string;
-}
 
-interface Prfst {
-  /**
-   * 지역
-   */
-  area: string;
   /**
    * 공연장
    */
@@ -358,14 +339,7 @@ interface Prfst {
    * 공연건수
    */
   prfcnt: number;
-  /**
-   * 상연횟수
-   */
-  prfdtcnt: number;
-  /**
-   * 좌석수
-   */
-  seatcnt: number;
+
   /**
    * 총티켓판매수
    */
@@ -382,10 +356,7 @@ interface Prfst {
    * 총티켓판매액
    */
   amount: number;
-  /**
-   * 장르
-   */
-  cate: string;
+
   /**
    * 매출액점유율
    */
@@ -394,31 +365,93 @@ interface Prfst {
    * 관객점유율
    */
   nmrsshr: number;
-  /**
-   * 공연시설명
-   */
-  fcltynm: string;
-  /**
-   * 공연명
-   */
-  prfnm: string;
-  /**
-   * 공연ID
-   */
-  mt20id: string;
-  /**
-   * 기획/제작사
-   */
-  entrpsnm: string;
-  /**
-   * 공연시작일
-   */
-  prfpdfrom: string;
-  /**
-   * 공연종료일
-   */
-  prfpdto: string;
-}
+};
+// 공통 ResponseType
+type Boxof = Pick<
+  CommonResponseType,
+  'area' | 'prfdtcnt' | 'prfplcnm' | 'prfpd' | 'cate' | 'prfnm' | 'rnum' | 'seatcnt' | 'poster' | 'mt20id'
+>;
+
+type Db = Pick<
+  CommonResponseType,
+  | 'awards'
+  | 'relateurl'
+  | 'telno'
+  | 'mt13cnt'
+  | 'seatscale'
+  | 'fcltychartr'
+  | 'opende'
+  | 'mt20id'
+  | 'mt10id'
+  | 'prfnm'
+  | 'prfpdfrom'
+  | 'prfpdto'
+  | 'fcltynm'
+  | 'poster'
+  | 'genrenm'
+  | 'prfstate'
+  | 'openrun'
+  | 'styurls'
+  | 'dtguidance'
+  | 'prfage'
+  | 'prfcast'
+  | 'prfcrew'
+  | 'prfruntime'
+  | 'entrpsnm'
+  | 'entrpsnmP'
+  | 'entrpsnmA'
+  | 'entrpsnmH'
+  | 'entrpsnmS'
+  | 'pcseguidance'
+  | 'sty'
+  | 'visit'
+  | 'child'
+  | 'daehakro'
+  | 'festival'
+  | 'musicallicense'
+  | 'musicalcreate'
+  | 'updatedate'
+  | 'la'
+  | 'lo'
+  | 'restaurant'
+  | 'cafe'
+  | 'store'
+  | 'nolibang'
+  | 'suyu'
+  | 'parkbarrier'
+  | 'restbarrier'
+  | 'runwbarrier'
+  | 'elevbarrier'
+  | 'parkinglot'
+  | 'area'
+  | 'pcseguidanc'
+  | 'musicallicens'
+  | 'adres'
+>;
+
+type Prfst = Pick<
+  CommonResponseType,
+  | 'area'
+  | 'prfplccnt'
+  | 'fcltycnt'
+  | 'prfprocnt'
+  | 'prfcnt'
+  | 'prfdtcnt'
+  | 'seatcnt'
+  | 'totnmrs'
+  | 'nmrs'
+  | 'nmrcancl'
+  | 'amount'
+  | 'cate'
+  | 'amountshr'
+  | 'nmrsshr'
+  | 'fcltynm'
+  | 'prfnm'
+  | 'mt20id'
+  | 'entrpsnm'
+  | 'prfpdfrom'
+  | 'prfpdto'
+>;
 
 //* 1. 공연목록조회서비스
 export type PListRequestType = Required<Pick<CommonRequestType, 'stdate' | 'eddate' | 'cpage' | 'rows'>> &
