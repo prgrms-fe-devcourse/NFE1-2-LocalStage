@@ -1,15 +1,9 @@
 import { PCard } from '@/components/PCard';
 import * as S from './styles';
+import { PListResponseType } from '@/types/apis';
 
 interface PCardGridProps {
-  performList: {
-    id: string;
-    src: string;
-    title: string;
-    place: string;
-    date: string;
-  }[];
-
+  performList: PListResponseType;
   width?: string;
   rows?: number;
   columns?: number;
@@ -27,13 +21,10 @@ export const PCardGrid = ({
 }: PCardGridProps) => {
   return (
     <S.PCardGrid width={width} rows={rows} columns={columns} gap={gap}>
-      {performList.map((perform, index) => (
+      {performList.dbs?.map((perform, index) => (
         <PCard
-          key={index}
-          src={perform.src}
-          title={perform.title}
-          place={perform.place}
-          date={perform.date}
+          key={perform.db.mt20id}
+          performInfo={perform.db}
           width="100%"
           {...(isRanked && { rank: index + 1 })}
         ></PCard>
