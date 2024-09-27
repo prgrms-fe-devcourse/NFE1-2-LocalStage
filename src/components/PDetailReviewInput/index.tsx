@@ -14,7 +14,7 @@ export const PDetailReviewInput = ({
 }: PDetailReviewInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       if (onChange) {
@@ -23,17 +23,17 @@ export const PDetailReviewInput = ({
     }
   };
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const isFocus = () => setIsFocused(true);
+  const isBlur = () => setIsFocused(false);
 
   return (
     <S.PDetailReviewInput
       placeholder={placeholder}
       value={value}
       onChange={e => onChange?.(e.target.value)}
-      onKeyDown={handleKeyDown}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
+      onKeyDown={onKeyDown}
+      onFocus={isFocus}
+      onBlur={isBlur}
       $isFocused={isFocused}
       $hasValue={!!value}
     />
