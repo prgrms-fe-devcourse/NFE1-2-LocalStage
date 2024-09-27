@@ -1,10 +1,10 @@
 import * as S from './styles';
 import { H16, P15 } from '@/components/Text';
 import { Poster } from '@/components/Poster';
-import { PListResponseType } from '@/types/apis';
+import { CommonResponseType } from '@/types/apis';
 
 interface PCardProps {
-  pInfo: Exclude<PListResponseType['dbs'], undefined>[number]['db'];
+  pInfo: Pick<CommonResponseType, 'mt20id' | 'poster' | 'prfnm' | 'fcltynm' | 'prfpdfrom' | 'prfpdto'>;
   width?: string;
   rank?: number | null;
 }

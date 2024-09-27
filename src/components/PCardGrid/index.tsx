@@ -1,9 +1,9 @@
 import { PCard } from '@/components/PCard';
 import * as S from './styles';
-import { PListResponseType } from '@/types/apis';
+import { CommonResponseType } from '@/types/apis';
 
 interface PCardGridProps {
-  pList: PListResponseType;
+  pList: Pick<CommonResponseType, 'mt20id' | 'poster' | 'prfnm' | 'fcltynm' | 'prfpdfrom' | 'prfpdto'>[];
   width?: string;
   rows?: number;
   columns?: number;
@@ -19,10 +19,11 @@ export const PCardGrid = ({
   gap = 10,
   isRanked = false,
 }: PCardGridProps) => {
+  console.log(typeof pList);
   return (
     <S.PCardGrid width={width} rows={rows} columns={columns} gap={gap}>
-      {pList.dbs?.map((perform, index) => (
-        <PCard key={index} pInfo={perform.db} width="100%" {...(isRanked && { rank: index + 1 })}></PCard>
+      {pList.map((perform, index) => (
+        <PCard key={index} pInfo={perform} width="100%" {...(isRanked && { rank: index + 1 })}></PCard>
       ))}
     </S.PCardGrid>
   );
