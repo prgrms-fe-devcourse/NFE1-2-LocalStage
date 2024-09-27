@@ -63,7 +63,8 @@
     "adres",
     "pblprfr",
     "prfawad",
-    "prfplc"
+    "prfplc",
+    "fcltycnt"
   ],
   "ignoreWords": [],
   "import": []
