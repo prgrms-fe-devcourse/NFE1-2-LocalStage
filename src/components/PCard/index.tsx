@@ -16,7 +16,7 @@ export const PCard = ({ pInfo, width = '225px', rank = null }: PCardProps) => {
       <S.PCardText>
         <H16>{pInfo.prfnm}</H16>
         <P15>{pInfo.fcltynm}</P15>
-        <P15>{pInfo.prfpdfrom + '-' + pInfo.prfpdfrom}</P15>
+        <P15>{pInfo.prfpdfrom + '-' + pInfo.prfpdto}</P15>
       </S.PCardText>
     </S.PCard>
   );
