@@ -3,7 +3,7 @@ import * as S from './styles';
 import { PListResponseType } from '@/types/apis';
 
 interface PCardGridProps {
-  performList: PListResponseType;
+  pList: PListResponseType;
   width?: string;
   rows?: number;
   columns?: number;
@@ -12,7 +12,7 @@ interface PCardGridProps {
 }
 
 export const PCardGrid = ({
-  performList,
+  pList,
   width = '600px',
   rows = 1,
   columns = 5,
@@ -21,13 +21,8 @@ export const PCardGrid = ({
 }: PCardGridProps) => {
   return (
     <S.PCardGrid width={width} rows={rows} columns={columns} gap={gap}>
-      {performList.dbs?.map((perform, index) => (
-        <PCard
-          key={perform.db.mt20id}
-          performInfo={perform.db}
-          width="100%"
-          {...(isRanked && { rank: index + 1 })}
-        ></PCard>
+      {pList.dbs?.map((perform, index) => (
+        <PCard key={index} pInfo={perform.db} width="100%" {...(isRanked && { rank: index + 1 })}></PCard>
       ))}
     </S.PCardGrid>
   );
