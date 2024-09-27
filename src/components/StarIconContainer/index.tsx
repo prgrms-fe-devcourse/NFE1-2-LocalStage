@@ -6,23 +6,17 @@ interface StarIconContainerProps {
 }
 
 export const StarIconContainer = ({ onChange }: StarIconContainerProps) => {
-  const [checkedStars, setCheckStars] = useState<number | null>(null);
+  const [checkedStars, setCheckStars] = useState(-1);
 
-  const onClick = (index: number) => {
+  const onClick = (index: number) => () => {
     setCheckStars(index);
-    if (index !== null) {
-      onChange(index + 1);
-    }
+    onChange(index + 1);
   };
 
   return (
     <S.StarIconContainer>
       {Array.from({ length: 5 }, (_, index) => (
-        <StarIcon
-          key={`star-${index}`}
-          isChecked={checkedStars !== null && index <= checkedStars}
-          onClick={() => onClick(index)}
-        />
+        <StarIcon key={index} isChecked={index <= checkedStars} onClick={onClick(index)} />
       ))}
     </S.StarIconContainer>
   );
