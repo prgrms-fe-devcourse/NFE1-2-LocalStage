@@ -2,7 +2,7 @@ import { useState } from 'react';
 import * as S from './styles';
 import { StarIcon } from '@/components/StarIcon';
 interface StarIconContainerProps {
-  onChange: (count: number) => void;
+  onChange?: (count: number) => void;
 }
 
 const starsArray = Array.from({ length: 5 });
