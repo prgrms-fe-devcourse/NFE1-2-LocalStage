@@ -9,6 +9,6 @@ export const ShareButton = styled(FontAwesomeIcon)`
 
   &:hover {
     transform: scale(1.2);
-    color: ${props => props.theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
