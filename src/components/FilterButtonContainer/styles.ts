@@ -16,7 +16,6 @@ export const StyledSeperator = styled(Seperator)`
   display: flex;
   align-items: center;
   position: absolute;
-  border: 1px solid ${({ theme }) => theme.colors.gray};
   right: 0;
   top: 50%;
   transform: translateY(-50%);
