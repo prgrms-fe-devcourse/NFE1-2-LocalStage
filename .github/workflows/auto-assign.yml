@@ -13,8 +13,4 @@ jobs:
       - uses: wow-actions/auto-assign@v3
         with:
           GITHUB_TOKEN: ${{ secrets.AUTO_ASSIGN_TOKEN }}
-          addAssignees: 'author'
-          addReviewers: 'true'
-          numberOfReviewers: 0
-          numberOfAssignees: 0
-          skipDraft: 'true'
+          addAssignees: true
