@@ -1,16 +1,10 @@
-name: Auto Assign
+ name: 'Auto Assign Reviewer'
+ on:
+   pull_request:
+     types: [opened, reopened]
 
-on:
-  issues:
-    types: [opened]
-  pull_request:
-    types: [opened]
-
-jobs:
-  auto-assign:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: wow-actions/auto-assign@v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.AUTO_ASSIGN_TOKEN }}
-          addAssignees: true
+ jobs:
+   add-reviews:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: kentaro-m/auto-assign-action@v1.2.1
