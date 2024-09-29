@@ -1,12 +1,12 @@
-import { styled, css } from 'styled-components';
+import styled from 'styled-components';
 
-interface PDetailReviewInputProps {
+interface StyledPDetailReviewInputProps {
   $isFocused: boolean;
   $hasValue: boolean;
   $disabled: boolean;
 }
 
-export const PDetailReviewInput = styled.textarea<PDetailReviewInputProps>`
+export const PDetailReviewInput = styled.textarea<StyledPDetailReviewInputProps>`
   width: 100%;
   height: 100px;
   padding: 10px;
@@ -25,10 +25,4 @@ export const PDetailReviewInput = styled.textarea<PDetailReviewInputProps>`
   &:focus {
     outline: none;
   }
-
-  ${({ $disabled }) =>
-    $disabled &&
-    css`
-      cursor: default;
-    `}
 `;
