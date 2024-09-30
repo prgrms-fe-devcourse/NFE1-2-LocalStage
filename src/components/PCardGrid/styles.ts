@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 
 export const PCardGrid = styled.div<{ width: string; rows: number; columns: number; gap: number }>`
+  margin: auto;
   width: ${({ width }) => width};
   display: grid;
   grid-template-rows: repeat(${({ rows }) => rows}, 1fr);
