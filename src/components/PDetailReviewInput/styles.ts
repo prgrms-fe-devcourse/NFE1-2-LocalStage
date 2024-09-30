@@ -17,4 +17,3 @@ export const PDetailReviewInput = styled.textarea<{ $isSubmitted?: boolean }>`
     background-color: ${({ theme }) => theme.colors.white};
   }
 `;
-

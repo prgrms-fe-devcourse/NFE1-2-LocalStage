@@ -1,35 +1,27 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import { PDetailReviewInput } from '../PDetailReviewInput';
 import * as S from './styles';
 
 export const PDetailReviewForm = () => {
-  const [reviewText, setReviewText] = useState('');
-  const [savedReview, setSavedReview] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const onSubmitForm = () => {
-    if (reviewText.trim()) {
-      setSavedReview(reviewText);
-      setIsSubmitted(true);
-    }
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const $form = e.target as HTMLFormElement;
+    const form = new FormData($form);
+    const review = form.get('review') as string;
+    console.log(review);
+    if (inputRef.current) inputRef.current.disabled = true;
+    localStorage.setItem('temp', JSON.stringify({ review }));
   };
 
-  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReviewText(e.target.value);
-  };
+  const temp: { review: string; check: boolean } = JSON.parse(localStorage.getItem('temp') || '{}');
 
   return (
-    <S.FormContainer>
+    <S.FormContainer onSubmit={onSubmit}>
       <S.Label>리뷰</S.Label>
-      <PDetailReviewInput
-        value={isSubmitted ? savedReview : reviewText}
-        onChange={onChange}
-        disabled={isSubmitted}
-        $isSubmitted={isSubmitted}
-      />
-      <S.SubmitButton onClick={onSubmitForm} disabled={isSubmitted || !reviewText.trim()}>
-        저장하기
-      </S.SubmitButton>
+      <PDetailReviewInput name="review" ref={inputRef} defaultValue={temp.review || ''} />
+      <S.SubmitButton>저장하기</S.SubmitButton>
     </S.FormContainer>
   );
 };
