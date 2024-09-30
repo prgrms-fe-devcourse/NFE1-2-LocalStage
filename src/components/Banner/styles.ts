@@ -6,7 +6,6 @@ export const Banner = styled.div<{ width: number; height: number }>`
   padding-top: ${({ height }) => height}%;
   max-width: 1280px;
   margin: auto;
-  overflow: hidden;
 
   & > img {
     position: absolute;
@@ -19,17 +18,5 @@ export const Banner = styled.div<{ width: number; height: number }>`
 
   @media (min-width: 1280px) {
     padding-top: 300px;
-  }
-`;
-export const Text = styled.div`
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  & > h2 {
-    margin-bottom: 5rem;
-  }
-  & > p {
-    margin-bottom: 1rem;
-    width: 80%;
   }
 `;
