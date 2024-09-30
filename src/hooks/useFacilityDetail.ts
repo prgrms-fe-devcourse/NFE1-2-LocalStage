@@ -8,9 +8,11 @@ import getApiUrl from '@/utils/getApiUrl';
  *
  * @param {FacilityDetailRequestType} params - 공연 시설 상세 조회에 필요한 요청 매개변수입니다.
  * @returns {{ data: FacilityDetailResponseType | undefined, isLoading: boolean }} - 공연 시설 상세 데이터와 로딩 상태를 반환합니다.
+ * @example
+ * const { data } = useFacilityDetail({ mt10id: 'FC001247' });
  */
 export default function useFacilityDetail(params: FacilityDetailRequestType) {
-  const url = getApiUrl<FacilityDetailRequestType>('prfplc', params);
+  const url = getApiUrl<FacilityDetailRequestType>(`prfplc/${params.mt10id}`); //* api url 구조 다르게 생김 주의
   const { data, isLoading } = useFetch<FacilityDetailResponseType>(url);
   return { data, isLoading };
 }
