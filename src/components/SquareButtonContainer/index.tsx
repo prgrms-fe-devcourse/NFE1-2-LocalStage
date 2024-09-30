@@ -9,12 +9,12 @@ interface ButtonItem {
 }
 
 interface SquareButtonContainerProps {
-  buttonList: Array<ButtonItem>;
+  buttonList: ButtonItem[];
   onActiveChange?: (id: string) => void;
 }
 
 export const SquareButtonContainer = ({ buttonList, onActiveChange }: SquareButtonContainerProps) => {
-  const [activeButtonId, setActiveButtonId] = useState<string | null>(buttonList[0]?.id || null);
+  const [activeButtonId, setActiveButtonId] = useState<string>(buttonList[0]?.id || '');
 
   const handleClick = useCallback(
     (id: string, onClick?: () => void) => () => {
