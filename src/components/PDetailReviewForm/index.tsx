@@ -6,10 +6,11 @@ export const PDetailReviewForm = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     const $form = e.target as HTMLFormElement;
     const form = new FormData($form);
     const review = form.get('review') as string;
+
+    e.preventDefault();
     if (inputRef.current) inputRef.current.disabled = true;
     localStorage.setItem('temp', JSON.stringify({ review }));
   };

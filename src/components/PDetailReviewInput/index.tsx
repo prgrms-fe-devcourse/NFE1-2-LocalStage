@@ -5,7 +5,6 @@ interface PDetailReviewInputProps extends React.TextareaHTMLAttributes<HTMLTextA
   $isSubmitted?: boolean;
 }
 
-// forwardRef를 사용하여 ref를 전달받을 수 있도록 설정합니다.
 export const PDetailReviewInput = forwardRef<HTMLTextAreaElement, PDetailReviewInputProps>(
   ({ $isSubmitted, ...rest }, ref) => {
     return (
@@ -19,5 +18,4 @@ export const PDetailReviewInput = forwardRef<HTMLTextAreaElement, PDetailReviewI
   },
 );
 
-// forwardRef를 사용할 때 displayName을 설정하여 디버깅 시 컴포넌트 이름을 표시하도록 합니다.
 PDetailReviewInput.displayName = 'PDetailReviewInput';
