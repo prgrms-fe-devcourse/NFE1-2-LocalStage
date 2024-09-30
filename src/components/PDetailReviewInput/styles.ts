@@ -7,8 +7,6 @@ export const PDetailReviewInput = styled.textarea`
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 10px;
   resize: none;
-
-  color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.gray};
 
   &::placeholder {
