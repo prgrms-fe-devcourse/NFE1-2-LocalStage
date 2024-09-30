@@ -60,7 +60,7 @@ export type CommonRequestType = {
    * 요청구분
    * @example "month", "week", "day"
    */
-  ststype?: string;
+  ststype?: 'month' | 'week' | 'day';
   /**
    * 기준일
    * @example "20230101"
@@ -75,7 +75,7 @@ export type CommonRequestType = {
    * 지역코드
    * @example "11"
    */
-  area?: string;
+  area?: number;
   /**
    * 좌석수코드
    * @example 0(미상), 100(1~300석 미만), 300(300~500석 미만), 500(500~1000석 미만), 1000(1000~5000석 미만), 5000(5000~10000석 미만), 10000(10000석 이상)
@@ -553,8 +553,8 @@ export type PListResponseType = {
     db: Pick<
       Db,
       'mt20id' | 'prfnm' | 'genrenm' | 'prfstate' | 'prfpdfrom' | 'prfpdto' | 'poster' | 'fcltynm' | 'openrun' | 'area'
-    >;
-  }[];
+    >[];
+  };
 };
 
 //* 2. 공연상세조회서비스
@@ -592,7 +592,7 @@ export type PDetailResponseType = {
       | 'styurls'
       | 'dtguidance'
     >;
-  }[];
+  };
 };
 
 //* 4. 공연시설상세조회서비스
@@ -623,7 +623,7 @@ export type FacilityDetailResponseType = {
       | 'elevbarrier'
       | 'parkinglot'
     >;
-  }[];
+  };
 };
 
 //* 6. 예매상황판조회서비스
@@ -633,14 +633,16 @@ export type BoxOfficeResponseType = {
   boxofs?: {
     basedate: string;
     boxof: Boxof[];
-  }[];
+  };
 };
 
 //* 15. 공연별통계목록조회서비스
 export type PStatisticsRequestType = Required<Pick<CommonRequestType, 'cpage' | 'rows' | 'stdate' | 'eddate'>> &
   Partial<Pick<CommonRequestType, 'shcate' | 'shprfnm'>>;
 export type PStatisticsResponseType = {
-  prfst?: Pick<Prfst, 'prfnm' | 'cate' | 'mt20id' | 'fcltynm' | 'entrpsnm' | 'prfpdfrom' | 'prfpdto' | 'prfdtcnt'>[];
+  prfsts?: {
+    prfst: Pick<Prfst, 'prfnm' | 'cate' | 'mt20id' | 'fcltynm' | 'entrpsnm' | 'prfpdfrom' | 'prfpdto' | 'prfdtcnt'>[];
+  };
 };
 
 //* 18. 수상작목록조회서비스
@@ -652,8 +654,10 @@ export type AwardRequestType = Required<Pick<CommonRequestType, 'stdate' | 'edda
     >
   >;
 export type AwardResponseType = {
-  db?: Pick<
-    Db,
-    'mt20id' | 'prfnm' | 'prfpdfrom' | 'prfpdto' | 'fcltynm' | 'poster' | 'genrenm' | 'prfstate' | 'awards'
-  >;
+  dbs?: {
+    db: Pick<
+      Db,
+      'mt20id' | 'prfnm' | 'prfpdfrom' | 'prfpdto' | 'fcltynm' | 'poster' | 'genrenm' | 'prfstate' | 'awards'
+    >[];
+  };
 };
