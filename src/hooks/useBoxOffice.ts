@@ -8,6 +8,8 @@ import getApiUrl from '@/utils/getApiUrl';
  *
  * @param {BoxOfficeRequestType} params - 예매 상황판 조회에 필요한 요청 매개변수입니다.
  * @returns {{ data: BoxOfficeResponseType | undefined, isLoading: boolean }} - 예매 상황판 데이터와 로딩 상태를 반환합니다.
+ * @example
+ * const { data } = useBoxOffice({ date: '20240101', ststype: 'month', area: 11 });
  */
 export default function useBoxOffice(params: BoxOfficeRequestType) {
   const url = getApiUrl<BoxOfficeRequestType>('boxoffice', params);
