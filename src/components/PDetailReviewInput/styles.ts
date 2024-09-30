@@ -9,15 +9,13 @@ export const PDetailReviewInput = styled.textarea`
   resize: none;
 
   color: ${({ theme }) => theme.colors.text_black};
-  background-color: ${({ theme }) => theme.colors.bg_gray};
+  background-color: ${({ theme }) => theme.colors.gray};
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.text_gray};
   }
   &:focus {
     outline: none;
-  }
-  &:disabled {
     background-color: ${({ theme }) => theme.colors.white};
   }
 `;
