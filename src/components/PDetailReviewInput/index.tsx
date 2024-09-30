@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import * as S from './styles';
 
 interface PDetailReviewInputProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  $isSubmitted?: boolean;
+  $isSubmitted: boolean;
 }
 
 export const PDetailReviewInput = forwardRef<HTMLTextAreaElement, PDetailReviewInputProps>(
