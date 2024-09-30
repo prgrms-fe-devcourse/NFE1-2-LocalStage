@@ -4,20 +4,20 @@ import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons';
 import * as S from './styles';
 
 interface HeartButtonProps {
-  initialClicked?: boolean;
-  onClick?: (isClicked: boolean) => void;
+  initialFilled?: boolean;
+  onClick?: (isFilled: boolean) => void;
 }
 
-export const HeartButton = ({ initialClicked = false, onClick }: HeartButtonProps) => {
-  const [isClicked, setIsClicked] = useState(initialClicked);
+export const HeartButton = ({ initialFilled = false, onClick }: HeartButtonProps) => {
+  const [isFilled, setIsFilled] = useState(initialFilled);
 
   const handleClick = () => {
-    const newClickedState = !isClicked;
-    setIsClicked(newClickedState);
+    const newFilledState = !isFilled;
+    setIsFilled(newFilledState);
     if (onClick) {
-      onClick(newClickedState);
+      onClick(newFilledState);
     }
   };
 
-  return <S.HeartButton icon={isClicked ? fasHeart : farHeart} $isClicked={isClicked} onClick={handleClick} />;
+  return <S.HeartButton icon={isFilled ? fasHeart : farHeart} $isClicked={isFilled} onClick={handleClick} />;
 };
