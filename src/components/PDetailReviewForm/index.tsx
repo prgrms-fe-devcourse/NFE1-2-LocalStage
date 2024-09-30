@@ -10,7 +10,6 @@ export const PDetailReviewForm = () => {
     const $form = e.target as HTMLFormElement;
     const form = new FormData($form);
     const review = form.get('review') as string;
-    console.log(review);
     if (inputRef.current) inputRef.current.disabled = true;
     localStorage.setItem('temp', JSON.stringify({ review }));
   };
