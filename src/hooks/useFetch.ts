@@ -1,3 +1,4 @@
+import replaceTextProperties from '@/utils/extractInnermostValues';
 import { useEffect, useState } from 'react';
 import { xml2json } from 'xml-js';
 
@@ -17,7 +18,7 @@ export default function useFetch<T>(url: string) {
         const response = await fetch(url);
         const xmlText = await response.text();
         const jsonData = JSON.parse(xml2json(xmlText, { compact: true, spaces: 2 }));
-        setData(jsonData);
+        setData(replaceTextProperties<T>(jsonData));
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
