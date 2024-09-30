@@ -3,7 +3,10 @@ import * as S from './styles';
 import { CommonResponseType } from '@/types/apis';
 
 interface BannerProps {
-  bInfo: Pick<CommonResponseType, 'prfnm' | 'poster' | 'prfplcnm' | 'pcseguidance' | 'prfpdfrom' | 'prfpdto'>;
+  bInfo: Pick<
+    CommonResponseType,
+    'mt20id' | 'prfnm' | 'poster' | 'prfplcnm' | 'pcseguidance' | 'prfpdfrom' | 'prfpdto'
+  >;
   width?: number;
   height?: number;
 }
