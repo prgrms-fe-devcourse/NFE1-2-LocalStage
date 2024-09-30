@@ -17,6 +17,7 @@ export const PosterGallery = ({ pList, width = '600px', gap = 10 }: PosterGaller
           <PosterWithDesc
             src={perform.poster}
             title={perform.prfnm}
+            place={perform.fcltynm}
             date={perform.prfpdfrom + '-' + perform.prfpdto}
             width="100%"
           ></PosterWithDesc>
