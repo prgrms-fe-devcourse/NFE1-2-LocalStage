@@ -25,7 +25,7 @@ export const PDetailReviewForm = () => {
         value={isSubmitted ? savedReview : reviewText}
         onChange={onChange}
         disabled={isSubmitted}
-        isSubmitted={isSubmitted}
+        $isSubmitted={isSubmitted}
       />
       <S.SubmitButton onClick={onSubmitForm} disabled={isSubmitted || !reviewText.trim()}>
         저장하기

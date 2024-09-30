@@ -10,7 +10,6 @@ export const FormContainer = styled.form`
 `;
 
 export const Label = styled.label`
-  font-size: 16px;
   align-self: start;
   margin-top: 10px;
 `;
