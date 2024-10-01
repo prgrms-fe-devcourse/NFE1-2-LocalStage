@@ -1,11 +1,11 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import * as S from './styles';
 import { SquareButton } from '@/components/SquareButton';
 
 interface ButtonItem {
   id: string;
   label: string;
-  onClick?: () => void;
+  onButtonClick?: () => void;
 }
 
 interface SquareButtonContainerProps {
@@ -14,21 +14,18 @@ interface SquareButtonContainerProps {
 }
 
 export const SquareButtonContainer = ({ buttonList, onActiveChange }: SquareButtonContainerProps) => {
-  const [activeButtonId, setActiveButtonId] = useState<string>(buttonList[0]?.id || '');
+  const [activeButtonId, setActiveButtonId] = useState(buttonList[0]?.id || '');
 
-  const handleClick = useCallback(
-    (id: string, onClick?: () => void) => () => {
-      setActiveButtonId(id);
-      onActiveChange?.(id);
-      onClick?.();
-    },
-    [onActiveChange],
-  );
+  const onClick = (id: string, onButtonClick?: () => void) => () => {
+    setActiveButtonId(id);
+    onActiveChange?.(id);
+    onButtonClick?.();
+  };
 
   return (
     <S.SquareButtonContainer>
-      {buttonList.map(({ id, label, onClick }) => (
-        <SquareButton key={id} label={label} isActive={id === activeButtonId} onClick={handleClick(id, onClick)} />
+      {buttonList.map(({ id, label, onButtonClick }) => (
+        <SquareButton key={id} label={label} isActive={id === activeButtonId} onClick={onClick(id, onButtonClick)} />
       ))}
     </S.SquareButtonContainer>
   );
