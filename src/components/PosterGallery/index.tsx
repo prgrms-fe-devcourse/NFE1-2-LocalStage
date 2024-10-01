@@ -27,7 +27,7 @@ export const PosterGallery = ({ pList, width = '600px', gap = '10px' }: PosterGa
               width="100%"
             />
           ) : (
-            <Poster key={index} src={perform.poster}></Poster>
+            <Poster key={index} src={perform.poster} />
           ),
         )}
     </S.PosterGallery>
