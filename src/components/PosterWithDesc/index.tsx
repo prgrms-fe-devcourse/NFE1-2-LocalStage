@@ -13,7 +13,7 @@ interface PosterWithDescProps {
 export const PosterWithDesc = ({ src, title, place, date, width = '225px' }: PosterWithDescProps) => {
   return (
     <S.PosterWithDesc width={width}>
-      <Poster src={src}></Poster>
+      <Poster src={src} />
       <S.Desc>
         <H16>{title}</H16>
         <P15>{place}</P15>

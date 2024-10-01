@@ -15,19 +15,21 @@ interface PosterGalleryProps {
 export const PosterGallery = ({ pList, width = '600px', gap = '10px' }: PosterGalleryProps) => {
   return (
     <S.PosterGallery width={width} gap={gap}>
-      {pList.map((perform, index) =>
-        index === 0 ? (
-          <PosterWithDesc
-            src={perform.poster}
-            title={perform.prfnm}
-            place={perform.fcltynm}
-            date={perform.prfpdfrom + '-' + perform.prfpdto}
-            width="100%"
-          ></PosterWithDesc>
-        ) : (
-          <Poster key={index} src={perform.poster}></Poster>
-        ),
-      )}
+      {pList
+        .slice(0, 7)
+        .map((perform, index) =>
+          index === 0 ? (
+            <PosterWithDesc
+              src={perform.poster}
+              title={perform.prfnm}
+              place={perform.fcltynm}
+              date={perform.prfpdfrom + '-' + perform.prfpdto}
+              width="100%"
+            />
+          ) : (
+            <Poster key={index} src={perform.poster}></Poster>
+          ),
+        )}
     </S.PosterGallery>
   );
 };
