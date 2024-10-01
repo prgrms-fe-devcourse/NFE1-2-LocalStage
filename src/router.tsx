@@ -5,6 +5,7 @@ import RankPage from '@/pages/RankPage';
 import SearchPage from '@/pages/SearchPage';
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Outlet />
-        <div>Footer</div>
+        <Footer />
       </>
     ),
     errorElement: <>에러 페이지 입니다.</>,
