@@ -61,9 +61,3 @@ export const ModalPlaceInfo = styled.div`
   flex-grow: 1;
   overflow-y: auto;
 `;
-
-export const MapContainer = styled.div`
-  border: 1px solid ${theme.colors.gray};
-  flex-grow: 1;
-  margin-top: 20px;
-`;
