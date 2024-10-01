@@ -12,19 +12,20 @@ export const MapModal = styled.div`
 `;
 
 export const ModalContainer = styled.div`
+  width: 40%;
+  height: 50%;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 30px;
-  background-color: var(${theme.colors.black});
+  background-color: ${props => props.theme.colors.white};
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
-  box-sizing: border-box;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  min-width: 800px;
-  min-height: 600px;
+  min-width: 500px;
+  min-height: 500px;
 `;
 
 export const ModalHeader = styled.div`
@@ -35,7 +36,7 @@ export const ModalHeader = styled.div`
 
   &::after {
     content: '';
-    border: 1px solid ${theme.colors.gray};
+    border: 1px solid ${props => props.theme.colors.gray};
     position: absolute;
     bottom: -10px;
     left: 0;
@@ -49,7 +50,7 @@ export const ModalCloseBtn = styled.button`
   background-color: transparent;
   font-size: 20px;
   &:hover {
-    color: ${theme.colors.gray};
+    color: ${props => props.theme.colors.gray};
   }
 `;
 

@@ -17,26 +17,7 @@ interface MapModalProps {
   onClose: () => void;
 }
 
-export const MapModal = ({
-  place,
-  phone,
-  address,
-  url,
-  visible,
-  width = 800,
-  height = 600,
-  latitude,
-  longitude,
-  onClose,
-}: MapModalProps) => {
-  const containerStyle = useMemo(
-    () => ({
-      width,
-      height,
-    }),
-    [width, height],
-  );
-
+export const MapModal = ({ place, phone, address, url, visible, latitude, longitude, onClose }: MapModalProps) => {
   const el = useMemo(() => document.createElement('div'), []);
 
   useEffect(() => {
@@ -50,7 +31,7 @@ export const MapModal = ({
 
   return ReactDOM.createPortal(
     <S.MapModal>
-      <S.ModalContainer style={containerStyle}>
+      <S.ModalContainer>
         <S.ModalHeader>
           <H16>공연장 정보</H16>
           <S.ModalCloseBtn onClick={onClose}>X</S.ModalCloseBtn>
