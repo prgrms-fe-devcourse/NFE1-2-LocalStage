@@ -58,7 +58,7 @@ export const PItemContainer = () => {
           rank={index + 1}
           id={item.mt20id}
           title={`${item.prfnm}`}
-          venue={item.fcltynm}
+          location={item.fcltynm}
           period={`${item.prfpdfrom} ~ ${item.prfpdto}`}
           posterUrl={item.poster}
           area={item.area}
