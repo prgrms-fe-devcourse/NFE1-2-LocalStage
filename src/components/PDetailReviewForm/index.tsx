@@ -23,11 +23,11 @@ export const PDetailReviewForm = () => {
       updateUIForEmptyState();
     }
     if (inputRef.current) {
-      inputRef.current.addEventListener('input', handleInput);
+      inputRef.current.addEventListener('input', updateCancelButton);
     }
     return () => {
       if (inputRef.current) {
-        inputRef.current.removeEventListener('input', handleInput);
+        inputRef.current.removeEventListener('input', updateCancelButton);
       }
     };
   }, []);
@@ -67,7 +67,7 @@ export const PDetailReviewForm = () => {
     if (cancelButtonRef.current) cancelButtonRef.current.style.display = 'none';
   };
 
-  const handleEdit = () => {
+  const onEdit = () => {
     isSubmittedRef.current = false;
     if (inputRef.current) {
       inputRef.current.disabled = false;
@@ -79,7 +79,7 @@ export const PDetailReviewForm = () => {
     if (submitButtonRef.current) submitButtonRef.current.style.display = 'inline-block';
   };
 
-  const handleCancel = () => {
+  const onCancel = () => {
     if (inputRef.current) {
       const savedReview = JSON.parse(localStorage.getItem('temp') || '{}').review || '';
       inputRef.current.value = savedReview;
@@ -91,7 +91,7 @@ export const PDetailReviewForm = () => {
     }
   };
 
-  const handleInput = () => {
+  const updateCancelButton = () => {
     if (inputRef.current && cancelButtonRef.current) {
       const savedReview = JSON.parse(localStorage.getItem('temp') || '{}').review || '';
       if (inputRef.current.value.trim() !== savedReview) {
@@ -99,7 +99,6 @@ export const PDetailReviewForm = () => {
         inputRef.current.style.backgroundColor = '#d8d8d8';
       } else {
         cancelButtonRef.current.style.display = 'none';
-        inputRef.current.style.backgroundColor = 'white';
       }
     }
   };
@@ -119,10 +118,10 @@ export const PDetailReviewForm = () => {
         <S.SubmitButton type="submit" ref={submitButtonRef}>
           저장하기
         </S.SubmitButton>
-        <S.EditButton type="button" onClick={handleEdit} ref={editButtonRef} style={{ display: 'none' }}>
+        <S.EditButton type="button" onClick={onEdit} ref={editButtonRef} style={{ display: 'none' }}>
           수정하기
         </S.EditButton>
-        <S.CancelButton type="button" onClick={handleCancel} ref={cancelButtonRef} style={{ display: 'none' }}>
+        <S.CancelButton type="button" onClick={onCancel} ref={cancelButtonRef} style={{ display: 'none' }}>
           취소
         </S.CancelButton>
       </S.ButtonContainer>
