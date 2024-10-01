@@ -22,13 +22,13 @@ export const PCardSlider = ({ pList, width = '100%', isRanked }: PCardSliderProp
     slidesToScroll: 1,
     swipeToSlide: true,
   };
+  const widthType = width.match(/[^0-9]/g)?.join('');
+  const PCardWidth = widthType === '%' ? '98%' : `calc(${width} / 5.2)`;
   return (
     <S.PCardSlider width={width}>
       <Slider {...settings}>
         {pList.map((perform, index) => {
-          return (
-            <PCard key={index} pInfo={perform} width={`calc(${width} / 5.2)`} {...(isRanked && { rank: index + 1 })} />
-          );
+          return <PCard key={index} pInfo={perform} width={PCardWidth} {...(isRanked && { rank: index + 1 })} />;
         })}
       </Slider>
     </S.PCardSlider>
