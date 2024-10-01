@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 
-export const Poster = styled.div<{ width: number; height: number }>`
+export const Poster = styled.div<{ width: string; height: string }>`
   position: relative;
-  width: ${props => props.width}%;
-  padding-top: ${props => props.height}%;
+  width: ${({ width }) => width};
+  padding-top: ${({ height }) => height};
   & > img {
     position: absolute;
     top: 0;

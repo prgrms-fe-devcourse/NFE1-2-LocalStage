@@ -6,10 +6,10 @@ import { PosterWithDesc } from '@/components/PosterWithDesc';
 interface PosterGalleryProps {
   pList: Pick<CommonResponseType, 'mt20id' | 'poster' | 'prfnm' | 'fcltynm' | 'prfpdfrom' | 'prfpdto'>[];
   width?: string;
-  gap?: number;
+  gap?: string;
 }
 
-export const PosterGallery = ({ pList, width = '600px', gap = 10 }: PosterGalleryProps) => {
+export const PosterGallery = ({ pList, width = '600px', gap = '10px' }: PosterGalleryProps) => {
   return (
     <S.PosterGallery width={width} gap={gap}>
       {pList.map((perform, index) =>
