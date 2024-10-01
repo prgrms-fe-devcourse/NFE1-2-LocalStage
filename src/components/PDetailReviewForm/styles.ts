@@ -39,7 +39,7 @@ const Button = styled.button`
   }
 `;
 
-export const SubmitButton = styled(Button)`
+export const SaveButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.white};
 `;

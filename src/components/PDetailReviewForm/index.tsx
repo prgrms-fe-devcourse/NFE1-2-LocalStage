@@ -1,141 +1,52 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { PDetailReviewInput } from '../PDetailReviewInput';
 import * as S from './styles';
 
 export const PDetailReviewForm = () => {
+  const initialReview = localStorage.getItem('review') || '';
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const submitButtonRef = useRef<HTMLButtonElement>(null);
-  const editButtonRef = useRef<HTMLButtonElement>(null);
-  const cancelButtonRef = useRef<HTMLButtonElement>(null);
-  const isSubmittedRef = useRef<boolean>(false);
-  const isModifiedRef = useRef<boolean>(false);
-
-  useEffect(() => {
-    const savedReview = localStorage.getItem('reviewData');
-    const parsedReview = savedReview ? JSON.parse(savedReview).review : '';
-
-    if (parsedReview.trim()) {
-      updateUIForSubmittedState();
-    } else {
-      updateUIForEmptyState();
-    }
-    if (inputRef.current) {
-      inputRef.current.addEventListener('input', handleInputChange);
-    }
-    return () => {
-      if (inputRef.current) {
-        inputRef.current.removeEventListener('input', handleInputChange);
-      }
-    };
-  }, []);
-
-  const handleInputChange = () => {
-    if (inputRef.current && submitButtonRef.current) {
-      const savedReview = JSON.parse(localStorage.getItem('reviewData') || '{}').review || '';
-      if (inputRef.current.value.trim() !== savedReview) {
-        submitButtonRef.current.style.opacity = '1';
-        submitButtonRef.current.disabled = false; 
-        isModifiedRef.current = true;
-      } else {
-        submitButtonRef.current.style.opacity = '0.5';
-        submitButtonRef.current.disabled = true;
-        isModifiedRef.current = false;
-      }
-    }
-  };
+  const [isEditing, setIsEditing] = useState(false);
+  const [review, setReview] = useState(initialReview);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (inputRef.current) {
-      const review = inputRef.current.value.trim();
-      if (review !== '') {
-        localStorage.setItem('reviewData', JSON.stringify({ review }));
-        updateUIForSubmittedState();
-      } else {
-        localStorage.removeItem('reviewData');
-        updateUIForEmptyState();
-      }
-    }
+    const form = new FormData(e.target as HTMLFormElement);
+    const reviewData = form.get('review') as string;
+    localStorage.setItem('review', reviewData);
+    setIsEditing(false);
   };
-
-  const updateUIForSubmittedState = () => {
-    isSubmittedRef.current = true;
-    if (inputRef.current) {
-      inputRef.current.disabled = true;
-    }
-    if (submitButtonRef.current) {
-      submitButtonRef.current.style.display = 'none';
-      submitButtonRef.current.style.opacity = '1';
-      submitButtonRef.current.disabled = false;
-    }
-    if (editButtonRef.current) editButtonRef.current.style.display = 'inline-block';
-    if (cancelButtonRef.current) cancelButtonRef.current.style.display = 'none';
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (e.target instanceof HTMLTextAreaElement) setReview(e.target.value);
   };
-
-  const updateUIForEmptyState = () => {
-    isSubmittedRef.current = false;
-    if (inputRef.current) {
-      inputRef.current.disabled = false;
-    }
-    if (submitButtonRef.current) {
-      submitButtonRef.current.style.display = 'inline-block';
-      submitButtonRef.current.style.opacity = '0.5';
-      submitButtonRef.current.disabled = true; 
-    }
-    if (editButtonRef.current) editButtonRef.current.style.display = 'none';
-    if (cancelButtonRef.current) cancelButtonRef.current.style.display = 'none';
+  const onClickCancelButton = () => {
+    setIsEditing(false);
+    setReview(initialReview);
   };
+  const onClickEditButton = () => setIsEditing(true);
 
-  const onEdit = () => {
-    isSubmittedRef.current = false;
-    if (inputRef.current) {
-      inputRef.current.disabled = false;
-      inputRef.current.focus();
-      inputRef.current.setSelectionRange(inputRef.current.value.length, inputRef.current.value.length);
+  useEffect(() => {
+    if (isEditing) {
+      inputRef?.current?.focus();
+      inputRef?.current?.setSelectionRange(review.length, review.length);
     }
-    if (submitButtonRef.current) {
-      submitButtonRef.current.style.display = 'inline-block';
-      submitButtonRef.current.style.opacity = isModifiedRef.current ? '1' : '0.5';
-      submitButtonRef.current.disabled = !isModifiedRef.current;
-    }
-    if (editButtonRef.current) editButtonRef.current.style.display = 'none';
-    if (cancelButtonRef.current) cancelButtonRef.current.style.display = 'inline-block';
-  };
-
-  const onCancel = () => {
-    if (inputRef.current) {
-      const savedReview = JSON.parse(localStorage.getItem('reviewData') || '{}').review || '';
-      inputRef.current.value = savedReview;
-      if (savedReview.trim() !== '') {
-        updateUIForSubmittedState();
-      } else {
-        updateUIForEmptyState();
-      }
-    }
-  };
-
-  const reviewData: { review: string } = JSON.parse(localStorage.getItem('reviewData') || '{}');
+  }, [inputRef, isEditing]);
 
   return (
     <S.FormContainer onSubmit={onSubmit} ref={formRef}>
       <S.Label>리뷰</S.Label>
-      <PDetailReviewInput
-        name="review"
-        ref={inputRef}
-        defaultValue={reviewData.review || ''}
-        $isSubmitted={isSubmittedRef.current}
-      />
+      <PDetailReviewInput name="review" ref={inputRef} disabled={!isEditing} value={review} onChange={onChange} />
       <S.ButtonContainer>
-        <S.SubmitButton type="submit" ref={submitButtonRef} style={{ opacity: '0.5' }} disabled>
-          저장하기
-        </S.SubmitButton>
-        <S.EditButton type="button" onClick={onEdit} ref={editButtonRef} style={{ display: 'none' }}>
-          수정하기
-        </S.EditButton>
-        <S.CancelButton type="button" onClick={onCancel} ref={cancelButtonRef} style={{ display: 'none' }}>
-          취소
-        </S.CancelButton>
+        {isEditing ? (
+          <>
+            <S.SaveButton disabled={initialReview === review}>저장하기</S.SaveButton>
+            <S.CancelButton type="button" onClick={onClickCancelButton}>
+              취소
+            </S.CancelButton>
+          </>
+        ) : (
+          <S.EditButton onClick={onClickEditButton}>수정하기</S.EditButton>
+        )}
       </S.ButtonContainer>
     </S.FormContainer>
   );
