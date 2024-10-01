@@ -8,10 +8,12 @@ export const PDetailReviewInput = styled.textarea<{ $isSubmitted?: boolean }>`
   border-radius: 10px;
   resize: none;
   background-color: ${({ theme, $isSubmitted }) => ($isSubmitted ? theme.colors.white : theme.colors.gray)};
+  transition: background-color 0.3s ease;
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.text_gray};
   }
+
   &:focus {
     outline: none;
     background-color: ${({ theme }) => theme.colors.white};

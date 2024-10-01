@@ -27,37 +27,30 @@ const Button = styled.button`
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+  transition: opacity 0.2s ease;
 
   &:disabled {
     background-color: ${({ theme }) => theme.colors.gray};
     cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    opacity: 0.8;
   }
 `;
 
 export const SubmitButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.white};
-
-  &:hover:not(:disabled) {
-    background-color: ${({ theme }) => theme.colors.gray};
-  }
 `;
 
 export const EditButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.white};
-
-  &:hover:not(:disabled) {
-    background-color: ${({ theme }) => theme.colors.gray};
-  }
 `;
 
 export const CancelButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.gray};
   color: ${({ theme }) => theme.colors.black};
-
-  &:hover:not(:disabled) {
-    background-color: ${({ theme }) => theme.colors.gray};
-  }
 `;
