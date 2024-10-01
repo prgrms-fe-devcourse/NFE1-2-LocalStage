@@ -4,6 +4,9 @@ import { Poster } from '@/components/Poster';
 import { PosterWithDesc } from '@/components/PosterWithDesc';
 
 interface PosterGalleryProps {
+  /**
+   * Omit<PListResponseType, 'genrenm' | 'prfstate' | 'openrun' | 'area'> 과 동일
+   */
   pList: Pick<CommonResponseType, 'mt20id' | 'poster' | 'prfnm' | 'fcltynm' | 'prfpdfrom' | 'prfpdto'>[];
   width?: string;
   gap?: string;
