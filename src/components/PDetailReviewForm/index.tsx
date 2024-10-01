@@ -9,6 +9,7 @@ export const PDetailReviewForm = () => {
   const editButtonRef = useRef<HTMLButtonElement>(null);
   const cancelButtonRef = useRef<HTMLButtonElement>(null);
   const isSubmittedRef = useRef<boolean>(false);
+  const isModifiedRef = useRef<boolean>(false);
 
   useEffect(() => {
     const savedReview = localStorage.getItem('reviewData');
@@ -20,14 +21,29 @@ export const PDetailReviewForm = () => {
       updateUIForEmptyState();
     }
     if (inputRef.current) {
-      inputRef.current.addEventListener('input', updateCancelButton);
+      inputRef.current.addEventListener('input', handleInputChange);
     }
     return () => {
       if (inputRef.current) {
-        inputRef.current.removeEventListener('input', updateCancelButton);
+        inputRef.current.removeEventListener('input', handleInputChange);
       }
     };
   }, []);
+
+  const handleInputChange = () => {
+    if (inputRef.current && submitButtonRef.current) {
+      const savedReview = JSON.parse(localStorage.getItem('reviewData') || '{}').review || '';
+      if (inputRef.current.value.trim() !== savedReview) {
+        submitButtonRef.current.style.opacity = '1';
+        submitButtonRef.current.disabled = false; 
+        isModifiedRef.current = true;
+      } else {
+        submitButtonRef.current.style.opacity = '0.5';
+        submitButtonRef.current.disabled = true;
+        isModifiedRef.current = false;
+      }
+    }
+  };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,7 +53,7 @@ export const PDetailReviewForm = () => {
         localStorage.setItem('reviewData', JSON.stringify({ review }));
         updateUIForSubmittedState();
       } else {
-        localStorage.removeItem('reviewData'); // 로컬 스토리지에서 기존 데이터를 삭제
+        localStorage.removeItem('reviewData');
         updateUIForEmptyState();
       }
     }
@@ -47,9 +63,12 @@ export const PDetailReviewForm = () => {
     isSubmittedRef.current = true;
     if (inputRef.current) {
       inputRef.current.disabled = true;
-      inputRef.current.style.backgroundColor = 'white';
     }
-    if (submitButtonRef.current) submitButtonRef.current.style.display = 'none';
+    if (submitButtonRef.current) {
+      submitButtonRef.current.style.display = 'none';
+      submitButtonRef.current.style.opacity = '1';
+      submitButtonRef.current.disabled = false;
+    }
     if (editButtonRef.current) editButtonRef.current.style.display = 'inline-block';
     if (cancelButtonRef.current) cancelButtonRef.current.style.display = 'none';
   };
@@ -58,9 +77,12 @@ export const PDetailReviewForm = () => {
     isSubmittedRef.current = false;
     if (inputRef.current) {
       inputRef.current.disabled = false;
-      inputRef.current.style.backgroundColor = 'white';
     }
-    if (submitButtonRef.current) submitButtonRef.current.style.display = 'inline-block';
+    if (submitButtonRef.current) {
+      submitButtonRef.current.style.display = 'inline-block';
+      submitButtonRef.current.style.opacity = '0.5';
+      submitButtonRef.current.disabled = true; 
+    }
     if (editButtonRef.current) editButtonRef.current.style.display = 'none';
     if (cancelButtonRef.current) cancelButtonRef.current.style.display = 'none';
   };
@@ -72,8 +94,13 @@ export const PDetailReviewForm = () => {
       inputRef.current.focus();
       inputRef.current.setSelectionRange(inputRef.current.value.length, inputRef.current.value.length);
     }
+    if (submitButtonRef.current) {
+      submitButtonRef.current.style.display = 'inline-block';
+      submitButtonRef.current.style.opacity = isModifiedRef.current ? '1' : '0.5';
+      submitButtonRef.current.disabled = !isModifiedRef.current;
+    }
     if (editButtonRef.current) editButtonRef.current.style.display = 'none';
-    if (submitButtonRef.current) submitButtonRef.current.style.display = 'inline-block';
+    if (cancelButtonRef.current) cancelButtonRef.current.style.display = 'inline-block';
   };
 
   const onCancel = () => {
@@ -84,17 +111,6 @@ export const PDetailReviewForm = () => {
         updateUIForSubmittedState();
       } else {
         updateUIForEmptyState();
-      }
-    }
-  };
-
-  const updateCancelButton = () => {
-    if (inputRef.current && cancelButtonRef.current) {
-      const savedReview = JSON.parse(localStorage.getItem('reviewData') || '{}').review || '';
-      if (inputRef.current.value.trim() !== savedReview) {
-        cancelButtonRef.current.style.display = 'inline-block';
-      } else {
-        cancelButtonRef.current.style.display = 'none';
       }
     }
   };
@@ -111,7 +127,7 @@ export const PDetailReviewForm = () => {
         $isSubmitted={isSubmittedRef.current}
       />
       <S.ButtonContainer>
-        <S.SubmitButton type="submit" ref={submitButtonRef}>
+        <S.SubmitButton type="submit" ref={submitButtonRef} style={{ opacity: '0.5' }} disabled>
           저장하기
         </S.SubmitButton>
         <S.EditButton type="button" onClick={onEdit} ref={editButtonRef} style={{ display: 'none' }}>
