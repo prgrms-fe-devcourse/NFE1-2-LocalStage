@@ -37,6 +37,7 @@ export const PDetailReviewForm = () => {
         localStorage.setItem('reviewData', JSON.stringify({ review }));
         updateUIForSubmittedState();
       } else {
+        localStorage.removeItem('reviewData'); // 로컬 스토리지에서 기존 데이터를 삭제
         updateUIForEmptyState();
       }
     }
