@@ -1,8 +1,14 @@
+import * as S from './styles';
 interface PTrailerVideoProps {
   src: string;
-  widthPx?: number;
-  heightPx?: number;
+  width?: string;
 }
-export const PTrailerVideo = ({ src, widthPx = 700, heightPx = 400 }: PTrailerVideoProps) => {
-  return <iframe src={src} width={widthPx} height={heightPx}></iframe>;
+export const PTrailerVideo = ({ src, width = '100%' }: PTrailerVideoProps) => {
+  return (
+    <S.PTrailerVideo width={width}>
+      <div>
+        <iframe src={`https://www.youtube.com/embed/${src}`} />
+      </div>
+    </S.PTrailerVideo>
+  );
 };
