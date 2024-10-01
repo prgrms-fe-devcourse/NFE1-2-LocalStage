@@ -11,14 +11,11 @@ export const PDetailReviewForm = () => {
   const isSubmittedRef = useRef<boolean>(false);
 
   useEffect(() => {
-    const savedReview = localStorage.getItem('temp');
-    if (savedReview) {
-      const parsedReview = JSON.parse(savedReview).review;
-      if (parsedReview && parsedReview.trim() !== '') {
-        updateUIForSubmittedState();
-      } else {
-        updateUIForEmptyState();
-      }
+    const savedReview = localStorage.getItem('reviewData');
+    const parsedReview = savedReview ? JSON.parse(savedReview).review : '';
+
+    if (parsedReview.trim()) {
+      updateUIForSubmittedState();
     } else {
       updateUIForEmptyState();
     }
@@ -37,7 +34,7 @@ export const PDetailReviewForm = () => {
     if (inputRef.current) {
       const review = inputRef.current.value.trim();
       if (review !== '') {
-        localStorage.setItem('temp', JSON.stringify({ review }));
+        localStorage.setItem('reviewData', JSON.stringify({ review }));
         updateUIForSubmittedState();
       } else {
         updateUIForEmptyState();
@@ -80,7 +77,7 @@ export const PDetailReviewForm = () => {
 
   const onCancel = () => {
     if (inputRef.current) {
-      const savedReview = JSON.parse(localStorage.getItem('temp') || '{}').review || '';
+      const savedReview = JSON.parse(localStorage.getItem('reviewData') || '{}').review || '';
       inputRef.current.value = savedReview;
       if (savedReview.trim() !== '') {
         updateUIForSubmittedState();
@@ -92,7 +89,7 @@ export const PDetailReviewForm = () => {
 
   const updateCancelButton = () => {
     if (inputRef.current && cancelButtonRef.current) {
-      const savedReview = JSON.parse(localStorage.getItem('temp') || '{}').review || '';
+      const savedReview = JSON.parse(localStorage.getItem('reviewData') || '{}').review || '';
       if (inputRef.current.value.trim() !== savedReview) {
         cancelButtonRef.current.style.display = 'inline-block';
       } else {
@@ -101,7 +98,7 @@ export const PDetailReviewForm = () => {
     }
   };
 
-  const temp: { review: string } = JSON.parse(localStorage.getItem('temp') || '{}');
+  const reviewData: { review: string } = JSON.parse(localStorage.getItem('reviewData') || '{}');
 
   return (
     <S.FormContainer onSubmit={onSubmit} ref={formRef}>
@@ -109,7 +106,7 @@ export const PDetailReviewForm = () => {
       <PDetailReviewInput
         name="review"
         ref={inputRef}
-        defaultValue={temp.review || ''}
+        defaultValue={reviewData.review || ''}
         $isSubmitted={isSubmittedRef.current}
       />
       <S.ButtonContainer>
