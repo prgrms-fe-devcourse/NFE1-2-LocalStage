@@ -6,13 +6,13 @@ import { CommonResponseType } from '@/types/apis';
 interface PCardProps {
   pInfo: Pick<CommonResponseType, 'mt20id' | 'poster' | 'prfnm' | 'fcltynm' | 'prfpdfrom' | 'prfpdto'>;
   width?: string;
-  rank?: number | null;
+  rank?: number;
 }
 
-export const PCard = ({ pInfo, width = '225px', rank = null }: PCardProps) => {
+export const PCard = ({ pInfo, width = '225px', rank }: PCardProps) => {
   return (
     <S.PCard width={width}>
-      <Poster src={pInfo.poster} rank={rank}></Poster>
+      <Poster src={pInfo.poster} rank={rank} />
       <S.PCardText>
         <H16>{pInfo.prfnm}</H16>
         <P15>{pInfo.fcltynm}</P15>

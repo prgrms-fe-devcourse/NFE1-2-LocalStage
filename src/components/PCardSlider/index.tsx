@@ -7,14 +7,14 @@ import { PCard } from '@/components/PCard';
 
 interface PCardSliderProps {
   /**
-   * Omit<PListResponseType, 'genrenm' | 'prfstate' | 'openrun' | 'area'> 과 동일
+   * Omit<PListResponseType, 'genrenm' | 'prfstate' | 'openrun' | 'area'>[] 과 동일
    */
   pList: Pick<CommonResponseType, 'mt20id' | 'poster' | 'prfnm' | 'fcltynm' | 'prfpdfrom' | 'prfpdto'>[];
   width?: string;
   isRanked?: boolean;
 }
 
-export const PCardSlider = ({ pList, width = '600px', isRanked = false }: PCardSliderProps) => {
+export const PCardSlider = ({ pList, width = '100%', isRanked }: PCardSliderProps) => {
   const settings = {
     infinite: true,
     speed: 500,
@@ -27,12 +27,7 @@ export const PCardSlider = ({ pList, width = '600px', isRanked = false }: PCardS
       <Slider {...settings}>
         {pList.map((perform, index) => {
           return (
-            <PCard
-              key={index}
-              pInfo={perform}
-              width={`calc(${width} / 5.2)`}
-              {...(isRanked && { rank: index + 1 })}
-            ></PCard>
+            <PCard key={index} pInfo={perform} width={`calc(${width} / 5.2)`} {...(isRanked && { rank: index + 1 })} />
           );
         })}
       </Slider>
