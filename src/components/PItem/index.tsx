@@ -5,12 +5,12 @@ interface PItemProps {
   rank: number;
   title: string;
   area: string;
-  venue: string;
+  location: string;
   period: string;
   posterUrl: string;
 }
 
-export const PItem = ({ rank, title, venue, period, posterUrl, area }: PItemProps) => {
+export const PItem = ({ rank, title, location, period, posterUrl, area }: PItemProps) => {
   return (
     <S.ItemContainer>
       <S.Rank>{rank}</S.Rank>
@@ -18,7 +18,7 @@ export const PItem = ({ rank, title, venue, period, posterUrl, area }: PItemProp
       <S.InfoContainer>
         <S.Title>{title}</S.Title>
         <S.Info>{area}</S.Info>
-        <S.Info>{venue}</S.Info>
+        <S.Info>{location}</S.Info>
         <S.Info>
           <time dateTime={period.replace(' ~ ', '/')}>{period}</time>
         </S.Info>
