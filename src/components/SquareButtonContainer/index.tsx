@@ -2,30 +2,32 @@ import { useState } from 'react';
 import * as S from './styles';
 import { SquareButton } from '@/components/SquareButton';
 
-interface ButtonItem {
+interface ButtonProps {
   id: string;
-  label: string;
+  text: string;
   onButtonClick?: () => void;
 }
 
 interface SquareButtonContainerProps {
-  buttonList: ButtonItem[];
-  onActiveChange?: (id: string) => void;
+  buttonPropsList: ButtonProps[];
+  onActiveButtonChange?: (id: string) => void;
 }
 
-export const SquareButtonContainer = ({ buttonList, onActiveChange }: SquareButtonContainerProps) => {
-  const [activeButtonId, setActiveButtonId] = useState(buttonList[0]?.id || '');
+export const SquareButtonContainer = ({ buttonPropsList, onActiveButtonChange }: SquareButtonContainerProps) => {
+  const [activeButtonId, setActiveButtonId] = useState(buttonPropsList[0]?.id || '');
 
   const onClick = (id: string, onButtonClick?: () => void) => () => {
     setActiveButtonId(id);
-    onActiveChange?.(id);
+    onActiveButtonChange?.(id);
     onButtonClick?.();
   };
 
   return (
     <S.SquareButtonContainer>
-      {buttonList.map(({ id, label, onButtonClick }) => (
-        <SquareButton key={id} label={label} isActive={id === activeButtonId} onClick={onClick(id, onButtonClick)} />
+      {buttonPropsList.map(({ id, text, onButtonClick }) => (
+        <SquareButton key={id} isActive={id === activeButtonId} onClick={onClick(id, onButtonClick)} type="submit">
+          {text}
+        </SquareButton>
       ))}
     </S.SquareButtonContainer>
   );
