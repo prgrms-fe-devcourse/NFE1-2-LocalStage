@@ -72,7 +72,6 @@ export const PDetailReviewForm = () => {
     if (inputRef.current) {
       inputRef.current.disabled = false;
       inputRef.current.focus();
-      inputRef.current.style.backgroundColor = '#d8d8d8';
       inputRef.current.setSelectionRange(inputRef.current.value.length, inputRef.current.value.length);
     }
     if (editButtonRef.current) editButtonRef.current.style.display = 'none';
@@ -96,7 +95,6 @@ export const PDetailReviewForm = () => {
       const savedReview = JSON.parse(localStorage.getItem('temp') || '{}').review || '';
       if (inputRef.current.value.trim() !== savedReview) {
         cancelButtonRef.current.style.display = 'inline-block';
-        inputRef.current.style.backgroundColor = '#d8d8d8';
       } else {
         cancelButtonRef.current.style.display = 'none';
       }
