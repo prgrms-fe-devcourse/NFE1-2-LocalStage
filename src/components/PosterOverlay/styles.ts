@@ -4,5 +4,5 @@ export const PosterOverlay = styled.div<{ width: string }>`
   padding: 2rem 0;
   width: ${({ width }) => width};
   text-align: center;
-  background-color: ${({ theme }) => theme.colors.text_gray};
+  background-color: rgba(0, 0, 0, 0.3);
 `;
