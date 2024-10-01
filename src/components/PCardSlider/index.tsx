@@ -6,6 +6,9 @@ import { CommonResponseType } from '@/types/apis';
 import { PCard } from '@/components/PCard';
 
 interface PCardSliderProps {
+  /**
+   * Omit<PListResponseType, 'genrenm' | 'prfstate' | 'openrun' | 'area'> 과 동일
+   */
   pList: Pick<CommonResponseType, 'mt20id' | 'poster' | 'prfnm' | 'fcltynm' | 'prfpdfrom' | 'prfpdto'>[];
   width?: string;
   isRanked?: boolean;
@@ -17,6 +20,7 @@ export const PCardSlider = ({ pList, width = '600px', isRanked = false }: PCardS
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
+    swipeToSlide: true,
   };
   return (
     <S.PCardSlider width={width}>
