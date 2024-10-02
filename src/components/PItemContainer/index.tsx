@@ -1,26 +1,21 @@
+import { Loader } from '@/components/Loader';
 import * as S from './styles';
 import { PItem } from '@/components/PItem';
-import { PListResponseType } from '@/types/apis';
+import { CommonResponseType } from '@/types/apis';
 
 interface PItemContainerProps {
-  data: PListResponseType;
+  data: Pick<CommonResponseType, 'mt20id' | 'prfnm' | 'fcltynm' | 'prfpdfrom' | 'prfpdto' | 'poster' | 'area'>[];
   isLoading: boolean;
 }
 
-// Pick<CommonResponseType,"area"|"mt20id">
-
 export const PItemContainer = ({ data, isLoading }: PItemContainerProps) => {
   if (isLoading) {
-    return <div>로딩 중...</div>;
-  }
-
-  if (!data || !data.dbs || !data.dbs.db) {
-    return <div>데이터를 불러올 수 없습니다.</div>;
+    return <Loader />;
   }
 
   return (
     <S.PItemContainer>
-      {data.dbs.db.map((item, index) => (
+      {data.map((item, index) => (
         <PItem
           key={item.mt20id}
           rank={index + 1}
