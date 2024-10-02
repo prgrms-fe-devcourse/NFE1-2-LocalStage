@@ -13,11 +13,11 @@ export const HeartButton = ({ initialFilled = false, onClick }: HeartButtonProps
 
   const handleClick = () => {
     const newFilledState = !isFilled;
-    setIsFilled(newFilledState);
+    setIsFilled(prev => !prev);
     if (onClick) {
       onClick(newFilledState);
     }
   };
 
-  return <S.HeartButton icon={isFilled ? fasHeart : farHeart} $isClicked={isFilled} onClick={handleClick} />;
+  return <S.HeartButton icon={isFilled ? fasHeart : farHeart} $isFilled={isFilled} onClick={handleClick} />;
 };
