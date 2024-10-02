@@ -10,14 +10,16 @@ const logoList = [
 export const Footer = () => {
   return (
     <S.FooterContainer>
-      {logoList.map((logo, index) => (
-        <>
-          <a href={logo.href} target="_blank" rel="noopener noreferrer">
-            <S.Logo src={logo.src} alt={logo.alt} />
-          </a>
-          {index < logoList.length - 1 && <S.StyledSeperator />}
-        </>
-      ))}
+      <S.StyledFooter>
+        {logoList.map((logo, index) => (
+          <>
+            <a href={logo.href} target="_blank" rel="noopener noreferrer">
+              <S.Logo src={logo.src} alt={logo.alt} />
+            </a>
+            {index < logoList.length - 1 && <S.StyledSeperator />}
+          </>
+        ))}
+      </S.StyledFooter>
     </S.FooterContainer>
   );
 };
