@@ -2,6 +2,7 @@ import { useTheme } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import * as S from './styles';
+import getRankColor from '@/utils/getRankColor';
 
 interface RankIconProps {
   rank: 1 | 2 | 3;
@@ -9,7 +10,7 @@ interface RankIconProps {
 
 const RankIcon = ({ rank }: RankIconProps) => {
   const theme = useTheme();
-  const color = S.getRankColor(rank, theme);
+  const color = getRankColor(rank, theme);
 
   return (
     <S.RankIconWrapper color={color}>
