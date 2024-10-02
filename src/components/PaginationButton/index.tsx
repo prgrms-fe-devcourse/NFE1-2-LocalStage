@@ -8,9 +8,10 @@ interface PaginationButtonProps {
 
 export const PaginationButton = ({ pageNumber, currentPage, onClickPaginationButton }: PaginationButtonProps) => {
   const isActive = pageNumber === currentPage;
+  const onClick = (pageNumber: number) => () => onClickPaginationButton(pageNumber);
 
   return (
-    <S.PaginationButton $isActive={isActive} onClick={() => onClickPaginationButton(pageNumber)}>
+    <S.PaginationButton $isActive={isActive} onClick={onClick(pageNumber)}>
       {pageNumber}
     </S.PaginationButton>
   );
