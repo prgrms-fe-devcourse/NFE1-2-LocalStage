@@ -1,12 +1,12 @@
 import * as S from './styles';
 interface PTrailerVideoProps {
-  src: string;
+  vId: string;
   width?: string;
 }
-export const PTrailerVideo = ({ src, width = '100%' }: PTrailerVideoProps) => {
+export const PTrailerVideo = ({ vId, width = '100%' }: PTrailerVideoProps) => {
   return (
     <S.PTrailerVideo width={width}>
-      <iframe src={`https://www.youtube.com/embed/${src}`} />
+      <iframe src={`https://www.youtube.com/embed/${vId}`} />
     </S.PTrailerVideo>
   );
 };
