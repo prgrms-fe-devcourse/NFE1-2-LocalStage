@@ -1,5 +1,6 @@
 import { HeartButton } from '@/components/HeartButton';
 import * as S from './styles';
+import { Poster } from '@/components/Poster';
 interface PItemProps {
   id: string;
   rank: number;
@@ -14,7 +15,7 @@ export const PItem = ({ rank, title, location, period, posterUrl, area }: PItemP
   return (
     <S.ItemContainer>
       <S.Rank>{rank}</S.Rank>
-      {posterUrl && <S.Poster src={posterUrl} alt={title} />}
+      {posterUrl && <Poster src={posterUrl} width="90px" rank={rank} />}
       <S.InfoContainer>
         <S.Title>{title}</S.Title>
         <S.Info>{area}</S.Info>

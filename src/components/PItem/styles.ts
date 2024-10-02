@@ -14,19 +14,12 @@ export const Rank = styled(H24)`
   margin-right: 24px;
 `;
 
-export const Poster = styled.img`
-  width: 90px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-right: 24px;
-`;
-
 export const InfoContainer = styled.div`
   display: flex;
   flex: 1;
   justify-content: space-between;
   align-items: center;
+  margin-left: 24px;
 `;
 
 export const Title = styled(H16)`
