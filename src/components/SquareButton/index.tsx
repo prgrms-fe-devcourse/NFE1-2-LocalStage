@@ -1,15 +1,19 @@
+import { ReactNode } from 'react';
 import * as S from './styles';
 
 interface SquareButtonProps {
-  label: string;
+  children: ReactNode;
   isActive?: boolean;
-  onClick?: () => void;
 }
 
-export const SquareButton = ({ label, isActive = false, onClick }: SquareButtonProps) => {
+export const SquareButton = ({
+  isActive = false,
+  children,
+  ...rest
+}: SquareButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
-    <S.SquareButton isActive={isActive} onClick={onClick}>
-      {label}
+    <S.SquareButton $isActive={isActive} {...rest}>
+      {children}
     </S.SquareButton>
   );
 };
