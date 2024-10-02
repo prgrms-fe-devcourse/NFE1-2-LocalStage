@@ -6,7 +6,7 @@ export const PTrailerDesc = styled.div<{ width: string }>`
   align-items: center;
   padding: 1rem;
   border: 1px solid ${({ theme }) => theme.colors.gray};
-  border-radius: 1rem;
+  border-radius: 0 0 1rem 1rem;
 
   & > div {
     border-radius: 0.5rem;
