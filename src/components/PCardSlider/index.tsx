@@ -4,11 +4,10 @@ import 'slick-carousel/slick/slick-theme.css';
 import * as S from './styles';
 // import { CommonResponseType } from '@/types/apis';
 import { PCard } from '@/components/PCard';
-import { CommonResponseType } from '@/types/apis';
+import { PItemType } from '@/types/pItem';
 
 interface PCardSliderProps {
-  pList: (Pick<CommonResponseType, 'mt20id' | 'poster' | 'prfnm'> &
-    Partial<Pick<CommonResponseType, 'fcltynm' | 'prfpdfrom' | 'prfpdto' | 'prfplcnm' | 'prfpd' | 'rnum'>>)[];
+  pList: PItemType[];
   width?: string;
 }
 
@@ -26,7 +25,7 @@ export const PCardSlider = ({ pList, width = '100%' }: PCardSliderProps) => {
     <S.PCardSlider width={width}>
       <Slider {...settings}>
         {pList.map((perform, index) => {
-          return <PCard key={index} pInfo={perform} width={PCardWidth} />;
+          return <PCard key={index} {...perform} width={PCardWidth} />;
         })}
       </Slider>
     </S.PCardSlider>
