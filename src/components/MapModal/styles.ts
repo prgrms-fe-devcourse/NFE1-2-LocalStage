@@ -1,5 +1,4 @@
 import { styled } from 'styled-components';
-import theme from '@/styles/theme';
 
 export const MapModal = styled.div`
   position: fixed;
@@ -36,7 +35,7 @@ export const ModalHeader = styled.div`
 
   &::after {
     content: '';
-    border: 1px solid ${props => props.theme.colors.gray};
+    border: 1px solid ${({ theme }) => theme.colors.gray};
     position: absolute;
     bottom: -10px;
     left: 0;
@@ -50,7 +49,7 @@ export const ModalCloseBtn = styled.button`
   background-color: transparent;
   font-size: 20px;
   &:hover {
-    color: ${props => props.theme.colors.gray};
+    color: ${({ theme }) => theme.colors.gray};
   }
 `;
 
