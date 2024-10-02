@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-interface PaginationButtonProps {
+interface StyledPaginationButtonProps {
   $isActive: boolean;
 }
 
-export const PaginationButton = styled.button<PaginationButtonProps>`
+export const PaginationButton = styled.button<StyledPaginationButtonProps>`
   padding: 5px 8px;
   margin: 0 4px;
   border: none;

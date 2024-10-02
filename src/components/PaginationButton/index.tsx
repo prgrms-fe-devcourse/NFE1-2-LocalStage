@@ -2,11 +2,13 @@ import * as S from './styles';
 
 interface PaginationButtonProps {
   number: number;
-  isActive: boolean;
+  currentPage: number;
   onClick: (number: number) => void;
 }
 
-export const PaginationButton = ({ number, isActive, onClick }: PaginationButtonProps) => {
+export const PaginationButton = ({ number, currentPage, onClick }: PaginationButtonProps) => {
+  const isActive = number === currentPage;
+
   return (
     <S.PaginationButton $isActive={isActive} onClick={() => onClick(number)}>
       {number}
