@@ -3,17 +3,17 @@ import { PTrailerDesc } from '@/components/PTrailerDesc';
 import * as S from './styles';
 
 interface PTrailerProps {
-  src: string;
+  postSrc: string;
   vId: string;
   vTitle: string;
   width?: string;
 }
 
-export const PTrailer = ({ src, vId, vTitle, width = '100%' }: PTrailerProps) => {
+export const PTrailer = ({ postSrc, vId, vTitle, width = '100%' }: PTrailerProps) => {
   return (
     <S.PTrailer width={width}>
       <PTrailerVideo vId={vId} />
-      <PTrailerDesc src={src} vTitle={vTitle} />
+      <PTrailerDesc src={postSrc} vTitle={vTitle} />
     </S.PTrailer>
   );
 };
