@@ -9,7 +9,7 @@ interface StarIconContainerProps {
 const starsArray = Array.from({ length: 5 });
 
 export const StarIconContainer = ({ updateStarRating, rate = 0 }: StarIconContainerProps) => {
-  const initialRate = Math.max(1, rate);
+  const initialRate = Math.min(5, Math.max(1, rate));
   const [checkedStars, setCheckedStars] = useState(initialRate - 1);
 
   const onClick = (index: number) => () => {
