@@ -1,27 +1,29 @@
 import { Poster } from '@/components/Poster';
 import { ShareButton } from '@/components/ShareButton';
-import * as S from './styles';
 import { HeartButton } from '@/components/HeartButton';
+import * as S from './styles';
+import { useState } from 'react';
 
 interface PosterWithButtonsProps {
   src: string;
   url: string;
+  initialIsFilled?: boolean;
   width?: number;
-  rank: number | null;
 }
 
-export const PosterWithButtons = ({ src, url, width = 20, rank = null }: PosterWithButtonsProps) => {
-  const handleHeartClick = (isFilled: boolean) => {
-    // 여기에 찜하기 상태 변경 로직을 구현하세요
-    console.log('Heart button clicked, filled:', isFilled);
+export const PosterWithButtons = ({ src, url, initialIsFilled = false, width = 20 }: PosterWithButtonsProps) => {
+  const [isFilled, setIsFilled] = useState(initialIsFilled);
+
+  const onClickHeart = () => {
+    setIsFilled(prev => !prev);
   };
 
   return (
     <S.PosterWithButtons width={width}>
-      <Poster src={src} width={100} rank={rank} />
+      <Poster src={src} width={100} rank={null} />
       <S.PosterButtonContainer>
         <S.HeartBtnWithText>
-          <HeartButton initialFilled={false} onClickHeartButton={handleHeartClick} />
+          <HeartButton initialFilled={isFilled} onClickHeartButton={onClickHeart} />
           <p>찜하기</p>
         </S.HeartBtnWithText>
         <ShareButton url={url} />

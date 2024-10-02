@@ -2,7 +2,6 @@ import { styled } from 'styled-components';
 
 export const PosterWithButtons = styled.div<{ width: number }>`
   width: ${({ width }) => width}%;
-  border: 1px solid black;
 `;
 
 export const PosterButtonContainer = styled.div`
