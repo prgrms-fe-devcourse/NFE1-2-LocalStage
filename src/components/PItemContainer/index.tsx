@@ -4,7 +4,7 @@ import { CommonResponseType, PListResponseType } from '@/types/apis';
 type DbItem = Pick<CommonResponseType, 'mt20id' | 'prfnm' | 'fcltynm' | 'prfpdfrom' | 'prfpdto' | 'poster' | 'area'>;
 
 interface PItemContainerProps {
-  data: PListResponseType | undefined;
+  data: PListResponseType;
   isLoading: boolean;
 }
 
@@ -13,7 +13,7 @@ interface PItemListProps {
   data: DbItem[];
 }
 
-const PItemList = ({ data }: PItemListProps) => (
+const PItemList = ({ data = [] }: PItemListProps) => (
   <>
     {data.map((item, index) => (
       <PItem

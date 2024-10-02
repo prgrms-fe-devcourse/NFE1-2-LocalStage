@@ -1,5 +1,5 @@
+import { HeartButton } from '@/components/HeartButton';
 import * as S from './styles';
-
 interface PItemProps {
   id: string;
   rank: number;
@@ -19,10 +19,9 @@ export const PItem = ({ rank, title, location, period, posterUrl, area }: PItemP
         <S.Title>{title}</S.Title>
         <S.Info>{area}</S.Info>
         <S.Info>{location}</S.Info>
-        <S.Info>
-          <time dateTime={period.replace(' ~ ', '/')}>{period}</time>
-        </S.Info>
+        <S.Info>{period}</S.Info>
       </S.InfoContainer>
+      <HeartButton />
     </S.ItemContainer>
   );
 };

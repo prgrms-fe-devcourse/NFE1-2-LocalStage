@@ -30,12 +30,10 @@ export const InfoContainer = styled.div`
 `;
 
 export const Title = styled(H16)`
-  margin: 0;
   flex: 2;
 `;
 
 export const Info = styled(P14)`
-  margin: 0;
   flex: 1;
   text-align: center;
   color: ${({ theme }) => theme.colors.text_gray};
