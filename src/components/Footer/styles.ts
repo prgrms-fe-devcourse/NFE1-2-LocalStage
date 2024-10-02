@@ -13,7 +13,6 @@ export const StyledFooter = styled.div`
   align-items: center;
   & > a {
     padding: 0 10px;
-    position: relative;
   }
 `;
 
@@ -25,6 +24,5 @@ export const Logo = styled.img`
   height: 35px;
   width: 110px;
   object-fit: contain;
-  position: relative;
   margin: 10px 5px;
 `;
