@@ -13,3 +13,4 @@ export const PaginationButton = styled.button<StyledPaginationButtonProps>`
   color: ${({ $isActive, theme }) => ($isActive ? theme.colors.white : theme.colors.black)};
   cursor: pointer;
 `;
+
