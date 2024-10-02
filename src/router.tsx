@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         element: <RankPage />,
       },
       {
-        path: 'search',
+        path: 'search/:query',
         element: <SearchPage />,
       },
       {
