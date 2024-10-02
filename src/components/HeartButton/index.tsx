@@ -5,19 +5,19 @@ import * as S from './styles';
 
 interface HeartButtonProps {
   initialFilled?: boolean;
-  onClick?: (isFilled: boolean) => void;
+  onClickHeartButton?: (isFilled: boolean) => void;
 }
 
-export const HeartButton = ({ initialFilled = false, onClick }: HeartButtonProps) => {
+export const HeartButton = ({ initialFilled = false, onClickHeartButton }: HeartButtonProps) => {
   const [isFilled, setIsFilled] = useState(initialFilled);
 
-  const handleClick = () => {
+  const onClick = () => {
     const newFilledState = !isFilled;
     setIsFilled(prev => !prev);
-    if (onClick) {
-      onClick(newFilledState);
+    if (onClickHeartButton) {
+      onClickHeartButton(newFilledState);
     }
   };
 
-  return <S.HeartButton icon={isFilled ? fasHeart : farHeart} $isFilled={isFilled} onClick={handleClick} />;
+  return <S.HeartButton icon={isFilled ? fasHeart : farHeart} $isFilled={isFilled} onClick={onClick} />;
 };
