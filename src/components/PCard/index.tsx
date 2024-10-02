@@ -4,19 +4,22 @@ import { Poster } from '@/components/Poster';
 import { CommonResponseType } from '@/types/apis';
 
 interface PCardProps {
-  pInfo: Pick<CommonResponseType, 'mt20id' | 'poster' | 'prfnm' | 'fcltynm' | 'prfpdfrom' | 'prfpdto'>;
+  pInfo: Pick<CommonResponseType, 'mt20id' | 'poster' | 'prfnm'> &
+    Partial<Pick<CommonResponseType, 'fcltynm' | 'prfpdfrom' | 'prfpdto' | 'prfplcnm' | 'prfpd' | 'rnum'>>;
   width?: string;
-  rank?: number;
 }
 
-export const PCard = ({ pInfo, width = '225px', rank }: PCardProps) => {
+export const PCard = ({ pInfo, width = '225px' }: PCardProps) => {
+  const poster = pInfo.rnum ? 'https://www.kopis.or.kr/' + pInfo.poster : pInfo.poster;
+  const place = pInfo.fcltynm ? pInfo.fcltynm : pInfo.prfnm;
+  const prf = pInfo.prfpd ? pInfo.prfpd : pInfo.prfpdfrom + '-' + pInfo.prfpdto;
   return (
     <S.PCard width={width}>
-      <Poster src={pInfo.poster} rank={rank} />
+      <Poster src={poster} rank={pInfo.rnum} />
       <S.PCardText>
         <H16>{pInfo.prfnm}</H16>
-        <P15>{pInfo.fcltynm}</P15>
-        <P15>{pInfo.prfpdfrom + '-' + pInfo.prfpdto}</P15>
+        <P15>{place}</P15>
+        <P15>{prf}</P15>
       </S.PCardText>
     </S.PCard>
   );
