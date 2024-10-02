@@ -6,9 +6,7 @@ interface PTrailerVideoProps {
 export const PTrailerVideo = ({ src, width = '100%' }: PTrailerVideoProps) => {
   return (
     <S.PTrailerVideo width={width}>
-      <div>
-        <iframe src={`https://www.youtube.com/embed/${src}`} />
-      </div>
+      <iframe src={`https://www.youtube.com/embed/${src}`} />
     </S.PTrailerVideo>
   );
 };

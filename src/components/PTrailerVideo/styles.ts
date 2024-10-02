@@ -1,16 +1,11 @@
 import { styled } from 'styled-components';
 
 export const PTrailerVideo = styled.div<{ width: string }>`
+  position: relative;
   width: ${({ width }) => width};
+  padding-bottom: 56.25%; /* 16:9 비율 */
 
-  & > div {
-    min-height: 300px;
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-  }
-
-  & > div > iframe {
+  iframe {
     position: absolute;
     top: 0;
     left: 0;
