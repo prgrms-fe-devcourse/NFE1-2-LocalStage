@@ -1,19 +1,17 @@
 import * as S from './styles';
 
 interface PaginationButtonProps {
-  number: number;
+  pageNumber: number;
   currentPage: number;
   onClickPaginationButton: (page: number) => void;
 }
 
-export const PaginationButton = ({ number, currentPage, onClickPaginationButton }: PaginationButtonProps) => {
-  const isActive = number === currentPage;
-
-  const onClick = (page: number) => () => onClickPaginationButton(page);
+export const PaginationButton = ({ pageNumber, currentPage, onClickPaginationButton }: PaginationButtonProps) => {
+  const isActive = pageNumber === currentPage;
 
   return (
-    <S.PaginationButton $isActive={isActive} onClick={() => onClick(number)}>
-      {number}
+    <S.PaginationButton $isActive={isActive} onClick={() => onClickPaginationButton(pageNumber)}>
+      {pageNumber}
     </S.PaginationButton>
   );
 };
