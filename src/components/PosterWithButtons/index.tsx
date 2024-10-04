@@ -7,12 +7,12 @@ import { useState } from 'react';
 interface PosterWithButtonsProps {
   src: string;
   url: string;
-  initialIsFilled?: boolean;
-  width?: number;
+  initialIsHeartFilled?: boolean;
+  width?: string;
 }
 
-export const PosterWithButtons = ({ src, url, initialIsFilled = false, width = 20 }: PosterWithButtonsProps) => {
-  const [isFilled, setIsFilled] = useState(initialIsFilled);
+export const PosterWithButtons = ({ src, url, initialIsHeartFilled = false, width = 20 }: PosterWithButtonsProps) => {
+  const [isHeartFilled, setIsFilled] = useState(initialIsHeartFilled);
 
   const onClickHeart = () => {
     setIsFilled(prev => !prev);
@@ -22,10 +22,10 @@ export const PosterWithButtons = ({ src, url, initialIsFilled = false, width = 2
     <S.PosterWithButtons width={width}>
       <Poster src={src} width="100%" />
       <S.PosterButtonContainer>
-        <S.HeartBtnWithText>
-          <HeartButton initialFilled={isFilled} onClickHeartButton={onClickHeart} />
+        <S.HeartButtonWithText>
+          <HeartButton initialFilled={isHeartFilled} onClickHeartButton={onClickHeart} />
           <p>찜하기</p>
-        </S.HeartBtnWithText>
+        </S.HeartButtonWithText>
         <ShareButton url={url} />
       </S.PosterButtonContainer>
     </S.PosterWithButtons>

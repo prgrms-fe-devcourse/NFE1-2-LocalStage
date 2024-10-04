@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const PosterWithButtons = styled.div<{ width: number }>`
+export const PosterWithButtons = styled.div<{ width: string }>`
   width: ${({ width }) => width}%;
 `;
 
