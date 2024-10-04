@@ -11,7 +11,7 @@ interface PosterWithButtonsProps {
   width?: string;
 }
 
-export const PosterWithButtons = ({ src, url, initialIsHeartFilled = false, width = 20 }: PosterWithButtonsProps) => {
+export const PosterWithButtons = ({ src, url, initialIsHeartFilled = false, width = '20' }: PosterWithButtonsProps) => {
   const [isHeartFilled, setIsFilled] = useState(initialIsHeartFilled);
 
   const onClickHeart = () => {
