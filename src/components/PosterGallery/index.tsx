@@ -1,18 +1,15 @@
-import { CommonResponseType } from '@/types/apis';
 import * as S from './styles';
 import { Poster } from '@/components/Poster';
 import { PosterWithDesc } from '@/components/PosterWithDesc';
+import { PItemType } from '@/types/pItem';
 
 interface PosterGalleryProps {
-  /**
-   * Omit<PListResponseType, 'genrenm' | 'prfstate' | 'openrun' | 'area'> 과 동일
-   */
-  pList: Pick<CommonResponseType, 'mt20id' | 'poster' | 'prfnm' | 'fcltynm' | 'prfpdfrom' | 'prfpdto'>[];
+  pList: PItemType[];
   width?: string;
   gap?: string;
 }
 
-export const PosterGallery = ({ pList, width = '600px', gap = '10px' }: PosterGalleryProps) => {
+export const PosterGallery = ({ pList, width = '100%', gap = '10px' }: PosterGalleryProps) => {
   return (
     <S.PosterGallery width={width} gap={gap}>
       {pList
@@ -20,14 +17,14 @@ export const PosterGallery = ({ pList, width = '600px', gap = '10px' }: PosterGa
         .map((perform, index) =>
           index === 0 ? (
             <PosterWithDesc
-              src={perform.poster}
-              title={perform.prfnm}
-              place={perform.fcltynm}
-              date={perform.prfpdfrom + '-' + perform.prfpdto}
+              src={perform.posterUrl}
+              title={perform.name}
+              place={perform.facility}
+              date={perform.period}
               width="100%"
             />
           ) : (
-            <Poster key={index} src={perform.poster} />
+            <Poster key={index} src={perform.posterUrl} />
           ),
         )}
     </S.PosterGallery>

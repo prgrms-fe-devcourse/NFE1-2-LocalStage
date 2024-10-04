@@ -10,10 +10,10 @@ interface PosterGridProps {
   width?: string;
   rows?: number;
   columns?: number;
-  gap?: number;
+  gap?: string;
 }
 
-export const PosterGrid = ({ performList, width = '600px', rows = 2, columns = 3, gap = 10 }: PosterGridProps) => {
+export const PosterGrid = ({ performList, width = '100%', rows = 2, columns = 3, gap = '10px' }: PosterGridProps) => {
   return (
     <S.PosterGrid width={width} rows={rows} columns={columns} gap={gap}>
       {performList.map((perform, index) => (

@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 
-export const PosterGrid = styled.div<{ width: string; rows: number; columns: number; gap: number }>`
+export const PosterGrid = styled.div<{ width: string; rows: number; columns: number; gap: string }>`
   width: ${({ width }) => width};
   display: grid;
   grid-template-rows: repeat(${({ rows }) => rows}, 1fr);
   grid-template-columns: repeat(${({ columns }) => columns}, 1fr);
-  gap: ${({ gap }) => gap}px;
+  gap: ${({ gap }) => gap};
 `;
