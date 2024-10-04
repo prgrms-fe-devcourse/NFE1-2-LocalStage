@@ -10,7 +10,7 @@ export const PosterButtonContainer = styled.div`
   padding: 10px 5px;
 `;
 
-export const HeartBtnWithText = styled.div`
+export const HeartButtonWithText = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 2px;
