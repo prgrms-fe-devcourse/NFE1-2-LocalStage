@@ -14,7 +14,7 @@ export const PCardGrid = ({ pList, width = '100%', rows = 1, columns = 5, gap = 
   return (
     <S.PCardGrid width={width} rows={rows} columns={columns} gap={gap}>
       {pList.map((perform, index) => (
-        <PCard key={index} {...perform} width="100%" rank={index + 1}></PCard>
+        <PCard key={index} {...perform} width="100%"></PCard>
       ))}
     </S.PCardGrid>
   );
