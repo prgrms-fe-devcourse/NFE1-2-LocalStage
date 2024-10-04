@@ -1,3 +1,4 @@
+import { useCacheStore } from '@/store/useCacheStore';
 import replaceTextProperties from '@/utils/extractInnermostValues';
 import { useEffect, useState } from 'react';
 import { xml2json } from 'xml-js';
@@ -11,14 +12,22 @@ import { xml2json } from 'xml-js';
 export default function useFetch<T>(url: string) {
   const [data, setData] = useState<T>();
   const [isLoading, setIsLoading] = useState(false);
+  const { caches, registerCache } = useCacheStore(state => state);
+
   useEffect(() => {
+    if (caches[url]) {
+      setData(caches[url].data as T);
+      return;
+    }
     const fetchData = async () => {
       setIsLoading(true);
       try {
         const response = await fetch(url);
         const xmlText = await response.text();
         const jsonData = JSON.parse(xml2json(xmlText, { compact: true, spaces: 2 }));
-        setData(replaceTextProperties<T>(jsonData));
+        const parsedData = replaceTextProperties<T>(jsonData);
+        setData(parsedData);
+        registerCache(url, parsedData);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -27,7 +36,7 @@ export default function useFetch<T>(url: string) {
     };
 
     fetchData();
-  }, [url]);
+  }, [url, caches, registerCache]);
 
   return { data, isLoading };
 }
