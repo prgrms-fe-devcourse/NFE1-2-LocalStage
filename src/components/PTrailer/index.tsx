@@ -1,15 +1,8 @@
 import { PTrailerVideo } from '@/components/PTrailerVideo';
 import { PTrailerDesc } from '@/components/PTrailerDesc';
 import * as S from './styles';
-
-interface PTrailerProps {
-  postSrc: string;
-  vId: string;
-  vTitle: string;
-  width?: string;
-}
-
-export const PTrailer = ({ postSrc, vId, vTitle, width = '100%' }: PTrailerProps) => {
+import { VItemType } from '@/types/vItem';
+export const PTrailer = ({ postSrc, vId, vTitle, width = '100%' }: VItemType) => {
   return (
     <S.PTrailer width={width}>
       <PTrailerVideo vId={vId} />

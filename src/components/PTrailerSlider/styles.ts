@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const PCardSlider = styled.div<{ width: string; gap: string }>`
+export const PTrailerSlider = styled.div<{ width: string; gap: string }>`
   width: ${({ width }) => width};
   .slick-prev::before,
   .slick-next::before {

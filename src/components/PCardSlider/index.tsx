@@ -9,9 +9,10 @@ import { PItemType } from '@/types/pItem';
 interface PCardSliderProps {
   pList: PItemType[];
   width?: string;
+  gap?: string;
 }
 
-export const PCardSlider = ({ pList, width = '100%' }: PCardSliderProps) => {
+export const PCardSlider = ({ pList, width = '100%', gap = '5px' }: PCardSliderProps) => {
   const settings = {
     infinite: true,
     speed: 500,
@@ -19,13 +20,11 @@ export const PCardSlider = ({ pList, width = '100%' }: PCardSliderProps) => {
     slidesToScroll: 1,
     swipeToSlide: true,
   };
-  const widthType = width.match(/[^0-9]/g)?.join('');
-  const PCardWidth = widthType === '%' ? '98%' : `calc(${width} / 5.2)`;
   return (
-    <S.PCardSlider width={width}>
+    <S.PCardSlider width={width} gap={gap}>
       <Slider {...settings}>
         {pList.map((perform, index) => {
-          return <PCard key={index} {...perform} width={PCardWidth} />;
+          return <PCard key={index} {...perform} width="100%" />;
         })}
       </Slider>
     </S.PCardSlider>
