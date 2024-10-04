@@ -17,6 +17,7 @@ export const PosterGallery = ({ pList, width = '100%', gap = '10px' }: PosterGal
         .map((perform, index) =>
           index === 0 ? (
             <PosterWithDesc
+              key={index}
               src={perform.posterUrl}
               title={perform.name}
               place={perform.facility}
