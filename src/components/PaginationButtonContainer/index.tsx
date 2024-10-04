@@ -20,7 +20,7 @@ export const PaginationButtonContainer = ({
     if (totalPages <= 5) {
       for (let i = 1; i <= totalPages; i++) {
         buttons.push(
-          <PaginationButton key={i} pageNumber={i} currentPage={currentPage} onClickPaginationButton={onClick} />,
+          <PaginationButton key={i} pageNumber={i} currentPage={currentPage} onClickPaginationButton={onClick(i)} />,
         );
       }
     } else {
@@ -39,7 +39,7 @@ export const PaginationButtonContainer = ({
       }
 
       buttons.push(
-        <PaginationButton key={1} pageNumber={1} currentPage={currentPage} onClickPaginationButton={onClick} />,
+        <PaginationButton key={1} pageNumber={1} currentPage={currentPage} onClickPaginationButton={onClick(1)} />,
       );
 
       if (startPage > 2) {
@@ -49,7 +49,7 @@ export const PaginationButtonContainer = ({
       for (let i = startPage; i <= endPage; i++) {
         if (i !== 1 && i !== totalPages) {
           buttons.push(
-            <PaginationButton key={i} pageNumber={i} currentPage={currentPage} onClickPaginationButton={onClick} />,
+            <PaginationButton key={i} pageNumber={i} currentPage={currentPage} onClickPaginationButton={onClick(i)} />,
           );
         }
       }
@@ -63,7 +63,7 @@ export const PaginationButtonContainer = ({
           key={totalPages}
           pageNumber={totalPages}
           currentPage={currentPage}
-          onClickPaginationButton={onClick}
+          onClickPaginationButton={onClick(totalPages)}
         />,
       );
     }
@@ -73,5 +73,3 @@ export const PaginationButtonContainer = ({
 
   return <S.PaginationButtonContainer>{renderPaginationButtons()}</S.PaginationButtonContainer>;
 };
-
-export default PaginationButtonContainer;
