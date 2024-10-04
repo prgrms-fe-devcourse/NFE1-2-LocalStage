@@ -10,7 +10,7 @@ export default defineConfig({
       '/api': {
         target: 'http://www.kopis.or.kr/openApi/restful',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: path => path.replace(/^\/api/, ''),
       },
     },
   },
