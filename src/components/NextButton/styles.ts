@@ -16,7 +16,7 @@ export const Button = styled.button`
   svg {
     width: 16px;
     height: 16px;
-    margin-left: 8px; // 이 부분이 변경되었습니다
+    margin-left: 8px;
   }
 `;
 
