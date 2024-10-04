@@ -1,28 +1,22 @@
-import { Loader } from '@/components/Loader';
 import * as S from './styles';
 import { PItem } from '@/components/PItem';
 import { CommonResponseType } from '@/types/apis';
 
 interface PItemContainerProps {
-  data: Pick<CommonResponseType, 'mt20id' | 'prfnm' | 'fcltynm' | 'prfpdfrom' | 'prfpdto' | 'poster' | 'area'>[];
-  isLoading: boolean;
+  data: Pick<CommonResponseType, 'area' | 'prfplcnm' | 'prfpd' | 'cate' | 'prfnm' | 'rnum' | 'poster' | 'mt20id'>[];
 }
 
-export const PItemContainer = ({ data, isLoading }: PItemContainerProps) => {
-  if (isLoading) {
-    return <Loader />;
-  }
-
+export const PItemContainer = ({ data }: PItemContainerProps) => {
   return (
     <S.PItemContainer>
-      {data.map((item, index) => (
+      {data.map(item => (
         <PItem
           key={item.mt20id}
-          rank={index + 1}
           id={item.mt20id}
+          rank={item.rnum}
           title={item.prfnm}
-          location={item.fcltynm}
-          period={`${item.prfpdfrom} ~ ${item.prfpdto}`}
+          location={item.prfplcnm}
+          period={item.prfpd}
           posterUrl={item.poster}
           area={item.area}
         />
