@@ -1,4 +1,3 @@
-import { P16 } from '@/components/Text';
 import * as S from './styles';
 import { useState } from 'react';
 import { MapModal } from '@/components/MapModal';
@@ -41,8 +40,6 @@ export const PDetailInfo = ({
   onUpdateScore,
   placeInfo,
 }: PDetailInfoProps) => {
-  console.log(placeInfo);
-
   const [isMapModalVisible, setIsMapModalVisible] = useState(false);
   const [currentScore, setCurrentScore] = useState(score);
 
