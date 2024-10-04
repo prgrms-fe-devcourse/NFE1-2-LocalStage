@@ -17,6 +17,6 @@ export const Banner = styled.div<{ width: string; height: string }>`
   }
 
   @media (min-width: 1280px) {
-    padding-top: 300px;
+    padding-top: 400px;
   }
 `;
