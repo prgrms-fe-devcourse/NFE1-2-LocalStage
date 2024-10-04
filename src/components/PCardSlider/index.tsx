@@ -14,7 +14,7 @@ interface PCardSliderProps {
 
 export const PCardSlider = ({ pList, width = '100%', gap = '5px' }: PCardSliderProps) => {
   const settings = {
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,

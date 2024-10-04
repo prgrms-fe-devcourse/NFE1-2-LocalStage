@@ -1,5 +1,4 @@
 import { Panel } from '@/components/Panel/styles';
-// import { Panel } from '@/components/Panel';
 import { styled } from 'styled-components';
 
 export const MainPage = styled.div`

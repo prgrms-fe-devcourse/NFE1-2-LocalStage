@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import usePList from '@/hooks/usePList';
 import getFormattedDates from '@/utils/getFormattedDates';
 import useBoxOffice from '@/hooks/useBoxOffice';
@@ -16,8 +17,8 @@ import { H32 } from '@/components/Text';
 export default function MainPage() {
   const genre = genreMap;
   const formedDate = getFormattedDates();
-  const [selectGenre, setSelectedGenre] = useState<string>(genre.연극);
-  const { data: genreRank, isLoading: genreLoadin } = useBoxOffice({
+  const [selectGenre, setSelectedGenre] = useState<string>(genre.전체);
+  const { data: genreRank, isLoading: genreLoading } = useBoxOffice({
     date: formedDate.today,
     ststype: 'month',
     area: 11,
@@ -37,18 +38,30 @@ export default function MainPage() {
       setSelectedGenre(value);
     },
   }));
+  const FillterGenreRank = () => {
+    if (!genreRank?.boxofs?.boxof) return [];
+    let copy;
+    if (Array.isArray(genreRank?.boxofs?.boxof)) {
+      copy = [...genreRank.boxofs.boxof].slice(0, 10);
+    } else {
+      copy = [genreRank.boxofs.boxof];
+    }
+    return copy;
+  };
+  const genreRankList = FillterGenreRank();
+  console.log(genreRankList);
   return (
     <S.MainPage>
       <S.GenreRank width="100%">
         <H32>장르별 랭킹</H32>
         <SquareButtonContainer buttonPropsList={genreButtonList} />
-        {genreLoadin ? (
+        {genreLoading ? (
           <Loader></Loader>
         ) : (
           <>
             <PCardSlider
               pList={
-                genreRank?.boxofs?.boxof.map(pItem => ({
+                genreRankList?.map(pItem => ({
                   id: pItem.mt20id,
                   posterUrl: 'https://www.kopis.or.kr/' + pItem.poster,
                   name: pItem.prfnm,
