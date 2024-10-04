@@ -38,8 +38,9 @@ export default class ReviewStorage {
     const existingReview = reviewList.find(item => item.id === review.id);
 
     if (existingReview) {
-      // 이미 존재하는 리뷰인 경우 editReview 실행
-      this.editReview(review);
+      if (review.review === '')
+        this.removeReview(review.id); // review 파트가 비어있다면 삭제
+      else this.editReview(review); // 이미 존재하는 리뷰인 경우 editReview 실행
     } else {
       // 새로운 리뷰인 경우 addReview 실행
       this.addReview(review);
