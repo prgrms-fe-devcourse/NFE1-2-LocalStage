@@ -9,13 +9,23 @@ interface PosterWithButtonsProps {
   url: string;
   initialIsHeartFilled?: boolean;
   width?: string;
+  onHeartClick?: (isHeartFilled: boolean) => void;
 }
 
-export const PosterWithButtons = ({ src, url, initialIsHeartFilled = false, width = '20' }: PosterWithButtonsProps) => {
+export const PosterWithButtons = ({
+  src,
+  url,
+  initialIsHeartFilled = false,
+  width = '20',
+  onHeartClick,
+}: PosterWithButtonsProps) => {
   const [isHeartFilled, setIsFilled] = useState(initialIsHeartFilled);
 
   const onClickHeart = () => {
     setIsFilled(prev => !prev);
+    if (onHeartClick) {
+      onHeartClick(isHeartFilled);
+    }
   };
 
   return (
