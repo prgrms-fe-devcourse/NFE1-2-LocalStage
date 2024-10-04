@@ -13,7 +13,6 @@ interface PosterWithButtonsProps {
 
 export const PosterWithButtons = ({ src, url, initialIsFilled = false, width = 20 }: PosterWithButtonsProps) => {
   const [isFilled, setIsFilled] = useState(initialIsFilled);
-  console.log('Poster:', src);
 
   const onClickHeart = () => {
     setIsFilled(prev => !prev);
