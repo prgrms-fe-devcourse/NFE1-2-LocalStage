@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const PCard = styled.div<{ width: string }>`
-  width: ${props => props.width};
+  width: ${({ width }) => width};
   overflow: hidden;
   & > div:first-child {
     overflow: hidden;
