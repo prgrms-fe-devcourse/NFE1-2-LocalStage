@@ -8,6 +8,8 @@ import getApiUrl from '@/utils/getApiUrl';
  *
  * @param {PListRequestType} params - 공연 목록 조회에 필요한 요청 매개변수입니다.
  * @returns {{ data: PListResponseType | undefined, isLoading: boolean }} - 공연 목록 데이터와 로딩 상태를 반환합니다.
+ * @example
+ * const { data } = usePList({ cpage: 1, eddate: '20241201', rows: 10, stdate: '20241101' });
  */
 export default function usePList(params: PListRequestType) {
   const url = getApiUrl<PListRequestType>('pblprfr', params);

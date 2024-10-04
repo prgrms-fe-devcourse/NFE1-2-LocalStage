@@ -8,6 +8,8 @@ import getApiUrl from '@/utils/getApiUrl';
  *
  * @param {AwardRequestType} params - 수상작 목록 조회에 필요한 요청 매개변수입니다.
  * @returns {{ data: AwardResponseType | undefined, isLoading: boolean }} - 수상작 목록 데이터와 로딩 상태를 반환합니다.
+ * @example
+ * const { data } = useAward({ cpage: 1, eddate: '20241201', rows: 10, stdate: '20240901' });
  */
 export default function useAward(params: AwardRequestType) {
   const url = getApiUrl<AwardRequestType>('prfawad', params);
