@@ -1,4 +1,5 @@
 export const genreMap = {
+  전체: '',
   뮤지컬: 'GGGA',
   연극: 'AAAA',
   무용: 'BBBC',
