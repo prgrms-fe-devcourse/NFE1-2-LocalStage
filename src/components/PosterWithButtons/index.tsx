@@ -16,7 +16,7 @@ export const PosterWithButtons = ({
   src,
   url,
   initialIsHeartFilled = false,
-  width = '20',
+  width = '20%',
   onHeartClick,
 }: PosterWithButtonsProps) => {
   const [isHeartFilled, setIsFilled] = useState(initialIsHeartFilled);

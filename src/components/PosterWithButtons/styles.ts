@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const PosterWithButtons = styled.div<{ width: string }>`
-  width: ${({ width }) => width}%;
+  width: ${({ width }) => width};
 `;
 
 export const PosterButtonContainer = styled.div`
