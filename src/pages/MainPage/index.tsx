@@ -76,8 +76,11 @@ export default function MainPage() {
           }
         />
       </S.PopularPerforms>
-      <Banner src={bannerImage}></Banner>
+      <S.BannerContainer>
+        <Banner src={bannerImage}></Banner>
+      </S.BannerContainer>
       <S.CommingSoon width="100%">
+        <H32>개봉 예정 공연</H32>
         <PCardGrid
           pList={
             pList?.dbs?.db.slice(0, 10).map(pItem => ({

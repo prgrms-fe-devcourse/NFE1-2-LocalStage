@@ -17,6 +17,6 @@ export const GenreRank = styled(Panel)`
     text-align: start;
   }
 `;
-
+export const BannerContainer = styled.div``;
 export const PopularPerforms = styled(Panel)``;
 export const CommingSoon = styled(Panel)``;
