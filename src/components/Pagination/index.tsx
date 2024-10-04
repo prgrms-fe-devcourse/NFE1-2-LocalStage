@@ -15,7 +15,7 @@ export const Pagination = ({ defaultPage, itemsPerPage, totalItemsCount, onClick
   const [currentPage, setCurrentPage] = React.useState(defaultPage);
   const totalPages = Math.ceil(totalItemsCount / itemsPerPage);
 
-  const onClick = (pageNumber: number) => () => {
+  const onClick = (pageNumber: number) => {
     setCurrentPage(pageNumber);
     onClickPagination(pageNumber);
   };
@@ -24,15 +24,18 @@ export const Pagination = ({ defaultPage, itemsPerPage, totalItemsCount, onClick
     setCurrentPage(defaultPage);
   }, [defaultPage]);
 
+  const onPrevClick = () => onClick(Math.max(1, currentPage - 1));
+  const onNextClick = () => onClick(Math.min(totalPages, currentPage + 1));
+
   return (
     <S.PaginationWrapper>
-      <PrevButton onClickPrevButton={onClick(currentPage - 1)} disabled={currentPage === 1} />
+      <PrevButton onClickPrevButton={onPrevClick} disabled={currentPage === 1} />
       <PaginationButtonContainer
         currentPage={currentPage}
         totalPages={totalPages}
         onClickPaginationButtonCon={onClick}
       />
-      <NextButton onClickNextButton={onClick(currentPage + 1)} disabled={currentPage === totalPages} />
+      <NextButton onClickNextButton={onNextClick} disabled={currentPage === totalPages} />
     </S.PaginationWrapper>
   );
 };
