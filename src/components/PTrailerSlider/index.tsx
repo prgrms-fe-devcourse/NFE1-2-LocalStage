@@ -8,9 +8,10 @@ import { VItemType } from '@/types/vItem';
 interface PTrailerSliderProps {
   vList: VItemType[];
   width?: string;
+  gap?: string;
 }
 
-export const PTrailerSlider = ({ vList, width = '100%' }: PTrailerSliderProps) => {
+export const PTrailerSlider = ({ vList, width = '100%', gap = '5px' }: PTrailerSliderProps) => {
   const settings = {
     infinite: true,
     speed: 500,
@@ -18,13 +19,11 @@ export const PTrailerSlider = ({ vList, width = '100%' }: PTrailerSliderProps) =
     slidesToScroll: 1,
     swipeToSlide: true,
   };
-  const widthType = width.match(/[^0-9]/g)?.join('');
-  const pTrailerWidth = widthType === '%' ? '98%' : `calc(${width} / 5.2)`;
   return (
-    <S.PTrailerSlider width={width}>
+    <S.PTrailerSlider width={width} gap={gap}>
       <Slider {...settings}>
         {vList.map((video, index) => {
-          return <PTrailer key={index} {...video} width={pTrailerWidth} />;
+          return <PTrailer key={index} {...video} width="100%" />;
         })}
       </Slider>
     </S.PTrailerSlider>
