@@ -228,7 +228,7 @@ export type CommonResponseType = {
    * 소개이미지목록
    * @example [{ styurl: "https://example.com/image1.jpg" }, { styurl: "https://example.com/image2.jpg" }]
    */
-  styurls: { styurl: string }[];
+  styurls: { styurl: string[] };
   /**
    * 공연시간
    * @example "화요일 ~ 금요일(20:00), 토요일(16:00,19:00), 일요일(15:00,18:00)"
