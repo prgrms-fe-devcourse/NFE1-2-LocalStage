@@ -18,7 +18,7 @@ const timePeriods = ['일간', '주간', '월간'];
 const stsPeriods: ('day' | 'week' | 'month')[] = ['day', 'week', 'month'];
 
 export default function RankPage() {
-  const [activeGenre, setActiveGenre] = useState<GenreCode>(genreMap.뮤지컬);
+  const [activeGenre, setActiveGenre] = useState<GenreCode>(genreMap.전체);
   const [activePeriod, setActivePeriod] = useState<'day' | 'week' | 'month'>('day');
 
   const { data, isLoading } = useBoxOffice({
@@ -26,10 +26,6 @@ export default function RankPage() {
     date: '20241001',
     catecode: activeGenre,
   });
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   const onGenreChange = (id: GenreCode) => {
     setActiveGenre(id);
@@ -54,7 +50,9 @@ export default function RankPage() {
     }));
   }, [data, activeGenre]);
 
-  console.log(data);
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <Panel title="장르별 공연">
