@@ -7,7 +7,7 @@ export const PDetailInfo = styled.div<{ width: string; height: string }>`
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 20px;
-  padding: 20px;
+  min-width: 300px;
 `;
 export const PlaceValueContainer = styled.div`
   display: flex;
