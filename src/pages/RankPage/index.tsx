@@ -8,9 +8,8 @@ import { genreMap } from '@/constants/genreMap';
 import { Panel } from '@/components/Panel';
 import { FilterButtonContainer } from '@/components/FilterButtonContainer';
 import { LocalDateTime } from '@/components/LocalDateTime';
-
-type GenreCode = (typeof genreMap)[keyof typeof genreMap];
-type GenreName = keyof typeof genreMap;
+import { GenreCode, GenreName } from '@/types/genreCodeName';
+import getFormattedDates from '@/utils/getFormattedDates';
 
 const genreEntries = Object.entries(genreMap) as [GenreName, GenreCode][];
 
@@ -21,9 +20,11 @@ export default function RankPage() {
   const [activeGenre, setActiveGenre] = useState<GenreCode>(genreMap.전체);
   const [activePeriod, setActivePeriod] = useState<'day' | 'week' | 'month'>('day');
 
+  const { yesterday } = getFormattedDates();
+
   const { data, isLoading } = useBoxOffice({
     ststype: activePeriod,
-    date: '20241001',
+    date: yesterday,
     catecode: activeGenre,
   });
 
@@ -35,20 +36,22 @@ export default function RankPage() {
     setActivePeriod(stsPeriods[index]);
   };
 
-  const formattedData = useMemo(() => {
-    if (!data?.boxofs?.boxof) return [];
+  const activePeriodIndex = stsPeriods.indexOf(activePeriod);
 
-    return data.boxofs.boxof.map(item => ({
-      area: item.area,
-      prfplcnm: item.prfplcnm,
-      prfpd: item.prfpd,
-      cate: item.cate,
-      prfnm: item.prfnm,
-      rnum: item.rnum,
-      poster: 'http://www.kopis.or.kr/' + item.poster,
-      mt20id: item.mt20id,
-    }));
-  }, [data, activeGenre]);
+  const formattedData = useMemo(() => {
+    return (
+      data?.boxofs?.boxof?.map(item => ({
+        area: item.area,
+        prfplcnm: item.prfplcnm,
+        prfpd: item.prfpd,
+        cate: item.cate,
+        prfnm: item.prfnm,
+        rnum: item.rnum,
+        poster: 'http://www.kopis.or.kr/' + item.poster,
+        mt20id: item.mt20id,
+      })) ?? []
+    );
+  }, [data]);
 
   if (isLoading) {
     return <Loader />;
@@ -58,7 +61,7 @@ export default function RankPage() {
     <Panel title="장르별 공연">
       <S.RankPage>
         <S.ButtonContainer>
-          <SquareButtonContainer<GenreCode>
+          <SquareButtonContainer
             buttonPropsList={genreEntries.map(([name, code]) => ({
               id: code,
               text: name,
@@ -70,7 +73,11 @@ export default function RankPage() {
         </S.ButtonContainer>
         <S.DateSection>
           <LocalDateTime />
-          <FilterButtonContainer buttonList={timePeriods} onFilterChange={onPeriodChange} />
+          <FilterButtonContainer
+            buttonList={timePeriods}
+            activeIndex={activePeriodIndex}
+            onFilterChange={onPeriodChange}
+          />
         </S.DateSection>
         <PItemContainer data={formattedData} />
       </S.RankPage>
