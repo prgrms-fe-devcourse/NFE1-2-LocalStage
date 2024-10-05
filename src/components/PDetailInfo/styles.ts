@@ -5,13 +5,15 @@ export const PDetailInfo = styled.div<{ width: string; height: string }>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 20px;
-  min-width: 300px;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 15px 35px;
+  width: 100%;
+  max-width: 500px;
 `;
 export const PlaceValueContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 2px;
 `;
 
