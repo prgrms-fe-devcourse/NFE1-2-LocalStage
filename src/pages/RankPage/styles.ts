@@ -23,3 +23,10 @@ export const DateSection = styled.div`
   width: 100%;
   margin-bottom: 20px;
 `;
+
+export const TopThreePerformances = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 2rem;
+`;

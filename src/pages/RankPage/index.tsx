@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import * as S from './styles';
 import { SquareButtonContainer } from '@/components/SquareButtonContainer';
 import { PItemContainer } from '@/components/PItemContainer';
+import { PCard } from '@/components/PCard';
 import useBoxOffice from '@/hooks/useBoxOffice';
 import { Loader } from '@/components/Loader';
 import { genreMap } from '@/constants/genreMap';
@@ -41,14 +42,14 @@ export default function RankPage() {
   const formattedData = useMemo(() => {
     return (
       data?.boxofs?.boxof?.map(item => ({
-        area: item.area,
+        mt20id: item.mt20id,
+        poster: 'http://www.kopis.or.kr/' + item.poster,
+        prfnm: item.prfnm,
         prfplcnm: item.prfplcnm,
         prfpd: item.prfpd,
-        cate: item.cate,
-        prfnm: item.prfnm,
         rnum: item.rnum,
-        poster: 'http://www.kopis.or.kr/' + item.poster,
-        mt20id: item.mt20id,
+        area: item.area,
+        cate: item.cate,
       })) ?? []
     );
   }, [data]);
@@ -57,11 +58,14 @@ export default function RankPage() {
     return <Loader />;
   }
 
+  const topThreePerformances = formattedData.slice(0, 3);
+  const otherPerformances = formattedData.slice(3);
+
   return (
     <Panel title="장르별 공연">
       <S.RankPage>
         <S.ButtonContainer>
-          <SquareButtonContainer
+          <SquareButtonContainer<GenreCode>
             buttonPropsList={genreEntries.map(([name, code]) => ({
               id: code,
               text: name,
@@ -79,7 +83,21 @@ export default function RankPage() {
             onFilterChange={onPeriodChange}
           />
         </S.DateSection>
-        <PItemContainer data={formattedData} />
+        <S.TopThreePerformances>
+          {topThreePerformances.map(performance => (
+            <PCard
+              key={performance.mt20id}
+              id={performance.mt20id}
+              posterUrl={performance.poster}
+              name={performance.prfnm}
+              facility={performance.prfplcnm}
+              period={performance.prfpd}
+              rank={performance.rnum ? performance.rnum : undefined}
+              width="356px"
+            />
+          ))}
+        </S.TopThreePerformances>
+        <PItemContainer data={otherPerformances} />
       </S.RankPage>
     </Panel>
   );
