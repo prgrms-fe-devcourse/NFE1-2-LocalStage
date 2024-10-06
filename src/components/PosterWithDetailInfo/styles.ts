@@ -2,9 +2,9 @@ import { styled } from 'styled-components';
 
 export const PosterWithDetailInfo = styled.section`
   display: flex;
-  margin: 0 auto;
+  margin: 30px auto;
   width: 80%;
-  height: 100%;
+  height: fit-content;
 
   @media (min-width=500px) {
     width: 100%;
@@ -13,6 +13,7 @@ export const PosterWithDetailInfo = styled.section`
 
 export const PinfoContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   margin-left: 20px;
+  min-width: 500px;
 `;
