@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { PrevButton } from '../PrevButton';
 import { NextButton } from '../NextButton';
 import { PaginationButtonContainer } from '../PaginationButtonContainer';
@@ -12,7 +12,7 @@ interface PaginationProps {
 }
 
 export const Pagination = ({ defaultPage, itemsPerPage, totalItemsCount, onClickPagination }: PaginationProps) => {
-  const [currentPage, setCurrentPage] = React.useState(defaultPage);
+  const [currentPage, setCurrentPage] = useState(defaultPage);
   const totalPages = Math.ceil(totalItemsCount / itemsPerPage);
 
   const onClick = (pageNumber: number) => {
@@ -20,7 +20,7 @@ export const Pagination = ({ defaultPage, itemsPerPage, totalItemsCount, onClick
     onClickPagination(pageNumber);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setCurrentPage(defaultPage);
   }, [defaultPage]);
 
