@@ -30,11 +30,7 @@ export const Pagination = ({ defaultPage, itemsPerPage, totalItemsCount, onClick
   return (
     <S.PaginationWrapper>
       <PrevButton onClickPrevButton={onPrevClick} disabled={currentPage === 1} />
-      <PaginationButtonContainer
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onClickPaginationButtonCon={onClick}
-      />
+      <PaginationButtonContainer currentPage={currentPage} totalPages={totalPages} onClickPaginationButton={onClick} />
       <NextButton onClickNextButton={onNextClick} disabled={currentPage === totalPages} />
     </S.PaginationWrapper>
   );

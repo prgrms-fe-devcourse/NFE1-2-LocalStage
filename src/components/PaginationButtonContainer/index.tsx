@@ -4,15 +4,15 @@ import PaginationButton from '../PaginationButton';
 interface PaginationButtonContainerProps {
   currentPage: number;
   totalPages: number;
-  onClickPaginationButtonCon: (pageNumber: number) => void;
+  onClickPaginationButton: (pageNumber: number) => void;
 }
 
 export const PaginationButtonContainer = ({
   currentPage,
   totalPages,
-  onClickPaginationButtonCon,
+  onClickPaginationButton,
 }: PaginationButtonContainerProps) => {
-  const onClick = (pageNumber: number) => () => onClickPaginationButtonCon(pageNumber);
+  const onClick = (pageNumber: number) => () => onClickPaginationButton(pageNumber);
 
   const renderPaginationButtons = () => {
     const buttons = [];
