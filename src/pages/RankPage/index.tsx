@@ -11,6 +11,7 @@ import { FilterButtonContainer } from '@/components/FilterButtonContainer';
 import { LocalDateTime } from '@/components/LocalDateTime';
 import { GenreCode, GenreName } from '@/types/genreCodeName';
 import getFormattedDates from '@/utils/getFormattedDates';
+import { useNavigate } from 'react-router-dom';
 
 const genreEntries = Object.entries(genreMap) as [GenreName, GenreCode][];
 
@@ -20,8 +21,10 @@ const stsPeriods: ('day' | 'week' | 'month')[] = ['day', 'week', 'month'];
 export default function RankPage() {
   const [activeGenre, setActiveGenre] = useState<GenreCode>(genreMap.전체);
   const [activePeriod, setActivePeriod] = useState<'day' | 'week' | 'month'>('day');
+  const navigate = useNavigate();
 
   const { yesterday } = getFormattedDates();
+  const activePeriodIndex = stsPeriods.indexOf(activePeriod);
 
   const { data, isLoading } = useBoxOffice({
     ststype: activePeriod,
@@ -37,7 +40,9 @@ export default function RankPage() {
     setActivePeriod(stsPeriods[index]);
   };
 
-  const activePeriodIndex = stsPeriods.indexOf(activePeriod);
+  const onPerformanceClick = (id: string) => {
+    navigate(`/detail/${id}`);
+  };
 
   const formattedData = useMemo(() => {
     return (
@@ -92,12 +97,13 @@ export default function RankPage() {
               name={performance.prfnm}
               facility={performance.prfplcnm}
               period={performance.prfpd}
-              rank={performance.rnum ? performance.rnum : undefined}
+              rank={performance.rnum}
               width="356px"
+              onCardClick={() => onPerformanceClick(performance.mt20id)}
             />
           ))}
         </S.TopThreePerformances>
-        <PItemContainer data={otherPerformances} />
+        <PItemContainer data={otherPerformances} onItemClick={id => onPerformanceClick(id)} />
       </S.RankPage>
     </Panel>
   );

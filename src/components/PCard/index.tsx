@@ -4,9 +4,18 @@ import { Poster } from '@/components/Poster';
 import { PItemType } from '@/types/pItem';
 import RankIcon from '@/components/RankIcon';
 
-export const PCard = ({ id, posterUrl, name, facility, period, rank, width = '225px' }: PItemType) => {
+export const PCard = ({
+  id,
+  posterUrl,
+  name,
+  facility,
+  period,
+  rank,
+  width = '225px',
+  onCardClick,
+}: PItemType & { onCardClick?: (id: string) => void }) => {
   return (
-    <S.PCard width={width}>
+    <S.PCard width={width} onClick={() => onCardClick && onCardClick(id)}>
       <S.PosterWrapper>
         <Poster src={posterUrl} />
         {rank !== undefined && rank > 0 && rank <= 3 && <RankIcon rank={rank as 1 | 2 | 3} />}
