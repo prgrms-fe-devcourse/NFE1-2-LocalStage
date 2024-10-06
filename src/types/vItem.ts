@@ -1,4 +1,5 @@
 export type VItemType = {
+  pId?: string;
   postSrc: string;
   vId: string;
   vTitle: string;

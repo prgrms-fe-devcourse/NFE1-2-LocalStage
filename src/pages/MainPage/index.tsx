@@ -1,9 +1,11 @@
-/* eslint-disable no-unsafe-optional-chaining */
 import usePList from '@/hooks/usePList';
-import getFormattedDates from '@/utils/getFormattedDates';
 import useBoxOffice from '@/hooks/useBoxOffice';
-import { genreMap } from '@/constants/genreMap';
+import useYoutube from '@/hooks/useYouTube';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { VItemType } from '@/types/vItem';
+import getFormattedDates from '@/utils/getFormattedDates';
+import { genreMap } from '@/constants/genreMap';
 import { Loader } from '@/components/Loader';
 import { SquareButtonContainer } from '@/components/SquareButtonContainer';
 import { PCardSlider } from '@/components/PCardSlider';
@@ -11,20 +13,17 @@ import { PosterGallery } from '@/components/PosterGallery';
 import { Banner } from '@/components/Banner';
 import bannerImage from '@/assets/imgs/banner.png';
 import { PCardGrid } from '@/components/PCardGrid';
-import * as S from './styles';
 import { H32 } from '@/components/Text';
 import { PTrailerSlider } from '@/components/PTrailerSlider';
 import { RoundedButton } from '@/components/RoundedButton';
-import { useNavigate } from 'react-router-dom';
-import useYoutube from '@/hooks/useYouTube';
-import { VItemType } from '@/types/vItem';
+import * as S from './styles';
 
 export default function MainPage() {
   const navigate = useNavigate();
-
   const genre = genreMap;
   const formedDate = getFormattedDates();
   const [selectGenre, setSelectedGenre] = useState<string>(genre.전체);
+
   const { data: genreRank, isLoading: genreLoading } = useBoxOffice({
     date: formedDate.today,
     ststype: 'month',
@@ -56,14 +55,26 @@ export default function MainPage() {
     return copy;
   };
   const genreRankList = FillterGenreRank();
-  const { video } = useYoutube({ name: pList?.dbs?.db[0].prfnm, poster: pList?.dbs?.db[0].poster });
-  const { video: v1 } = useYoutube({ name: pList?.dbs?.db[1].prfnm, poster: pList?.dbs?.db[1].poster });
-  const { video: v2 } = useYoutube({ name: pList?.dbs?.db[2].prfnm, poster: pList?.dbs?.db[2].poster });
   const vList: VItemType[] = [];
-  if (video && v1 && v2) {
-    vList.push(video);
+  const { video: v1 } = useYoutube({
+    id: pList?.dbs?.db[1].mt20id,
+    name: pList?.dbs?.db[1].prfnm,
+    poster: pList?.dbs?.db[1].poster,
+  });
+  const { video: v2 } = useYoutube({
+    id: pList?.dbs?.db[2].mt20id,
+    name: pList?.dbs?.db[2].prfnm,
+    poster: pList?.dbs?.db[2].poster,
+  });
+  const { video: v3 } = useYoutube({
+    id: pList?.dbs?.db[3].mt20id,
+    name: pList?.dbs?.db[3].prfnm,
+    poster: pList?.dbs?.db[3].poster,
+  });
+  if (v1 && v2 && v3) {
     vList.push(v1);
     vList.push(v2);
+    vList.push(v3);
   }
   return (
     <S.MainPage>
@@ -111,7 +122,7 @@ export default function MainPage() {
         />
       </S.PopularPerforms>
       <S.BannerContainer>
-        <Banner src={bannerImage}></Banner>
+        <Banner src={bannerImage} />
       </S.BannerContainer>
       <S.PerformVideo width="100%">
         <H32>공연 영상</H32>
@@ -121,7 +132,7 @@ export default function MainPage() {
         <H32>개봉 예정 공연</H32>
         <PCardGrid
           pList={
-            pList?.dbs?.db.slice(0, 10).map(pItem => ({
+            pList?.dbs?.db.map(pItem => ({
               id: pItem.mt20id,
               posterUrl: pItem.poster,
               name: pItem.prfnm,
@@ -130,7 +141,7 @@ export default function MainPage() {
             })) || []
           }
           columns={5}
-        ></PCardGrid>
+        />
       </S.CommingSoon>
     </S.MainPage>
   );
