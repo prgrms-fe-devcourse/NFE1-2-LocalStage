@@ -11,7 +11,7 @@ export const PosterWithDetailInfo = styled.section`
   }
 `;
 
-export const PinfoContainer = styled.div`
+export const PDetailContainer = styled.div`
   width: 100%;
   height: auto;
   margin-left: 20px;

@@ -24,5 +24,4 @@ export const Value = styled(P16)``;
 export const ModalButton = styled.button`
   background: none;
   border: none;
-  padding: 0;
 `;
