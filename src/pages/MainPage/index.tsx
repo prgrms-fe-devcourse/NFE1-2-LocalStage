@@ -13,8 +13,13 @@ import bannerImage from '@/assets/imgs/banner.png';
 import { PCardGrid } from '@/components/PCardGrid';
 import * as S from './styles';
 import { H32 } from '@/components/Text';
+import { PTrailerSlider } from '@/components/PTrailerSlider';
+import { RoundedButton } from '@/components/RoundedButton';
+import { useNavigate } from 'react-router-dom';
 
 export default function MainPage() {
+  const navigate = useNavigate();
+
   const genre = genreMap;
   const formedDate = getFormattedDates();
   const [selectGenre, setSelectedGenre] = useState<string>(genre.전체);
@@ -49,7 +54,7 @@ export default function MainPage() {
     return copy;
   };
   const genreRankList = FillterGenreRank();
-  console.log(genreRankList);
+
   return (
     <S.MainPage>
       <S.GenreRank width="100%">
@@ -70,6 +75,12 @@ export default function MainPage() {
                   rank: pItem.rnum,
                 })) || []
               }
+            />
+            <RoundedButton
+              text="장르별 공연 전체 보기"
+              onClick={() => {
+                navigate('/rank');
+              }}
             />
           </>
         )}
@@ -92,6 +103,19 @@ export default function MainPage() {
       <S.BannerContainer>
         <Banner src={bannerImage}></Banner>
       </S.BannerContainer>
+      <S.PerformVideo width="100%">
+        <H32>공연 영상</H32>
+        <PTrailerSlider
+          vList={[
+            { postSrc: pList?.dbs?.db[0].poster || '', vId: 'string', vTitle: 'title' },
+            { postSrc: pList?.dbs?.db[1].poster || '', vId: 'string', vTitle: 'title' },
+            { postSrc: pList?.dbs?.db[2].poster || '', vId: 'string', vTitle: 'title' },
+            { postSrc: pList?.dbs?.db[4].poster || '', vId: 'string', vTitle: 'title' },
+            { postSrc: pList?.dbs?.db[5].poster || '', vId: 'string', vTitle: 'title' },
+            { postSrc: pList?.dbs?.db[6].poster || '', vId: 'string', vTitle: 'title' },
+          ]}
+        ></PTrailerSlider>
+      </S.PerformVideo>
       <S.CommingSoon width="100%">
         <H32>개봉 예정 공연</H32>
         <PCardGrid

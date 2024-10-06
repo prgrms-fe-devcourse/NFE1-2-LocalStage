@@ -4,11 +4,12 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 interface RoundedButtonProps {
   text: string;
+  onClick?: () => void;
 }
 
-export const RoundedButton = ({ text }: RoundedButtonProps) => {
+export const RoundedButton = ({ text, onClick }: RoundedButtonProps) => {
   return (
-    <S.RoundedButton>
+    <S.RoundedButton onClick={onClick}>
       <span>{text}</span>
       <FontAwesomeIcon icon={faAngleRight} />
     </S.RoundedButton>

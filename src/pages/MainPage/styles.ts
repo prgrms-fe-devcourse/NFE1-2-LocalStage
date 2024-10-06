@@ -11,11 +11,13 @@ export const MainPage = styled.div`
 `;
 export const GenreRank = styled(Panel)`
   text-align: center;
-  & > div:last-child {
-    margin-top: 30px;
+  & > div:nth-of-type(2) {
     text-align: start;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
   }
 `;
 export const BannerContainer = styled.div``;
+export const PerformVideo = styled(Panel)``;
 export const PopularPerforms = styled(Panel)``;
 export const CommingSoon = styled(Panel)``;

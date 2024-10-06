@@ -13,7 +13,7 @@ interface PTrailerSliderProps {
 
 export const PTrailerSlider = ({ vList, width = '100%', gap = '5px' }: PTrailerSliderProps) => {
   const settings = {
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
