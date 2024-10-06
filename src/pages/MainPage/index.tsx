@@ -16,6 +16,8 @@ import { H32 } from '@/components/Text';
 import { PTrailerSlider } from '@/components/PTrailerSlider';
 import { RoundedButton } from '@/components/RoundedButton';
 import { useNavigate } from 'react-router-dom';
+import useYoutube from '@/hooks/useYouTube';
+import { VItemType } from '@/types/vItem';
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -54,7 +56,15 @@ export default function MainPage() {
     return copy;
   };
   const genreRankList = FillterGenreRank();
-
+  const { video } = useYoutube({ name: pList?.dbs?.db[0].prfnm, poster: pList?.dbs?.db[0].poster });
+  const { video: v1 } = useYoutube({ name: pList?.dbs?.db[1].prfnm, poster: pList?.dbs?.db[1].poster });
+  const { video: v2 } = useYoutube({ name: pList?.dbs?.db[2].prfnm, poster: pList?.dbs?.db[2].poster });
+  const vList: VItemType[] = [];
+  if (video && v1 && v2) {
+    vList.push(video);
+    vList.push(v1);
+    vList.push(v2);
+  }
   return (
     <S.MainPage>
       <S.GenreRank width="100%">
@@ -105,16 +115,7 @@ export default function MainPage() {
       </S.BannerContainer>
       <S.PerformVideo width="100%">
         <H32>공연 영상</H32>
-        <PTrailerSlider
-          vList={[
-            { postSrc: pList?.dbs?.db[0].poster || '', vId: 'string', vTitle: 'title' },
-            { postSrc: pList?.dbs?.db[1].poster || '', vId: 'string', vTitle: 'title' },
-            { postSrc: pList?.dbs?.db[2].poster || '', vId: 'string', vTitle: 'title' },
-            { postSrc: pList?.dbs?.db[4].poster || '', vId: 'string', vTitle: 'title' },
-            { postSrc: pList?.dbs?.db[5].poster || '', vId: 'string', vTitle: 'title' },
-            { postSrc: pList?.dbs?.db[6].poster || '', vId: 'string', vTitle: 'title' },
-          ]}
-        ></PTrailerSlider>
+        <PTrailerSlider vList={vList} />
       </S.PerformVideo>
       <S.CommingSoon width="100%">
         <H32>개봉 예정 공연</H32>
