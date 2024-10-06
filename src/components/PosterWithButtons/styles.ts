@@ -4,7 +4,6 @@ export const PosterWithButtons = styled.div<{ width: string }>`
   width: ${({ width }) => width};
   height: 100%;
   min-width: 300px;
-  min-height: 800px;
 `;
 
 export const PosterButtonContainer = styled.div`
