@@ -11,7 +11,6 @@ import { FilterButtonContainer } from '@/components/FilterButtonContainer';
 import { LocalDateTime } from '@/components/LocalDateTime';
 import { GenreCode, GenreName } from '@/types/genreCodeName';
 import getFormattedDates from '@/utils/getFormattedDates';
-import { useNavigate } from 'react-router-dom';
 
 const genreEntries = Object.entries(genreMap) as [GenreName, GenreCode][];
 
@@ -21,7 +20,6 @@ const stsPeriods: ('day' | 'week' | 'month')[] = ['day', 'week', 'month'];
 export default function RankPage() {
   const [activeGenre, setActiveGenre] = useState<GenreCode>(genreMap.전체);
   const [activePeriod, setActivePeriod] = useState<'day' | 'week' | 'month'>('day');
-  const navigate = useNavigate();
 
   const { yesterday } = getFormattedDates();
   const activePeriodIndex = stsPeriods.indexOf(activePeriod);
@@ -34,7 +32,6 @@ export default function RankPage() {
 
   const onGenreChange = (id: GenreCode) => setActiveGenre(id);
   const onPeriodChange = (index: number) => setActivePeriod(stsPeriods[index]);
-  const onPerformanceClick = (id: string) => navigate(`/detail/${id}`);
 
   const formattedData = useMemo(() => {
     return (
@@ -52,7 +49,7 @@ export default function RankPage() {
   }, [data]);
 
   const topThreePerformances = formattedData.slice(0, 3);
-  const otherPerformances = formattedData.slice(3);
+  const otherPerformances = formattedData.slice(3, 50);
 
   return (
     <Panel title="장르별 공연">
@@ -93,14 +90,12 @@ export default function RankPage() {
                   period={performance.prfpd}
                   rank={performance.rnum}
                   width="356px"
-                  onCardClick={() => onPerformanceClick(performance.mt20id)}
                 />
               ))}
             </S.TopThreePerformances>
-            <PItemContainer data={otherPerformances} onItemClick={id => onPerformanceClick(id)} />
+            <PItemContainer data={otherPerformances} />
           </>
         )}
-        <PItemContainer data={otherPerformances} onItemClick={id => onPerformanceClick(id)} />
       </S.RankPage>
     </Panel>
   );
