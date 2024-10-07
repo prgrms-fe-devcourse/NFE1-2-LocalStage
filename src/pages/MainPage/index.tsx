@@ -18,33 +18,48 @@ import { PCardGrid } from '@/components/PCardGrid';
 import { H32 } from '@/components/Text';
 import { PTrailerSlider } from '@/components/PTrailerSlider';
 import { RoundedButton } from '@/components/RoundedButton';
+import { GenreCode } from '@/types/genreCodeName';
+import Pagination from '@/components/Pagination';
 import * as S from './styles';
 
 export default function MainPage() {
   const navigate = useNavigate();
-  const genre = genreMap;
   const formedDate = getFormattedDates();
-  const [selectGenre, setSelectedGenre] = useState<string>(genre.전체);
-  const { data: genreRank, isLoading: genreLoading } = useBoxOffice({
+
+  // 장르별 인기 공연
+  const [activeGenre, setActiveGenre] = useState<GenreCode>(genreMap.전체);
+  const { data: genreRank, isLoading: genreRankLoading } = useBoxOffice({
     date: formedDate.today,
     ststype: 'month',
     area: 11,
-    catecode: selectGenre,
+    catecode: activeGenre,
   });
-  const { data: BoxOffice } = useBoxOffice({ date: formedDate.today, ststype: 'month', area: 11 });
-  const { data: pList } = usePList({
-    cpage: 1,
-    eddate: formedDate.oneMonthLater,
-    rows: 10,
-    stdate: formedDate.today,
-  });
-  const genreButtonList = Object.entries(genre).map(([key, value]) => ({
-    id: value,
-    text: key,
+  const genreButtonList = Object.entries(genreMap).map(([name, code]) => ({
+    id: code,
+    text: name,
     onButtonClick: () => {
-      setSelectedGenre(value);
+      setActiveGenre(code);
     },
   }));
+
+  // 인기 공연
+  const { data: BoxOffice, isLoading: boxOfficeLoading } = useBoxOffice({
+    date: formedDate.today,
+    ststype: 'month',
+    area: 11,
+  });
+
+  // 개봉 예정 공연
+  const [selectPage, setSelectPage] = useState(1);
+  const itemsPerPage = 15;
+  const { data: pList, isLoading: pListLoading } = usePList({
+    cpage: selectPage,
+    eddate: formedDate.oneMonthLater,
+    rows: itemsPerPage,
+    stdate: formedDate.today,
+  });
+
+  // 공연 영상
   const genreRankList = ConvertToArray(genreRank?.boxofs?.boxof, 10);
   const vList: VItemType[] = [];
   const { vItem: v1 } = useYoutube({
@@ -71,9 +86,15 @@ export default function MainPage() {
     <S.MainPage>
       <S.GenreRank width="100%">
         <H32>장르별 랭킹</H32>
-        <SquareButtonContainer buttonPropsList={genreButtonList} />
-        {genreLoading ? (
-          <Loader></Loader>
+        <SquareButtonContainer<GenreCode>
+          buttonPropsList={genreButtonList}
+          activeButtonId={activeGenre}
+          onActiveButtonChange={code => setActiveGenre(code)}
+        />
+        {genreRankLoading ? (
+          <S.Loader>
+            <Loader />
+          </S.Loader>
         ) : (
           <>
             <PCardSlider
@@ -100,18 +121,25 @@ export default function MainPage() {
       </S.GenreRank>
       <S.PopularPerforms width="100%">
         <H32>인기 공연</H32>
-        <PosterGallery
-          pList={
-            BoxOffice?.boxofs?.boxof.map(pItem => ({
-              id: pItem.mt20id,
-              posterUrl: 'https://www.kopis.or.kr/' + pItem.poster,
-              name: pItem.prfnm,
-              facility: pItem.prfplcnm,
-              period: pItem.prfpd,
-              rank: pItem.rnum,
-            })) || []
-          }
-        />
+        {boxOfficeLoading ? (
+          <S.Loader>
+            <Loader />
+          </S.Loader>
+        ) : (
+          <PosterGallery
+            pList={
+              BoxOffice?.boxofs?.boxof.map(pItem => ({
+                id: pItem.mt20id,
+                posterUrl: 'https://www.kopis.or.kr/' + pItem.poster,
+                name: pItem.prfnm,
+                facility: pItem.prfplcnm,
+                period: pItem.prfpd,
+                rank: pItem.rnum,
+              })) || []
+            }
+            width="calc(100% - 1rem)"
+          />
+        )}
       </S.PopularPerforms>
       <S.BannerContainer>
         <Banner src={bannerImage} />
@@ -122,18 +150,33 @@ export default function MainPage() {
       </S.PerformVideo>
       <S.CommingSoon width="100%">
         <H32>개봉 예정 공연</H32>
-        <PCardGrid
-          pList={
-            pList?.dbs?.db.map(pItem => ({
-              id: pItem.mt20id,
-              posterUrl: pItem.poster,
-              name: pItem.prfnm,
-              facility: pItem.fcltynm,
-              period: pItem.prfpdfrom + '-' + pItem.prfpdto,
-            })) || []
-          }
-          columns={5}
-        />
+        {pListLoading ? (
+          <S.Loader>
+            <Loader />
+          </S.Loader>
+        ) : (
+          <>
+            <PCardGrid
+              pList={
+                pList?.dbs?.db.map(pItem => ({
+                  id: pItem.mt20id,
+                  posterUrl: pItem.poster,
+                  name: pItem.prfnm,
+                  facility: pItem.fcltynm,
+                  period: pItem.prfpdfrom + '-' + pItem.prfpdto,
+                })) || []
+              }
+              columns={5}
+              width="calc(100% - 1rem)"
+            />
+            <Pagination
+              selectedPage={selectPage}
+              itemsPerPage={itemsPerPage}
+              totalItemsCount={itemsPerPage * 10}
+              onClickPagination={(pageNumber: number) => setSelectPage(pageNumber)}
+            ></Pagination>
+          </>
+        )}
       </S.CommingSoon>
     </S.MainPage>
   );

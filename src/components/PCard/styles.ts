@@ -20,3 +20,14 @@ export const PCardText = styled.div`
     color: ${props => props.theme.colors.text_gray};
   }
 `;
+
+export const PosterWrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+
+  & > div:last-child {
+    position: absolute;
+    top: 0;
+    left: 0px;
+  }
+`;
