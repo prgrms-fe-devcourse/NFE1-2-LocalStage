@@ -14,9 +14,9 @@ interface PosterWithDetailInfoProps extends PDetailType {
   onUpdateScore?: (newScore: number) => void;
 }
 
-export const PosterWithDetailInfo = ({ posterWidth, placeInfo, ...rest }: PosterWithDetailInfoProps) => {
+export const PosterWithDetailInfo = ({ posterWidth = '30%', placeInfo, ...rest }: PosterWithDetailInfoProps) => {
   return (
-    <S.PosterWithDetailInfo>
+    <S.PosterWithDetailInfo width="80%">
       <PosterWithButtons width={posterWidth} shareUrl={placeInfo.shareUrl} {...rest} />
       <S.PDetailContainer>
         <PDetailInfo width="100%" placeInfo={placeInfo} {...rest} />
