@@ -19,6 +19,7 @@ import { H32 } from '@/components/Text';
 import { PTrailerSlider } from '@/components/PTrailerSlider';
 import { RoundedButton } from '@/components/RoundedButton';
 import { GenreCode } from '@/types/genreCodeName';
+import Pagination from '@/components/Pagination';
 import * as S from './styles';
 
 export default function MainPage() {
@@ -36,12 +37,15 @@ export default function MainPage() {
     ststype: 'month',
     area: 11,
   });
+  const [selectPage, setSelectPage] = useState(1);
+  const itemsPerPage = 15;
   const { data: pList, isLoading: pListLoading } = usePList({
-    cpage: 1,
+    cpage: selectPage,
     eddate: formedDate.oneMonthLater,
-    rows: 10,
+    rows: itemsPerPage,
     stdate: formedDate.today,
   });
+  console.log(pList);
   const genreButtonList = Object.entries(genreMap).map(([name, code]) => ({
     id: code,
     text: name,
@@ -139,25 +143,32 @@ export default function MainPage() {
       </S.PerformVideo>
       <S.CommingSoon width="100%">
         <H32>개봉 예정 공연</H32>
-
         {pListLoading ? (
           <S.Loader>
             <Loader />
           </S.Loader>
         ) : (
-          <PCardGrid
-            pList={
-              pList?.dbs?.db.map(pItem => ({
-                id: pItem.mt20id,
-                posterUrl: pItem.poster,
-                name: pItem.prfnm,
-                facility: pItem.fcltynm,
-                period: pItem.prfpdfrom + '-' + pItem.prfpdto,
-              })) || []
-            }
-            columns={5}
-            width="calc(100% - 1rem)"
-          />
+          <>
+            <PCardGrid
+              pList={
+                pList?.dbs?.db.map(pItem => ({
+                  id: pItem.mt20id,
+                  posterUrl: pItem.poster,
+                  name: pItem.prfnm,
+                  facility: pItem.fcltynm,
+                  period: pItem.prfpdfrom + '-' + pItem.prfpdto,
+                })) || []
+              }
+              columns={5}
+              width="calc(100% - 1rem)"
+            />
+            <Pagination
+              selectedPage={selectPage}
+              itemsPerPage={itemsPerPage}
+              totalItemsCount={itemsPerPage * 10}
+              onClickPagination={(pageNumber: number) => setSelectPage(pageNumber)}
+            ></Pagination>
+          </>
         )}
       </S.CommingSoon>
     </S.MainPage>
