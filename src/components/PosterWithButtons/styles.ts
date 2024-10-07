@@ -2,6 +2,8 @@ import { styled } from 'styled-components';
 
 export const PosterWithButtons = styled.div<{ width: string }>`
   width: ${({ width }) => width};
+  height: 100%;
+  min-width: 300px;
 `;
 
 export const PosterButtonContainer = styled.div`
