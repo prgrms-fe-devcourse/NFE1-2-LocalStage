@@ -388,7 +388,7 @@ export type CommonResponseType = {
    * 티켓가격
    * @example "VIP석 150,000원, R석 120,000원, S석 90,000원, A석 60,000원"
    */
-  pcseguidanc: string;
+  pcseguidance: string;
   /**
    * 주소
    * @example "서울특별시 송파구 올림픽로 424"
@@ -504,7 +504,7 @@ type Db = Pick<
   | 'elevbarrier'
   | 'parkinglot'
   | 'area'
-  | 'pcseguidanc'
+  | 'pcseguidance'
   | 'adres'
 >;
 
