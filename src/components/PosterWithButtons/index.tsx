@@ -5,19 +5,21 @@ import * as S from './styles';
 import { useState } from 'react';
 
 interface PosterWithButtonsProps {
-  src: string;
-  url: string;
+  posterSrc: string;
+  shareUrl: string;
   initialIsHeartFilled?: boolean;
   width?: string;
   onHeartClick?: (isHeartFilled: boolean) => void;
+  className?: string;
 }
 
 export const PosterWithButtons = ({
-  src,
-  url,
+  posterSrc,
+  shareUrl,
   initialIsHeartFilled = false,
   width = '20%',
   onHeartClick,
+  className,
 }: PosterWithButtonsProps) => {
   const [isHeartFilled, setIsFilled] = useState(initialIsHeartFilled);
 
@@ -29,14 +31,14 @@ export const PosterWithButtons = ({
   };
 
   return (
-    <S.PosterWithButtons width={width}>
-      <Poster src={src} width="100%" />
+    <S.PosterWithButtons width={width} className={`${className}`}>
+      <Poster src={posterSrc} width="100%" />
       <S.PosterButtonContainer>
         <S.HeartButtonWithText>
           <HeartButton initialFilled={isHeartFilled} onClickHeartButton={onClickHeart} />
           <p>찜하기</p>
         </S.HeartButtonWithText>
-        <ShareButton url={url} />
+        <ShareButton url={shareUrl} />
       </S.PosterButtonContainer>
     </S.PosterWithButtons>
   );

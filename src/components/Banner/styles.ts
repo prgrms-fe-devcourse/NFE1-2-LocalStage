@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 
-export const Banner = styled.div<{ width: number; height: number }>`
+export const Banner = styled.div<{ width: string; height: string }>`
   position: relative;
-  width: ${({ width }) => width}%;
-  padding-top: ${({ height }) => height}%;
+  width: ${({ width }) => width};
+  padding-top: ${({ height }) => height};
   max-width: 1280px;
   margin: auto;
 
@@ -17,6 +17,6 @@ export const Banner = styled.div<{ width: number; height: number }>`
   }
 
   @media (min-width: 1280px) {
-    padding-top: 300px;
+    padding-top: 400px;
   }
 `;

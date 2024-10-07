@@ -15,11 +15,8 @@ export const PCard = ({
   onCardClick,
 }: PItemType & { onCardClick?: (id: string) => void }) => {
   return (
-    <S.PCard width={width} onClick={() => onCardClick && onCardClick(id)}>
-      <S.PosterWrapper>
-        <Poster src={posterUrl} />
-        {rank !== undefined && rank > 0 && rank <= 3 && <RankIcon rank={rank as 1 | 2 | 3} />}
-      </S.PosterWrapper>
+    <S.PCard width={width}>
+      <Poster src={posterUrl} rank={rank} id={id} />
       <S.PCardText>
         <H16>{name}</H16>
         <P15>{facility}</P15>
