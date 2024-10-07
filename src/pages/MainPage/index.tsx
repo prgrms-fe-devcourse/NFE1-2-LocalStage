@@ -8,7 +8,7 @@ import getFormattedDates from '@/utils/getFormattedDates';
 import ConvertToArray from '@/utils/ConvertToArray';
 import { genreMap } from '@/constants/genreMap';
 
-// import { Loader } from '@/components/Loader';
+import { Loader } from '@/components/Loader';
 import { SquareButtonContainer } from '@/components/SquareButtonContainer';
 import { PCardSlider } from '@/components/PCardSlider';
 import { PosterGallery } from '@/components/PosterGallery';
@@ -19,18 +19,17 @@ import { H32 } from '@/components/Text';
 import { PTrailerSlider } from '@/components/PTrailerSlider';
 import { RoundedButton } from '@/components/RoundedButton';
 import * as S from './styles';
-import { Loader } from '@/components/Loader';
+import { GenreCode } from '@/types/genreCodeName';
 
 export default function MainPage() {
   const navigate = useNavigate();
-  const genre = genreMap;
   const formedDate = getFormattedDates();
-  const [selectGenre, setSelectedGenre] = useState<string>(genre.전체);
+  const [activeGenre, setActiveGenre] = useState<GenreCode>(genreMap.전체);
   const { data: genreRank, isLoading: genreRankLoading } = useBoxOffice({
     date: formedDate.today,
     ststype: 'month',
     area: 11,
-    catecode: selectGenre,
+    catecode: activeGenre,
   });
   const { data: BoxOffice, isLoading: boxOfficeLoading } = useBoxOffice({
     date: formedDate.today,
@@ -43,11 +42,11 @@ export default function MainPage() {
     rows: 10,
     stdate: formedDate.today,
   });
-  const genreButtonList = Object.entries(genre).map(([key, value]) => ({
-    id: value,
-    text: key,
+  const genreButtonList = Object.entries(genreMap).map(([name, code]) => ({
+    id: code,
+    text: name,
     onButtonClick: () => {
-      setSelectedGenre(value);
+      setActiveGenre(code);
     },
   }));
   const genreRankList = ConvertToArray(genreRank?.boxofs?.boxof, 10);
@@ -76,7 +75,11 @@ export default function MainPage() {
     <S.MainPage>
       <S.GenreRank width="100%">
         <H32>장르별 랭킹</H32>
-        <SquareButtonContainer buttonPropsList={genreButtonList} />
+        <SquareButtonContainer<GenreCode>
+          buttonPropsList={genreButtonList}
+          activeButtonId={activeGenre}
+          onActiveButtonChange={code => setActiveGenre(code)}
+        />
         {genreRankLoading ? (
           <S.Loader>
             <Loader />
@@ -135,6 +138,7 @@ export default function MainPage() {
       </S.PerformVideo>
       <S.CommingSoon width="100%">
         <H32>개봉 예정 공연</H32>
+
         {pListLoading ? (
           <S.Loader>
             <Loader />
