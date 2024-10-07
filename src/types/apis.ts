@@ -577,7 +577,7 @@ export type PDetailResponseType = {
       | 'entrpsnmA'
       | 'entrpsnmH'
       | 'entrpsnmS'
-      | 'pcseguidanc'
+      | 'pcseguidance'
       | 'poster'
       | 'sty'
       | 'genrenm'

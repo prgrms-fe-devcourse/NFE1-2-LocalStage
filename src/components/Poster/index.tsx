@@ -11,13 +11,14 @@ interface PosterProps {
 
 export const Poster = ({ id, src, width = '100%', rank }: PosterProps) => {
   const navigate = useNavigate();
-  const navigatePDetail = () => () => {
+  const navigatePDetail = () => {
+    console.log(id);
     if (!id) return;
     navigate(`/detail/:${id}`);
   };
   const height = (4 / 3) * extractNumber(width) + width.replace(extractNumber(width).toString(), '');
   return (
-    <S.Poster width={width} height={height} onClick={navigatePDetail()}>
+    <S.Poster width={width} height={height} onClick={navigatePDetail}>
       <img alt="poster" src={src}></img>
       {rank && <S.Rank>{rank}</S.Rank>}
     </S.Poster>
