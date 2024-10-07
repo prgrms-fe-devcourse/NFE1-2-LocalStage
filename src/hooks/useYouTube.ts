@@ -13,10 +13,10 @@ export default function useYoutube(perform: { id?: string; name?: string; poster
 
   useEffect(() => {
     if (perform.id === undefined || perform.name === undefined || perform.poster === undefined) return;
+    const videoUrl = `https://www.googleapis.com/youtube/v3/search?q=${perform.name}&maxResults=1&part=snippet&key=${import.meta.env.VITE_YOUTUBE_API_KEY}`;
 
     const fetchData = async () => {
       try {
-        const videoUrl = `https://www.googleapis.com/youtube/v3/search?q=${perform.name}&maxResults=1&part=snippet&key=${import.meta.env.VITE_YOUTUBE_API_KEY}`;
         if (caches[videoUrl]) {
           setVItem(caches[videoUrl].data as VItemType);
           return;
@@ -29,9 +29,17 @@ export default function useYoutube(perform: { id?: string; name?: string; poster
           pId: perform.id,
           postSrc: perform.poster || '',
         };
-        setVItem(videoInfo);
         registerCache(videoUrl, videoInfo);
+        setVItem(videoInfo);
       } catch (error) {
+        const defaultValue = {
+          vId: 'EvStWwidM98',
+          vTitle: '[킹키부츠] 2020 캐스트 👠 네가 힘들 때 곁에 있을게💖｜뮤지컬 킹키부츠 KINKY BOOTS｜CJ ENM',
+          pId: perform.id,
+          postSrc: perform.poster || '',
+        };
+        setVItem(defaultValue);
+        registerCache(videoUrl, defaultValue);
         console.error(error);
       }
     };

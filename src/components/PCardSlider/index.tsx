@@ -20,6 +20,14 @@ export const PCardSlider = ({ pList, width = '100%', gap = '5px' }: PCardSliderP
     slidesToShow: 5,
     slidesToScroll: 1,
     swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 768, // 768px 이하일 때
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    ],
   };
 
   useEffect(() => {
