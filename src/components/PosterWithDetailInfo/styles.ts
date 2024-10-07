@@ -11,5 +11,4 @@ export const PDetailContainer = styled.div`
   flex-grow: 1;
   margin-left: 20px;
   height: auto;
-  /* min-width: 500px; */
 `;
