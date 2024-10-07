@@ -24,7 +24,6 @@ export default function MainPage() {
   const genre = genreMap;
   const formedDate = getFormattedDates();
   const [selectGenre, setSelectedGenre] = useState<string>(genre.전체);
-
   const { data: genreRank, isLoading: genreLoading } = useBoxOffice({
     date: formedDate.today,
     ststype: 'month',
