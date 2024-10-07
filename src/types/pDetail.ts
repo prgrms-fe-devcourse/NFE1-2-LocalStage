@@ -1,4 +1,3 @@
-import { PlaceInfoType } from '@/types/placeInfo';
 export type PDetailType = {
   name: string;
   category: string;
@@ -8,6 +7,5 @@ export type PDetailType = {
   spectator: string;
   price: string;
   score: number;
-  placeInfo: PlaceInfoType;
   id: string;
 };

@@ -15,17 +15,11 @@ interface DetailInfoPanelProps extends PDetailType {
   onUpdateScore?: (newScore: number) => void;
 }
 
-export const DetailInfoPanel = ({
-  title,
-  width = '70%',
-  posterWidth = '30%',
-  placeInfo,
-  ...rest
-}: DetailInfoPanelProps) => {
+export const DetailInfoPanel = ({ title, width = '70%', posterWidth = '30%', ...rest }: DetailInfoPanelProps) => {
   return (
     <S.DetailInfoPanel>
       <PTitle title={title ?? ''} {...rest} />
-      <PosterWithDetailInfo width={width} posterWidth={posterWidth} placeInfo={placeInfo} {...rest} />
+      <PosterWithDetailInfo width={width} posterWidth={posterWidth} {...rest} />
     </S.DetailInfoPanel>
   );
 };

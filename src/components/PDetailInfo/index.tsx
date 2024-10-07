@@ -23,8 +23,8 @@ export const PDetailInfo = ({
   width = '400px',
   height = '250px',
   isNameInclude = false,
+  id,
   onUpdateScore,
-  placeInfo,
 }: PDetailInfoProps) => {
   const [isMapModalVisible, setIsMapModalVisible] = useState(false);
   const [currentScore, setCurrentScore] = useState(score);
@@ -63,7 +63,7 @@ export const PDetailInfo = ({
       <S.Value>{price}</S.Value>
       <S.Title>평점</S.Title>
       <StarIconContainer initialRate={currentScore} updateStarRating={onClickStarButtons} />
-      <MapModal {...placeInfo} place={place} visible={isMapModalVisible} onClose={toggleMapModal} />
+      <MapModal place={place} visible={isMapModalVisible} onClose={toggleMapModal} id={id} />
     </S.PDetailInfo>
   );
 };

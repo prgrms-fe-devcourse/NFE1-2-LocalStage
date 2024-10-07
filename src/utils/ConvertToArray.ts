@@ -17,3 +17,14 @@ export default function FillterGenreRank(pList: Boxof[] | Boxof | undefined, sli
   }
   return copy;
 }
+
+export const convertToArray = (arg: unknown) => {
+  if (Array.isArray(arg)) return arg;
+  // Array가 아님
+  return [arg];
+};
+
+export const convertEmptyObject = (obj: unknown) => {
+  const json = JSON.stringify(obj);
+  return json === '{}' ? '' : (obj as string);
+};
