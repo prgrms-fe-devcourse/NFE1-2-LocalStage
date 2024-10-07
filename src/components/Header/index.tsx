@@ -32,8 +32,8 @@ export const Header = () => {
           </S.SearchIcon>
         </S.SearchBarContainer>
         <S.IconContainer>
-          <S.StyledFontAwesomeIcon icon={faRankingStar} $isRanked />
-          <S.StyledFontAwesomeIcon icon={faUser} />
+          <S.StyledFontAwesomeIcon icon={faRankingStar} $isRanked onClick={() => navigate('/rank')} />
+          <S.StyledFontAwesomeIcon icon={faUser} onClick={() => navigate('/mypage')} />
         </S.IconContainer>
       </S.StyledHeader>
     </S.HeaderContainer>
