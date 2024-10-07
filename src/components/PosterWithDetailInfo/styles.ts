@@ -5,15 +5,11 @@ export const PosterWithDetailInfo = styled.section`
   margin: 30px auto;
   width: 80%;
   height: fit-content;
-
-  @media (min-width=500px) {
-    width: 100%;
-  }
 `;
 
 export const PDetailContainer = styled.div`
-  width: 100%;
-  height: auto;
+  flex-grow: 1;
   margin-left: 20px;
-  min-width: 500px;
+  height: auto;
+  /* min-width: 500px; */
 `;
