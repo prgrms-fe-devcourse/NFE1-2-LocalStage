@@ -11,6 +11,11 @@ export const Poster = styled.div<{ width: string; height: string }>`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    cursor: pointer;
+    transition: scale 0.2s;
+    &:hover {
+      scale: 1.05;
+    }
   }
 `;
 export const Rank = styled.div`
