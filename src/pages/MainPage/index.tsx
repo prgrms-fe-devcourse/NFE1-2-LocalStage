@@ -25,6 +25,8 @@ import * as S from './styles';
 export default function MainPage() {
   const navigate = useNavigate();
   const formedDate = getFormattedDates();
+
+  // 장르별 인기 공연
   const [activeGenre, setActiveGenre] = useState<GenreCode>(genreMap.전체);
   const { data: genreRank, isLoading: genreRankLoading } = useBoxOffice({
     date: formedDate.today,
@@ -32,11 +34,22 @@ export default function MainPage() {
     area: 11,
     catecode: activeGenre,
   });
+  const genreButtonList = Object.entries(genreMap).map(([name, code]) => ({
+    id: code,
+    text: name,
+    onButtonClick: () => {
+      setActiveGenre(code);
+    },
+  }));
+
+  // 인기 공연
   const { data: BoxOffice, isLoading: boxOfficeLoading } = useBoxOffice({
     date: formedDate.today,
     ststype: 'month',
     area: 11,
   });
+
+  // 개봉 예정 공연
   const [selectPage, setSelectPage] = useState(1);
   const itemsPerPage = 15;
   const { data: pList, isLoading: pListLoading } = usePList({
@@ -45,14 +58,8 @@ export default function MainPage() {
     rows: itemsPerPage,
     stdate: formedDate.today,
   });
-  console.log(pList);
-  const genreButtonList = Object.entries(genreMap).map(([name, code]) => ({
-    id: code,
-    text: name,
-    onButtonClick: () => {
-      setActiveGenre(code);
-    },
-  }));
+
+  // 공연 영상
   const genreRankList = ConvertToArray(genreRank?.boxofs?.boxof, 10);
   const vList: VItemType[] = [];
   const { vItem: v1 } = useYoutube({
