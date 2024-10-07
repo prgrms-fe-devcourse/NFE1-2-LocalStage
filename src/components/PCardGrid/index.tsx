@@ -10,11 +10,11 @@ interface PCardGridProps {
   columns?: number;
 }
 
-export const PCardGrid = ({ pList, width = '600px', rows = 1, columns = 5, gap = '10px' }: PCardGridProps) => {
+export const PCardGrid = ({ pList, width = '100%', rows = 1, columns = 5, gap = '10px' }: PCardGridProps) => {
   return (
     <S.PCardGrid width={width} rows={rows} columns={columns} gap={gap}>
       {pList.map((perform, index) => (
-        <PCard key={index} {...perform} width="100%" rank={index + 1}></PCard>
+        <PCard key={index} {...perform} width="100%"></PCard>
       ))}
     </S.PCardGrid>
   );

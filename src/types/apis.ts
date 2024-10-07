@@ -447,7 +447,7 @@ export type CommonResponseType = {
 };
 
 // 공통 ResponseType
-type Boxof = Pick<
+export type Boxof = Pick<
   CommonResponseType,
   'area' | 'prfdtcnt' | 'prfplcnm' | 'prfpd' | 'cate' | 'prfnm' | 'rnum' | 'seatcnt' | 'poster' | 'mt20id'
 >;
