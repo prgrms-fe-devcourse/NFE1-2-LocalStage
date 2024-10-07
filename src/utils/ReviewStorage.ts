@@ -1,6 +1,7 @@
 type ReviewItemType = {
   review: string;
   id: string;
+  score: number; // 별점 1,2,3,4,5
 };
 
 export default class ReviewStorage {

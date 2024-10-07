@@ -2,14 +2,14 @@ import { DetailImage } from '@/components/DetailImage';
 import * as S from './styles';
 
 interface DetailImageContainerProps {
-  detailImgList: { src: string }[];
+  detailImgUrlList: string[];
 }
 
-export const DetailImageContainer = ({ detailImgList }: DetailImageContainerProps) => {
+export const DetailImageContainer = ({ detailImgUrlList: detailImgList }: DetailImageContainerProps) => {
   return (
     <S.DetailImageContainer>
-      {detailImgList.map((detailImg, index) => (
-        <DetailImage key={index} src={detailImg.src} />
+      {detailImgList.map((detailImgUrl, index) => (
+        <DetailImage key={index} src={detailImgUrl} />
       ))}
     </S.DetailImageContainer>
   );

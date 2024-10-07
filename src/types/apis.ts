@@ -228,7 +228,7 @@ export type CommonResponseType = {
    * 소개이미지목록
    * @example [{ styurl: "https://example.com/image1.jpg" }, { styurl: "https://example.com/image2.jpg" }]
    */
-  styurls: { styurl: string }[];
+  styurls: { styurl: string[] };
   /**
    * 공연시간
    * @example "화요일 ~ 금요일(20:00), 토요일(16:00,19:00), 일요일(15:00,18:00)"
@@ -388,7 +388,7 @@ export type CommonResponseType = {
    * 티켓가격
    * @example "VIP석 150,000원, R석 120,000원, S석 90,000원, A석 60,000원"
    */
-  pcseguidanc: string;
+  pcseguidance: string;
   /**
    * 주소
    * @example "서울특별시 송파구 올림픽로 424"
@@ -504,7 +504,7 @@ type Db = Pick<
   | 'elevbarrier'
   | 'parkinglot'
   | 'area'
-  | 'pcseguidanc'
+  | 'pcseguidance'
   | 'adres'
 >;
 

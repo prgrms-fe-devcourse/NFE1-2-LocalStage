@@ -12,9 +12,8 @@ interface PosterProps {
 export const Poster = ({ id, src, width = '100%', rank }: PosterProps) => {
   const navigate = useNavigate();
   const navigatePDetail = () => {
-    console.log(id);
     if (!id) return;
-    navigate(`/detail/:${id}`);
+    navigate(`/detail/${id}`);
   };
   const height = (4 / 3) * extractNumber(width) + width.replace(extractNumber(width).toString(), '');
   return (

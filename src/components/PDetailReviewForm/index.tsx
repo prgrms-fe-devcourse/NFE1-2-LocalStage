@@ -1,19 +1,26 @@
 import { useRef, useEffect, useState } from 'react';
 import { PDetailReviewInput } from '../PDetailReviewInput';
 import * as S from './styles';
+import ReviewStorage from '@/utils/ReviewStorage';
 
-export const PDetailReviewForm = () => {
+interface PDetailReviewFormProps {
+  pId: string;
+  score: number;
+}
+
+export const PDetailReviewForm = ({ pId, score }: PDetailReviewFormProps) => {
   const initialReview = localStorage.getItem('review') || '';
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [review, setReview] = useState(initialReview);
-
+  console.log({ id: pId });
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData(e.target as HTMLFormElement);
     const reviewData = form.get('review') as string;
-    localStorage.setItem('review', reviewData);
+    console.log({ id: pId, review, score });
+    ReviewStorage.saveReview({ id: pId, review: reviewData, score });
     setIsEditing(false);
   };
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
