@@ -1,12 +1,15 @@
+import { PosterWithButtons } from '@/components/PosterWithButtons';
 import { styled } from 'styled-components';
 
 export const PosterWithDetailInfo = styled.section<{ width: string }>`
   display: flex;
   margin: 30px auto;
+  gap: 30px;
   width: ${({ width }) => width};
 `;
-
-export const PDetailContainer = styled.div`
+export const StyledPosterWithButtons = styled(PosterWithButtons)`
   flex-grow: 1;
-  margin-left: 20px;
+`;
+export const PDetailContainer = styled.div`
+  flex-grow: 1.5;
 `;

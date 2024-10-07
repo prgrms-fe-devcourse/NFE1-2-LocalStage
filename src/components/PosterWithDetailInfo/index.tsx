@@ -1,4 +1,3 @@
-import { PosterWithButtons } from '@/components/PosterWithButtons';
 import * as S from './styles';
 import { PDetailInfo } from '@/components/PDetailInfo';
 import { PDetailReviewForm } from '@/components/PDetailReviewForm';
@@ -16,14 +15,14 @@ interface PosterWithDetailInfoProps extends PDetailType {
 }
 
 export const PosterWithDetailInfo = ({
-  width = '80%',
+  width = '70%',
   posterWidth = '30%',
   placeInfo,
   ...rest
 }: PosterWithDetailInfoProps) => {
   return (
     <S.PosterWithDetailInfo width={width}>
-      <PosterWithButtons width={posterWidth} shareUrl={placeInfo.shareUrl} {...rest} />
+      <S.StyledPosterWithButtons width={posterWidth} shareUrl={placeInfo.shareUrl} {...rest} />
       <S.PDetailContainer>
         <PDetailInfo width="100%" placeInfo={placeInfo} {...rest} />
         <PDetailReviewForm />
