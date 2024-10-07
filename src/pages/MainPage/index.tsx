@@ -8,7 +8,7 @@ import getFormattedDates from '@/utils/getFormattedDates';
 import ConvertToArray from '@/utils/ConvertToArray';
 import { genreMap } from '@/constants/genreMap';
 
-import { Loader } from '@/components/Loader';
+// import { Loader } from '@/components/Loader';
 import { SquareButtonContainer } from '@/components/SquareButtonContainer';
 import { PCardSlider } from '@/components/PCardSlider';
 import { PosterGallery } from '@/components/PosterGallery';
@@ -19,20 +19,25 @@ import { H32 } from '@/components/Text';
 import { PTrailerSlider } from '@/components/PTrailerSlider';
 import { RoundedButton } from '@/components/RoundedButton';
 import * as S from './styles';
+import { Loader } from '@/components/Loader';
 
 export default function MainPage() {
   const navigate = useNavigate();
   const genre = genreMap;
   const formedDate = getFormattedDates();
   const [selectGenre, setSelectedGenre] = useState<string>(genre.전체);
-  const { data: genreRank, isLoading: genreLoading } = useBoxOffice({
+  const { data: genreRank, isLoading: genreRankLoading } = useBoxOffice({
     date: formedDate.today,
     ststype: 'month',
     area: 11,
     catecode: selectGenre,
   });
-  const { data: BoxOffice } = useBoxOffice({ date: formedDate.today, ststype: 'month', area: 11 });
-  const { data: pList } = usePList({
+  const { data: BoxOffice, isLoading: boxOfficeLoading } = useBoxOffice({
+    date: formedDate.today,
+    ststype: 'month',
+    area: 11,
+  });
+  const { data: pList, isLoading: pListLoading } = usePList({
     cpage: 1,
     eddate: formedDate.oneMonthLater,
     rows: 10,
@@ -72,8 +77,10 @@ export default function MainPage() {
       <S.GenreRank width="100%">
         <H32>장르별 랭킹</H32>
         <SquareButtonContainer buttonPropsList={genreButtonList} />
-        {genreLoading ? (
-          <Loader></Loader>
+        {genreRankLoading ? (
+          <S.Loader>
+            <Loader />
+          </S.Loader>
         ) : (
           <>
             <PCardSlider
@@ -100,18 +107,24 @@ export default function MainPage() {
       </S.GenreRank>
       <S.PopularPerforms width="100%">
         <H32>인기 공연</H32>
-        <PosterGallery
-          pList={
-            BoxOffice?.boxofs?.boxof.map(pItem => ({
-              id: pItem.mt20id,
-              posterUrl: 'https://www.kopis.or.kr/' + pItem.poster,
-              name: pItem.prfnm,
-              facility: pItem.prfplcnm,
-              period: pItem.prfpd,
-              rank: pItem.rnum,
-            })) || []
-          }
-        />
+        {boxOfficeLoading ? (
+          <S.Loader>
+            <Loader />
+          </S.Loader>
+        ) : (
+          <PosterGallery
+            pList={
+              BoxOffice?.boxofs?.boxof.map(pItem => ({
+                id: pItem.mt20id,
+                posterUrl: 'https://www.kopis.or.kr/' + pItem.poster,
+                name: pItem.prfnm,
+                facility: pItem.prfplcnm,
+                period: pItem.prfpd,
+                rank: pItem.rnum,
+              })) || []
+            }
+          />
+        )}
       </S.PopularPerforms>
       <S.BannerContainer>
         <Banner src={bannerImage} />
@@ -122,18 +135,24 @@ export default function MainPage() {
       </S.PerformVideo>
       <S.CommingSoon width="100%">
         <H32>개봉 예정 공연</H32>
-        <PCardGrid
-          pList={
-            pList?.dbs?.db.map(pItem => ({
-              id: pItem.mt20id,
-              posterUrl: pItem.poster,
-              name: pItem.prfnm,
-              facility: pItem.fcltynm,
-              period: pItem.prfpdfrom + '-' + pItem.prfpdto,
-            })) || []
-          }
-          columns={5}
-        />
+        {pListLoading ? (
+          <S.Loader>
+            <Loader />
+          </S.Loader>
+        ) : (
+          <PCardGrid
+            pList={
+              pList?.dbs?.db.map(pItem => ({
+                id: pItem.mt20id,
+                posterUrl: pItem.poster,
+                name: pItem.prfnm,
+                facility: pItem.fcltynm,
+                period: pItem.prfpdfrom + '-' + pItem.prfpdto,
+              })) || []
+            }
+            columns={5}
+          />
+        )}
       </S.CommingSoon>
     </S.MainPage>
   );

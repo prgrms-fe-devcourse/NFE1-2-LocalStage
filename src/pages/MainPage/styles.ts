@@ -21,3 +21,10 @@ export const BannerContainer = styled.div``;
 export const PerformVideo = styled(Panel)``;
 export const PopularPerforms = styled(Panel)``;
 export const CommingSoon = styled(Panel)``;
+
+export const Loader = styled.div`
+  & > div {
+    padding: 5rem 0;
+    justify-content: center;
+  }
+`;
