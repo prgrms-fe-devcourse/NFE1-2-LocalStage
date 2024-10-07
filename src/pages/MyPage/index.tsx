@@ -9,7 +9,7 @@ import { xml2json } from 'xml-js';
 import { Loader } from '@/components/Loader';
 
 export default function MyPage() {
-  const heartList = HeartStorage.getHeartList().concat({ id: 'PF132236' }, { id: 'PF132235' }, { id: 'PF132234' });
+  const heartList = HeartStorage.getHeartList().concat();
   const fetchHeartList = heartList.map(heartItem => fetch(getApiUrl<PDetailRequestType>(`pblprfr/${heartItem.id}`)));
   const [data, setData] = useState<PDetailResponseType[]>([]);
 
