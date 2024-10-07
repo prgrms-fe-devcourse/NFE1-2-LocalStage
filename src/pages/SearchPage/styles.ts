@@ -17,12 +17,13 @@ export const LoaderContainer = styled.div`
 `;
 export const ButtonContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 20px;
-  overflow-x: auto;
+  overflow-x: hidden;
 `;
+
 export const NoResultIconContainer = styled.div`
-  height: 100vh;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;

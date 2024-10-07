@@ -11,13 +11,14 @@ import { SquareButtonContainer } from '@/components/SquareButtonContainer';
 import { genreMap } from '@/constants/genreMap';
 import { areaMap } from '@/constants/areaMap';
 import { GenreCode, GenreName } from '@/types/genreCodeName';
-import { AreaCode } from '@/types/areaCodeName';
+import { AreaCode, AreaName } from '@/types/areaCodeName';
 import { ConvertPartialDbToArray } from '@/utils/ConvertPartialDbToArray';
 import { ApiResponseItem } from '@/types/apiResponseItem';
 
 type ActiveButtonType = GenreCode | AreaCode | string;
 
 const genreEntries = Object.entries(genreMap) as [GenreName, GenreCode][];
+const areaEntries = Object.entries(areaMap) as [AreaName, AreaCode][];
 
 export default function SearchPage() {
   const [activeMenu, setActiveMenu] = useState<'genre' | 'area'>('genre');
@@ -65,15 +66,8 @@ export default function SearchPage() {
   }, [data, activeMenu, activeButton]);
 
   const currentButtons = useMemo(() => {
-    if (activeMenu === 'genre') {
-      return genreEntries;
-    } else {
-      const uniqueAreas = Array.from(new Set(formattedData.map(item => item.area)));
-      return [['전체', areaMap.전체], ...uniqueAreas.map(area => [area, area])] as [string, string][];
-    }
-  }, [activeMenu, formattedData]);
-
-  console.log(data);
+    return activeMenu === 'genre' ? genreEntries : areaEntries;
+  }, [activeMenu]);
 
   return (
     <S.SearchPage>

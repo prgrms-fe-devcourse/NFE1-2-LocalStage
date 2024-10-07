@@ -2,22 +2,23 @@ import { AreaName, AreaCode } from '@/types/areaCodeName';
 
 export const areaMap: Record<AreaName, AreaCode> = {
   전체: '전체',
-  서울: '11',
-  경기: '41',
-  인천: '28',
-  강원: '42',
-  충북: '43',
-  충남: '44',
-  경북: '47',
-  경남: '48',
-  전북: '45',
-  전남: '46',
-  제주: '50',
+  서울: '서울특별시',
+  경기: '경기도',
+  인천: '인천광역시',
+  강원도: '강원특별자치도',
+  충청북도: '충청북도',
+  충청남도: '충청남도',
+  경상북도: '경상북도',
+  경상남도: '경상남도',
+  전라북도: '전라북도',
+  전라남도: '전라남도',
+  제주도: '제주특별자치도',
+  대전: '대전광역시',
+  대구: '대구광역시',
+  부산: '부산광역시',
+  울산: '울산광역시',
+  광주: '광주광역시',
+  세종시: '세종특별자치시',
 } as const;
 
-export const getAreaNameByCode = (code: AreaCode): AreaName => {
-  const entry = Object.entries(areaMap).find(([_, value]) => value === code);
-  return entry ? (entry[0] as AreaName) : '전체';
-};
-
-export const areaEntries = Object.entries(areaMap) as [AreaName, AreaCode][];
+export type AreaMapKey = keyof typeof areaMap;
