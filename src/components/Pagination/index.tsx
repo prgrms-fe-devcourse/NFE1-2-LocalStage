@@ -5,14 +5,14 @@ import { PaginationButtonContainer } from '../PaginationButtonContainer';
 import * as S from './styles';
 
 interface PaginationProps {
-  defaultPage: number;
+  selectedPage: number;
   itemsPerPage: number;
   totalItemsCount: number;
   onClickPagination: (pageNumber: number) => void;
 }
 
-export const Pagination = ({ defaultPage, itemsPerPage, totalItemsCount, onClickPagination }: PaginationProps) => {
-  const [currentPage, setCurrentPage] = useState(defaultPage);
+export const Pagination = ({ selectedPage, itemsPerPage, totalItemsCount, onClickPagination }: PaginationProps) => {
+  const [currentPage, setCurrentPage] = useState(selectedPage);
   const totalPages = Math.ceil(totalItemsCount / itemsPerPage);
 
   const onClick = (pageNumber: number) => {
@@ -21,8 +21,8 @@ export const Pagination = ({ defaultPage, itemsPerPage, totalItemsCount, onClick
   };
 
   useEffect(() => {
-    setCurrentPage(defaultPage);
-  }, [defaultPage]);
+    setCurrentPage(selectedPage);
+  }, [selectedPage]);
 
   const onPrevClick = () => onClick(Math.max(1, currentPage - 1));
   const onNextClick = () => onClick(Math.min(totalPages, currentPage + 1));
