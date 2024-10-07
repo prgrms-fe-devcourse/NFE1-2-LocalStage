@@ -2,11 +2,15 @@ import { Panel } from '@/components/Panel/styles';
 import { styled } from 'styled-components';
 
 export const MainPage = styled.div`
-  margin: 0 auto;
-  max-width: ${({ theme }) => theme.layout.max_width};
-
   & > div {
-    padding: 50px 0;
+    max-width: ${({ theme }) => theme.layout.max_width};
+    margin: 0 auto;
+    padding: 5rem 0;
+  }
+  @media (max-width: 768px) {
+    & > div {
+      padding: 1rem 0;
+    }
   }
 `;
 export const GenreRank = styled(Panel)`
@@ -17,7 +21,12 @@ export const GenreRank = styled(Panel)`
     margin-bottom: 5rem;
   }
 `;
-export const BannerContainer = styled.div``;
+export const BannerContainer = styled.div`
+  max-width: none !important;
+  margin: 5rem 0 !important;
+  padding: 0 !important;
+  background-color: #4fcb85;
+`;
 export const PerformVideo = styled(Panel)``;
 export const PopularPerforms = styled(Panel)``;
 export const CommingSoon = styled(Panel)``;

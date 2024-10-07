@@ -18,8 +18,8 @@ import { PCardGrid } from '@/components/PCardGrid';
 import { H32 } from '@/components/Text';
 import { PTrailerSlider } from '@/components/PTrailerSlider';
 import { RoundedButton } from '@/components/RoundedButton';
-import * as S from './styles';
 import { GenreCode } from '@/types/genreCodeName';
+import * as S from './styles';
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -126,6 +126,7 @@ export default function MainPage() {
                 rank: pItem.rnum,
               })) || []
             }
+            width="calc(100% - 1rem)"
           />
         )}
       </S.PopularPerforms>
@@ -155,6 +156,7 @@ export default function MainPage() {
               })) || []
             }
             columns={5}
+            width="calc(100% - 1rem)"
           />
         )}
       </S.CommingSoon>
