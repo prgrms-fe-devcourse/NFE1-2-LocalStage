@@ -5,7 +5,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { VItemType } from '@/types/vItem';
 import getFormattedDates from '@/utils/getFormattedDates';
+import ConvertToArray from '@/utils/ConvertToArray';
 import { genreMap } from '@/constants/genreMap';
+
 import { Loader } from '@/components/Loader';
 import { SquareButtonContainer } from '@/components/SquareButtonContainer';
 import { PCardSlider } from '@/components/PCardSlider';
@@ -17,7 +19,6 @@ import { H32 } from '@/components/Text';
 import { PTrailerSlider } from '@/components/PTrailerSlider';
 import { RoundedButton } from '@/components/RoundedButton';
 import * as S from './styles';
-import FillterGenreRank from '@/utils/FillterGenreRank';
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ export default function MainPage() {
       setSelectedGenre(value);
     },
   }));
-  const genreRankList = FillterGenreRank(genreRank?.boxofs?.boxof);
+  const genreRankList = ConvertToArray(genreRank?.boxofs?.boxof, 10);
   const vList: VItemType[] = [];
   const { vItem: v1 } = useYoutube({
     id: pList?.dbs?.db[1].mt20id,
