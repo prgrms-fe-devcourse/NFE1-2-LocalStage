@@ -2,6 +2,7 @@ import * as S from './styles';
 import { faSearch, faRankingStar, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Logo from 'assets/imgs/localstage_logo.svg?react';
 
 export const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,9 +17,7 @@ export const Header = () => {
   return (
     <S.HeaderContainer>
       <S.StyledHeader>
-        <S.Logo>
-          <img src="src/assets/imgs/localstage_logo.svg" alt="Logo" />
-        </S.Logo>
+        <Logo cursor="pointer" onClick={() => navigate('/')} />
         <S.SearchBarContainer>
           <S.SearchBar
             placeholder="공연을 검색해보세요."

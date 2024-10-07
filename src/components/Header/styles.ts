@@ -16,16 +16,6 @@ export const StyledHeader = styled.div`
   margin: 0 auto;
 `;
 
-export const Logo = styled.div`
-  display: flex;
-  align-items: center;
-
-  & > img {
-    width: 200px;
-  }
-  cursor: pointer;
-`;
-
 export const SearchBarContainer = styled.div`
   position: relative;
   width: 500px;
