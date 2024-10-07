@@ -29,7 +29,7 @@ export const PaginationButtonContainer = ({
 
       if (currentPage <= 3) {
         startPage = 1;
-        endPage = 3;
+        endPage = currentPage === 3 ? 4 : 3;
       } else if (currentPage >= totalPages - 2) {
         startPage = totalPages - 2;
         endPage = totalPages;
