@@ -9,7 +9,7 @@ interface PosterProps {
   rank?: number;
 }
 
-export const Poster = ({ id = '123', src, width = '100%', rank }: PosterProps) => {
+export const Poster = ({ id, src, width = '100%', rank }: PosterProps) => {
   const navigate = useNavigate();
   const navigatePDetail = () => () => {
     if (!id) return;

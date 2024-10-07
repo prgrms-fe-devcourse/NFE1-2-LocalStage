@@ -17,6 +17,7 @@ import { H32 } from '@/components/Text';
 import { PTrailerSlider } from '@/components/PTrailerSlider';
 import { RoundedButton } from '@/components/RoundedButton';
 import * as S from './styles';
+import FillterGenreRank from '@/utils/FillterGenreRank';
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -44,17 +45,7 @@ export default function MainPage() {
       setSelectedGenre(value);
     },
   }));
-  const FillterGenreRank = () => {
-    if (!genreRank?.boxofs?.boxof) return [];
-    let copy;
-    if (Array.isArray(genreRank?.boxofs?.boxof)) {
-      copy = [...genreRank.boxofs.boxof].slice(0, 10);
-    } else {
-      copy = [genreRank.boxofs.boxof];
-    }
-    return copy;
-  };
-  const genreRankList = FillterGenreRank();
+  const genreRankList = FillterGenreRank(genreRank?.boxofs?.boxof);
   const vList: VItemType[] = [];
   const { video: v1 } = useYoutube({
     id: pList?.dbs?.db[1].mt20id,
@@ -96,6 +87,7 @@ export default function MainPage() {
                   rank: pItem.rnum,
                 })) || []
               }
+              width="90%"
             />
             <RoundedButton
               text="장르별 공연 전체 보기"
