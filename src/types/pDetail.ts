@@ -7,5 +7,6 @@ export type PDetailType = {
   spectator: string;
   price: string;
   score: number;
-  id: string;
+  fId: string;
+  pId: string;
 };

@@ -23,7 +23,7 @@ export const PDetailInfo = ({
   width = '400px',
   height = '250px',
   isNameInclude = false,
-  id,
+  fId: id,
   onUpdateScore,
 }: PDetailInfoProps) => {
   const [isMapModalVisible, setIsMapModalVisible] = useState(false);

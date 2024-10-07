@@ -9,19 +9,28 @@ export default class HeartStorage {
     return heartList ? JSON.parse(heartList) : [];
   }
 
-  private static setHeartList(newHeartList: HeartItemType[]): void {
+  private static setHeartList(newHeartList: HeartItemType[]) {
     localStorage.setItem(this.KEY, JSON.stringify(newHeartList));
   }
 
-  static addHeart(heart: HeartItemType): void {
+  static addHeart(heart: HeartItemType) {
     const heartList = this.getHeartList();
     heartList.push(heart);
     this.setHeartList(heartList);
   }
 
-  static removeHeart(id: string): void {
+  static removeHeart(id: string) {
     const heartList = this.getHeartList();
     const updatedHeartList = heartList.filter(heart => heart.id !== id);
     this.setHeartList(updatedHeartList);
+  }
+
+  static isHearted(id: string) {
+    return this.getHeartList().some(heart => heart.id === id);
+  }
+
+  static toggleHeart(id: string) {
+    if (this.isHearted(id)) this.removeHeart(id);
+    else this.addHeart({ id });
   }
 }

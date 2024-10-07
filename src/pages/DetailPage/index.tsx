@@ -7,6 +7,7 @@ import useYoutube from '@/hooks/useYouTube';
 import { PTrailerVideo } from '@/components/PTrailerVideo';
 import { Loader } from '@/components/Loader';
 import { convertEmptyObject, convertToArray } from '@/utils/ConvertToArray';
+import HeartStorage from '@/utils/HeartStorage';
 
 export default function DetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -18,9 +19,11 @@ export default function DetailPage() {
     poster: data?.dbs?.db.poster ?? '',
   });
 
-  const onHeartClick = () => {};
+  const onHeartClick = () => {
+    HeartStorage.toggleHeart(id as string);
+  };
   const onUpdateScore = () => {};
-  console.log(data?.dbs?.db);
+
   if (isLoading) return <Loader />;
   return (
     <S.DetailPage>
@@ -38,7 +41,9 @@ export default function DetailPage() {
         spectator={data?.dbs?.db.prfage || ''}
         price={data?.dbs?.db.pcseguidance || ''}
         score={2}
-        id={data?.dbs?.db.mt10id || ''}
+        fId={data?.dbs?.db.mt10id || ''}
+        initialIsHeartFilled={HeartStorage.isHearted(id as string)}
+        pId={data?.dbs?.db.mt20id || ''}
       />
       <S.Panel>
         <S.Title>공연 예고편</S.Title>

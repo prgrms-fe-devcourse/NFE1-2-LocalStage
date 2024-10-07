@@ -7,12 +7,13 @@ import replaceTextProperties from '@/utils/extractInnermostValues';
 import HeartStorage from '@/utils/HeartStorage';
 import { xml2json } from 'xml-js';
 import { Loader } from '@/components/Loader';
+import { convertEmptyObject } from '@/utils/ConvertToArray';
 
 export default function MyPage() {
   const heartList = HeartStorage.getHeartList().concat();
   const fetchHeartList = heartList.map(heartItem => fetch(getApiUrl<PDetailRequestType>(`pblprfr/${heartItem.id}`)));
-  const [data, setData] = useState<PDetailResponseType[]>([]);
 
+  const [data, setData] = useState<PDetailResponseType[]>([]);
   const [isDataLoading, setIsDataLoading] = useState(true);
 
   useEffect(() => {
@@ -52,17 +53,18 @@ export default function MyPage() {
         <PosterWithDetailInfo
           isNameInclude
           key={d.dbs?.db.mt20id}
-          id={d.dbs?.db.mt20id || ''}
+          fId={d.dbs?.db.mt10id || ''}
           posterSrc={d.dbs?.db.poster || ''}
           name={d.dbs?.db.prfnm || ''}
           category={d.dbs?.db.genrenm || ''}
           place={d.dbs?.db.fcltynm || ''}
           duration={d.dbs?.db.prfpdfrom + '~' + d.dbs?.db.prfpdto}
-          time={d.dbs?.db.prfruntime || ''}
+          time={convertEmptyObject(d.dbs?.db.prfruntime)}
           spectator={d.dbs?.db.prfage || ''}
           price={d.dbs?.db.pcseguidance || ''}
           // 평점 -> review?
-          score={0}
+          score={3}
+          pId={d.dbs?.db.mt20id || ''}
         />
       ))}
     </S.MyPage>
