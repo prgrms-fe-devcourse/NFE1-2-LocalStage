@@ -32,17 +32,9 @@ export default function RankPage() {
     catecode: activeGenre,
   });
 
-  const onGenreChange = (id: GenreCode) => {
-    setActiveGenre(id);
-  };
-
-  const onPeriodChange = (index: number) => {
-    setActivePeriod(stsPeriods[index]);
-  };
-
-  const onPerformanceClick = (id: string) => {
-    navigate(`/detail/${id}`);
-  };
+  const onGenreChange = (id: GenreCode) => setActiveGenre(id);
+  const onPeriodChange = (index: number) => setActivePeriod(stsPeriods[index]);
+  const onPerformanceClick = (id: string) => navigate(`/detail/${id}`);
 
   const formattedData = useMemo(() => {
     return (
@@ -58,10 +50,6 @@ export default function RankPage() {
       })) ?? []
     );
   }, [data]);
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   const topThreePerformances = formattedData.slice(0, 3);
   const otherPerformances = formattedData.slice(3);
@@ -88,21 +76,30 @@ export default function RankPage() {
             onFilterChange={onPeriodChange}
           />
         </S.DateSection>
-        <S.TopThreePerformances>
-          {topThreePerformances.map(performance => (
-            <PCard
-              key={performance.mt20id}
-              id={performance.mt20id}
-              posterUrl={performance.poster}
-              name={performance.prfnm}
-              facility={performance.prfplcnm}
-              period={performance.prfpd}
-              rank={performance.rnum}
-              width="356px"
-              onCardClick={() => onPerformanceClick(performance.mt20id)}
-            />
-          ))}
-        </S.TopThreePerformances>
+        {isLoading ? (
+          <S.LoaderContainer>
+            <Loader />
+          </S.LoaderContainer>
+        ) : (
+          <>
+            <S.TopThreePerformances>
+              {topThreePerformances.map(performance => (
+                <PCard
+                  key={performance.mt20id}
+                  id={performance.mt20id}
+                  posterUrl={performance.poster}
+                  name={performance.prfnm}
+                  facility={performance.prfplcnm}
+                  period={performance.prfpd}
+                  rank={performance.rnum}
+                  width="356px"
+                  onCardClick={() => onPerformanceClick(performance.mt20id)}
+                />
+              ))}
+            </S.TopThreePerformances>
+            <PItemContainer data={otherPerformances} onItemClick={id => onPerformanceClick(id)} />
+          </>
+        )}
         <PItemContainer data={otherPerformances} onItemClick={id => onPerformanceClick(id)} />
       </S.RankPage>
     </Panel>
