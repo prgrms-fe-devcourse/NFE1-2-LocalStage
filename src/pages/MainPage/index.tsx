@@ -47,17 +47,17 @@ export default function MainPage() {
   }));
   const genreRankList = FillterGenreRank(genreRank?.boxofs?.boxof);
   const vList: VItemType[] = [];
-  const { video: v1 } = useYoutube({
+  const { vItem: v1 } = useYoutube({
     id: pList?.dbs?.db[1].mt20id,
     name: pList?.dbs?.db[1].prfnm,
     poster: pList?.dbs?.db[1].poster,
   });
-  const { video: v2 } = useYoutube({
+  const { vItem: v2 } = useYoutube({
     id: pList?.dbs?.db[2].mt20id,
     name: pList?.dbs?.db[2].prfnm,
     poster: pList?.dbs?.db[2].poster,
   });
-  const { video: v3 } = useYoutube({
+  const { vItem: v3 } = useYoutube({
     id: pList?.dbs?.db[3].mt20id,
     name: pList?.dbs?.db[3].prfnm,
     poster: pList?.dbs?.db[3].poster,
