@@ -9,4 +9,5 @@ export type PDetailType = {
   price: string;
   score: number;
   placeInfo: PlaceInfoType;
+  id: string;
 };

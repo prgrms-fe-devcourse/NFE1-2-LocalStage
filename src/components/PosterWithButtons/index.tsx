@@ -11,6 +11,7 @@ interface PosterWithButtonsProps {
   width?: string;
   onHeartClick?: (isHeartFilled: boolean) => void;
   className?: string;
+  id: string;
 }
 
 export const PosterWithButtons = ({
@@ -20,6 +21,7 @@ export const PosterWithButtons = ({
   width = '20%',
   onHeartClick,
   className,
+  id,
 }: PosterWithButtonsProps) => {
   const [isHeartFilled, setIsFilled] = useState(initialIsHeartFilled);
 
@@ -32,7 +34,7 @@ export const PosterWithButtons = ({
 
   return (
     <S.PosterWithButtons width={width} className={`${className}`}>
-      <Poster src={posterSrc} width="100%" />
+      <Poster src={posterSrc} width="100%" id={id} />
       <S.PosterButtonContainer>
         <S.HeartButtonWithText>
           <HeartButton initialFilled={isHeartFilled} onClickHeartButton={onClickHeart} />
