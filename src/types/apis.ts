@@ -452,7 +452,7 @@ export type Boxof = Pick<
   'area' | 'prfdtcnt' | 'prfplcnm' | 'prfpd' | 'cate' | 'prfnm' | 'rnum' | 'seatcnt' | 'poster' | 'mt20id'
 >;
 
-type Db = Pick<
+export type Db = Pick<
   CommonResponseType,
   | 'awards'
   | 'relateurl'

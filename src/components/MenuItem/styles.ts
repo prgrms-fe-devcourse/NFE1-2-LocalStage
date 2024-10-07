@@ -1,10 +1,10 @@
 import { P16 } from '@/components/Text';
 import styled from 'styled-components';
 
-export const MenuItem = styled(P16)<{ active: boolean }>`
+export const MenuItem = styled(P16)<{ $isActive: boolean }>`
   cursor: pointer;
   padding: 12px 24px;
-  color: ${({ theme, active }) => (active ? theme.colors.primary : theme.colors.text_gray)};
+  color: ${({ theme, $isActive }) => ($isActive ? theme.colors.primary : theme.colors.text_gray)};
   position: relative;
 
   &::after {
@@ -15,7 +15,7 @@ export const MenuItem = styled(P16)<{ active: boolean }>`
     width: 100%;
     height: 3px;
     background-color: ${({ theme }) => theme.colors.primary};
-    transform: scaleX(${({ active }) => (active ? 1 : 0)});
+    transform: scaleX(${({ $isActive }) => ($isActive ? 1 : 0)});
     transition: transform 0.3s ease-in-out;
   }
 `;
