@@ -20,7 +20,7 @@ export const MenuItemContainer = ({ menuItemList, onMenuItemChange }: MenuItemCo
     <S.MenuItemContainer>
       {menuItemList.map((item, index) => (
         <S.MenuItemWrapper>
-          <MenuItem key={item} item={item} active={index === activeItem} onClick={onClick(index)} />
+          <MenuItem key={index} item={item} isActive={index === activeItem} onClick={onClick(index)} />
           {index < menuItemList.length - 1 && <Seperator />}
         </S.MenuItemWrapper>
       ))}

@@ -2,13 +2,13 @@ import * as S from './styles';
 
 interface MenuItemProps {
   item: string;
-  active: boolean;
+  isActive: boolean;
   onClick: () => void;
 }
 
-export const MenuItem = ({ item, active, onClick }: MenuItemProps) => {
+export const MenuItem = ({ item, isActive, onClick }: MenuItemProps) => {
   return (
-    <S.MenuItem active={active} onClick={onClick}>
+    <S.MenuItem $isActive={isActive} onClick={onClick}>
       {item}
     </S.MenuItem>
   );
