@@ -9,12 +9,11 @@ interface PItemProps {
   location: string;
   period: string;
   posterUrl: string;
-  onClick?: (id: string) => void;
 }
 
-export const PItem = ({ id, rank, title, location, period, posterUrl, area, onClick }: PItemProps) => {
+export const PItem = ({ id, rank, title, location, period, posterUrl, area }: PItemProps) => {
   return (
-    <S.ItemContainer onClick={() => onClick && onClick(id)}>
+    <S.ItemContainer>
       <S.Rank>{rank}</S.Rank>
       {posterUrl && <Poster src={posterUrl} width="90px" rank={rank} />}
       <S.InfoContainer>

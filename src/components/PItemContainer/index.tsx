@@ -4,10 +4,9 @@ import { CommonResponseType } from '@/types/apis';
 
 interface PItemContainerProps {
   data: Pick<CommonResponseType, 'area' | 'prfplcnm' | 'prfpd' | 'cate' | 'prfnm' | 'rnum' | 'poster' | 'mt20id'>[];
-  onItemClick?: (id: string) => void;
 }
 
-export const PItemContainer = ({ data, onItemClick }: PItemContainerProps) => {
+export const PItemContainer = ({ data }: PItemContainerProps) => {
   return (
     <S.PItemContainer>
       {data.map(item => (
@@ -20,7 +19,6 @@ export const PItemContainer = ({ data, onItemClick }: PItemContainerProps) => {
           period={item.prfpd}
           posterUrl={item.poster}
           area={item.area}
-          onClick={onItemClick}
         />
       ))}
     </S.PItemContainer>
